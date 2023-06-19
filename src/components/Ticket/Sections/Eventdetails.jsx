@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Ctawrapper from "../../Landing page/CTA/Ctawrapper";
 import Signupbutton from "../../Buttons/Signupbutton";
+import { useParams } from "react-router-dom";
 
-const Eventtextcomponent = (props) => {
+const Eventtextcomponent = () => {
+  const [event, setEvent] = useState({});
+  const { id } = useParams();
+  const fetchDetails = () => {
+    fetch(`https://api.jenkins.ng/api/v1/events/${id}`)
+      .then((res) => res.json())
+      .then((data) => setEvent(data));
+  };
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+
   return (
-    <div className="flex">
-      <div>
-        <h1>{props.Heading}</h1>
-        <p>{props.location}</p>
-        <p>{props.description}</p>
-        <span>
-          <span className="material-symbols-outlined">map</span>
-          <span>View map</span>
-        </span>
-      </div>
-      <div>
+    <>
+      <div className="flex">
         <div>
-          <h1>Date & time</h1>
-          <p>{props.date}</p>
+          <h1>{event.Heading}</h1>
+          <p>{event.location}</p>
+          <p>{event.description}</p>
+          <span>
+            <span className="material-symbols-outlined">map</span>
+            <span>View map</span>
+          </span>
         </div>
-        <Signupbutton title="Book now" />
-        <p>{props.refund}</p>
+        <div>
+          <div>
+            <h1>Date & time</h1>
+            <p>{event.date}</p>
+          </div>
+          <Signupbutton title="Book now" />
+          <p>{event.refund}</p>
+        </div>
       </div>
-    </div>
+      <Eventdetailsbody items={event} />
+    </>
   );
 };
 

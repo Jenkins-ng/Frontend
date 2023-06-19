@@ -8,7 +8,7 @@ const Navlinks = (props) => {
     <nav className={classes}>
       <Navlink label="HOME" to={"/" || "home"} />
       <Navlink label="SHOP" to="/shop" />
-      <Navlink label="TICKETS" to="/event" />
+      <Navlink label="TICKETS" to="/events" />
       <Navlink label="JOBS" to="/job" />
       <Navlink label="TRAININGS" to="/training" />
       <Navlink label="TUTORIALS" to="/tutorial" />

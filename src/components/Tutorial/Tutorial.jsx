@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Head from "../Landing page/Header/Head";
 
-const searchApi = ({ input }) => {
+export const SearchApi = () => {
   const [data, setdata] = useState([]);
   let api_key = "AIzaSyCv5xnjDSLOc5u_xlpvwipdwRrwxzROTsU";
   let queryLink = "https://www.googleapis.com/youtube/v3/search?";
@@ -13,48 +13,31 @@ const searchApi = ({ input }) => {
           type: "videos",
           part: "snippet",
           maxResults: 1000,
-          q: input,
+          q: "html",
         })
     )
       .then((response) => response.json)
-      .then((data = setdata(data)));
+      .then((res) => setdata(res));
 
-    return () => {
-      setdata([]);
-    };
-  }, [input]);
-};
-
-const Search = () => {
-  const inputRef = useRef();
-  const Submithandler = () => {
-    const input = inputRef.current.value;
-    searchApi(input);
-  };
+    // return () => {
+    //   setdata([]);
+    // };
+  }, []);
 
   return (
-    <div>
-      <input type="text" name="" id="" value={inputRef} />
-      <button type="submit" onClick={Submithandler}>
-        <span className="material-symbols-outlined">search</span>
-      </button>
-    </div>
-  );
-};
-
-const VideoData = () => {
-  return (
-    <div>
-      {data.items.map((data) => {
-        `<iframe
-          width="350"
-          height="300"
-          src="http://www.youtube.com/embed/${data.id.videoId}"
+    <>
+      <div>
+        {data.items?.map((data) => {
+          `<iframe
+        width="350"
+        height="300"
+        src="http://www.youtube.com/embed/${data.id.videoId}"
           frameborder="0"
           allowfullscreen
         ></iframe>`;
-      })}
-    </div>
+        })}
+      </div>
+    </>
   );
 };
 
@@ -62,8 +45,9 @@ const Tutorial = () => {
   return (
     <div>
       <Head />
-      <Search />
-      <VideoData />
+      <section className="relative top-28">
+        <SearchApi />
+      </section>
     </div>
   );
 };

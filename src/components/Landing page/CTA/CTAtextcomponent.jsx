@@ -16,6 +16,7 @@ const CTAtextcomponent = (props) => {
         <Signupbutton
           title={props.title}
           className="hover:bg-blue-400 hover:text-slate-800 text-lg rounded-2xl mt-10 font-bold"
+          to="/signup"
         />
       </div>
     </div>

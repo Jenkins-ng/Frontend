@@ -9,12 +9,15 @@ import Keepup from "./Sections/Keepup";
 import Partners from "./Sections/Partners";
 import Foot from "../Landing page/Footer/foot";
 import CTAtextcomponent from "../Landing page/CTA/CTAtextcomponent";
+import state, { StateProvider } from "../../Store/TicketProvider";
+import { initialState } from "../../Store/TicketReducer";
+import Reducer from "../../Store/TicketReducer";
 
 //
 
 const Ticket = () => {
   return (
-    <>
+    <StateProvider initialState={initialState} reducer={Reducer}>
       <Ctawrapper className="bg-Ticket">
         <Head />
         <CTAtextcomponent
@@ -34,7 +37,7 @@ const Ticket = () => {
       {/* <Keepup /> */}
       <Partners />
       <Foot />
-    </>
+    </StateProvider>
   );
 };
 

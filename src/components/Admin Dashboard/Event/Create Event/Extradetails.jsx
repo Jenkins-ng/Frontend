@@ -1,6 +1,6 @@
 import React from "react";
-import Inputfield from "../../signup/Inputfield";
-import Signupbutton from "../../Buttons/Signupbutton";
+import Inputfield from "../../../signup/Inputfield";
+import Signupbutton from "../../../Buttons/Signupbutton";
 import { ClassNames } from "@emotion/react";
 
 const Extradetails = () => {

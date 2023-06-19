@@ -1,6 +1,6 @@
 import React from "react";
-import Wrapper from "./Wrapper";
-import Loginbutton from "../Buttons/Loginbutton";
+import Wrapper from "../Wrapper";
+import Loginbutton from "../../Buttons/Loginbutton";
 
 const Events = () => {
   return (

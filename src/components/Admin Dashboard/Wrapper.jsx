@@ -3,7 +3,7 @@ import Logo from "../Landing page/Header/Logo";
 import "./wrapper.css";
 import { NavLink, Route, Routes } from "react-router-dom";
 import Dashboard from "./Dashboard";
-import Events from "./Events";
+import Events from "./Event/Events";
 
 const Wrapper = (props) => {
   return (

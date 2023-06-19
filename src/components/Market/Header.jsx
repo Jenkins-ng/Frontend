@@ -7,7 +7,7 @@ const Header = () => {
   const [{ cart }, dispatch] = useStateValue();
 
   return (
-    <div className="Header">
+    <div className="Header bg-black">
       <Logo />
       <div className="header__search">
         <input type="text" name="" id="" />
