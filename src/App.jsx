@@ -14,6 +14,7 @@ import Market from "./components/Market/Market";
 import Tutorial from "./components/Tutorial/Tutorial";
 // import DetailedEvents from "./components/Ticket/Sections/DetailedEvents";
 import UseToken from "./Store/UseToken";
+// import Event from "./components/Ticket/Sections/Event";
 import Eventdetails from "./components/Ticket/Sections/Eventdetails";
 
 function App() {

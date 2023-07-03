@@ -10,8 +10,8 @@ const Foot = () => {
     <Footbg>
       <div className="md:flex block justify-between items-start content-center">
         <Logo />
-        <div className="md:flex block items-start ">
-          <Navlinks className="grid grid-cols-2 md:grid md:grid-cols-4 " />
+        <Navlinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
+        <div className="md:flex block justify-between">
           <div className="md:flex  h-8">
             <input
               type="email"

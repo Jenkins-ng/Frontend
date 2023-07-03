@@ -26,29 +26,29 @@ const SectionThree = () => {
           </p>
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="grid">
-                <label
-                  htmlFor="email"
-                  className="text-bold grid text-base font-bold text-slate-500 w-full"
-                >
-                  Email Address
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
-                    {...register("email", {
-                      required: true,
-                    })}
-                  />
-                </label>
-                {errors.email && errors.email.type === "required" && (
-                  <p className="text-sm text-red-600 font-bold">
-                    Email is required
-                  </p>
-                )}
-              </div>
               <div className="md:flex gap-2">
+                <div className="grid">
+                  <label
+                    htmlFor="email"
+                    className="text-bold grid text-base font-bold text-slate-500 w-full"
+                  >
+                    Email Address
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
+                      {...register("email", {
+                        required: true,
+                      })}
+                    />
+                  </label>
+                  {errors.email && errors.email.type === "required" && (
+                    <p className="text-sm text-red-600 font-bold">
+                      Email is required
+                    </p>
+                  )}
+                </div>
                 <div className="grid">
                   <label
                     htmlFor="phoneNumber"
@@ -72,6 +72,8 @@ const SectionThree = () => {
                       </p>
                     )}
                 </div>
+              </div>
+              <div className="md:flex gap-2">
                 <div className="grid">
                   <label
                     htmlFor="firstName"
@@ -117,12 +119,22 @@ const SectionThree = () => {
                   )}
                 </div>
               </div>
-              <textarea
-                className="w-full bg-slate-300 border-slate-500 outline-slate-500 border-solid mt-2 h-[100px] outline-none p-2 text-sm rounded-xl text-slate-600"
-                placeholder="Write your message here."
-              >
-                Write a message
-              </textarea>
+              <div>
+                <textarea
+                  className="w-full bg-slate-300 border-slate-500 outline-slate-500 border-solid mt-2 h-[100px] outline-none p-2 text-sm rounded-xl text-slate-600"
+                  placeholder="Write your message here."
+                  {...register("message", {
+                    required: true,
+                  })}
+                >
+                  Write a message
+                </textarea>
+                {errors.message && errors.message.type === "required" && (
+                  <p className="text-sm text-red-600 font-bold">
+                    Message is required
+                  </p>
+                )}
+              </div>
               <Loginbutton title="send" className="bg-blue-400 w-full mt-0" />
             </form>
           </div>

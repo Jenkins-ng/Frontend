@@ -13,6 +13,7 @@ export default {
         CTA: "url('../src/assets/images/cta.jpg')",
         Ticket:
           "url('../src/assets/images/Ticket section/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg')",
+        Shop: "url('../src/assets/images/bruno-kelzer-LvySG1hvuzI-unsplash.jpg')",
       }),
     },
   },

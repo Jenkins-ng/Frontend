@@ -11,44 +11,43 @@ const Section = () => {
       <h2 className="text-center font-bold text-blue-400 text-3xl tracking-widest mt-14">
         WHAT WE OFFER?
       </h2>
-      <div>
+      <div className="md:flex gap-9 block justify-between w-5/6 m-auto overflow-hidden">
         <Prototype
           src={FirstImage}
           Id="TIRED OF YOUR JOB?"
           heading="Become so powerful that your competitors become your allies. Reach the top position and work smart with competition."
-          text="Click to view jobs near you"
+          text="Jobs near me"
           className="mt-8"
           to="/job"
         />
         <Prototype
           src={SecondImage}
-          Id="JOBS AND MARKET"
+          Id="MARKET"
           heading="We display to our viewers quality products on our site and the benefit they would get."
-          text="Click here to start buying"
-          className="flex-row-reverse"
+          text="Start Buying"
           to="/shop"
         />
-        <Prototype
+        {/* <Prototype
           src={ThirdImage}
           Id="TRAININGS AND CERTIFICATION"
           heading="Become so powerful that your competitors become your allies. Reach the top position and work smart with competition."
           text="Click here to get upskilled"
           to="/training"
-        />
-        <Prototype
+        /> */}
+        {/* <Prototype
           src={FourthImage}
           Id="LEARN ONLINE SEAMLESSLY"
           heading="Increase your knowledge, and clear your doubt with tons of tutorials from the comfort of your house."
           text="Click here to start watching"
           className="flex-row-reverse"
           to="/tutorial"
-        />
+        /> */}
         <Prototype
           src={FifthImage}
           Id="EVENTS AND BOOKINGS"
           heading="All work and no play makes ......"
           break="Tired of staying at home or don't know where to have fun?"
-          text="Click here to book an event"
+          text="Book an event"
           to="/event"
         />
       </div>
