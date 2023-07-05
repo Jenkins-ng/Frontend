@@ -1,14 +1,16 @@
 import React from "react";
 import Logo from "../../../Landing page/Header/Logo";
 import { NavLink } from "react-router-dom";
+import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
+import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
 // import { useStateValue } from "../../Store/StateProvider";
 
-const Header = () => {
+export const Head = () => {
   // const [{ cart }, dispatch] = useStateValue();
 
   return (
     <div className="flex fixed z-10 shadow-xl justify-between items-center px-5 py-[4px] w-full bg-white">
-      <div className="flex justify-between w-4/6">
+      <div className="flex justify-between w-full md:w-4/6">
         <NavLink to="/">
           <Logo />
         </NavLink>
@@ -32,7 +34,7 @@ const Header = () => {
         {/* <div className="grid">
           <span>Hello Guest</span>
         </div> */}
-        <nav className="flex justify-between w-5/6 px-4">
+        <nav className="md:flex justify-between w-5/6 px-4 hidden ">
           <ul className="text-blue-400 flex justify-between w-full">
             <li className="text-blue-400 font-bold hover:text-gray-500">
               <NavLink>HOME</NavLink>
@@ -54,6 +56,21 @@ const Header = () => {
           </span>
         </div>
       </div>
+    </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <div>
+      <Ctawrapper className="bg-Shop">
+        <Head />
+        <CTAtextcomponent
+          headline="STOP. SHOP. REPEAT."
+          tagword=" Enjoy the comfort of clicking away your needs."
+          title="START BUYING"
+        />
+      </Ctawrapper>
     </div>
   );
 };
