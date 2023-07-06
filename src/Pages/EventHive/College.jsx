@@ -1,5 +1,5 @@
-import RenderEvents from '../../components/eventhive/RenderEvents'
-import roorkee from '../../assets/event_images/roorkee.png'
+import RenderEvents from "../../components/eventhive/RenderEvents";
+import roorkee from "../../assets/event_images/roorkee.png";
 
 const College = () => {
   return (
@@ -46,14 +46,14 @@ const College = () => {
           </div>
           <section className="w-11/12 mx-auto pt-14 pb-28">
             <h2 className="mb-10">
-              College <span className="text-primary">Events</span>
+              Trending <span className="text-primary">Events</span>
             </h2>
             <RenderEvents />
           </section>
         </article>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default College
+export default College;

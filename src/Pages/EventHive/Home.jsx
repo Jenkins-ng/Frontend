@@ -1,25 +1,25 @@
-import banner from '../../assets/event_images/homebanner.png'
-import makeEvent from '../../assets/event_images/make_event.png'
-import EventCard from '../../components/eventhive/EventCard'
-import { cards, event } from '../../utils/data'
-import brands from '../../utils/brands'
+import banner from "../../assets/event_images/homebanner.png";
+import makeEvent from "../../assets/event_images/make_event.png";
+import EventCard from "../../components/eventhive/EventCard";
+import { cards, event } from "../../utils/data";
+import brands from "../../utils/brands";
 import {
   PiCaretLeftLight,
   PiCaretRightLight,
   PiCaretDownBold,
-} from 'react-icons/pi'
-import { Link } from 'react-router-dom'
-import { BiSearch } from 'react-icons/bi'
-import CollegeCard from '../../components/eventhive/CollegeCard'
-import RenderEvents from '../../components/eventhive/RenderEvents'
+} from "react-icons/pi";
+import { Link } from "react-router-dom";
+import { BiSearch } from "react-icons/bi";
+import CollegeCard from "../../components/eventhive/CollegeCard";
+import RenderEvents from "../../components/eventhive/RenderEvents";
 
 const Home = () => {
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-screen z-50 bg-white lg:hidden">
+      {/* <div className="fixed top-0 left-0 w-full h-screen z-50 bg-white lg:hidden">
         <h3>Sorry this site is not available for mobile, coming soon...</h3>
-      </div>
-      <header className="w-11/12 mx-auto relative">
+      </div> */}
+      <header className="w-12/12 px-3 mx-auto relative">
         <h1 className="text-white absolute xl:text-[4rem] top-20 left-1/2 -translate-x-1/2 text-center uppercase max-w-xl">
           Made for those who do
         </h1>
@@ -34,30 +34,30 @@ const Home = () => {
           </button>
         </div>
         {/* search bar */}
-        <form className="absolute -bottom-20 w-11/12 left-1/2 -translate-x-1/2 bg-navyBlue rounded-[20px] py-9 px-16 flex items-center justify-between">
-          <div className="grid gap-5 w-60">
+        <form className="absolute -bottom-14 w-11/12 left-1/2 -translate-x-1/2 bg-navyBlue rounded-[20px] py-3 px-10 flex items-center justify-between">
+          <div className="grid gap-[4px] w-60">
             <p className="text-backgroundGrey text-lg">Looking for</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
               <span>Choose event type</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
-          <div className="grid gap-5 w-60">
+          <div className="grid gap-[4px] w-60">
             <p className="text-backgroundGrey text-lg">Location</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
               <span>Choose location</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
-          <div className="grid gap-5 w-60">
+          <div className="grid gap-[4px] w-60">
             <p className="text-backgroundGrey text-lg">When</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span>Choose data and time</span>
+              <span>Choose date and time</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
-          <button className="text-backgroundGrey bg-primary p-7 rounded-md">
-            <BiSearch size={30} />
+          <button className="text-backgroundGrey bg-primary p-3 rounded-md">
+            <BiSearch size={20} />
           </button>
         </form>
       </header>
@@ -122,12 +122,12 @@ const Home = () => {
           <div className="py-20">
             <div className="grid grid-cols-5 items-center">
               {brands.slice(0, 5).map((src, i) => {
-                return <img src={src} alt="" key={i} />
+                return <img src={src} alt="" key={i} />;
               })}
             </div>
             <div className="grid grid-cols-4 items-center">
               {brands.slice(5, 9).map((src, i) => {
-                return <img src={src} alt="" key={i} />
+                return <img src={src} alt="" key={i} />;
               })}
             </div>
           </div>
@@ -135,11 +135,11 @@ const Home = () => {
         {/* trending colleges */}
         <section className="w-10/12 mx-auto">
           <h2>
-            Trending <span className="text-primary">Colleges</span>
+            Trending <span className="text-primary">Events</span>
           </h2>
           <div className="grid gap-5 grid-cols-3 w-full pt-8 pb-10">
             {cards.map((data, i) => {
-              return <CollegeCard key={i} {...data} />
+              return <CollegeCard key={i} {...data} />;
             })}
           </div>
           <Link
@@ -158,13 +158,13 @@ const Home = () => {
           </div>
           <div className="grid gap-5 grid-cols-3 w-full py-8">
             {event.slice(2, 5).map((data, i) => {
-              return <EventCard key={i} {...data} />
+              return <EventCard key={i} {...data} />;
             })}
           </div>
         </section>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

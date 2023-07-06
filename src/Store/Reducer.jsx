@@ -1,5 +1,3 @@
-import React from "react";
-
 export const initialState = {
   cart: [],
 };
@@ -7,6 +5,7 @@ export const initialState = {
 export const getBasketTotal = (cart) => {
   cart?.reduce((amount, item) => item.price + amount, 0);
 };
+
 const Reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":

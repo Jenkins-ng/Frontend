@@ -1,11 +1,11 @@
-import React from 'react'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Card = ({ img, college, location }) => {
   return (
     <Link
-      to="/eventhive/college"
+      to="/event/college"
       className="bg-white rounded-lg shadow-lg hover:scale-[1.03] duration-300"
     >
       <img src={img} alt="" className="w-full" />
@@ -17,7 +17,7 @@ const Card = ({ img, college, location }) => {
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { BsHeart, BsHeartFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-import img from '../../assets/event_images/dashboard/eventcard.png'
-import avatar1 from '../../assets/event_images/dashboard/Avatar 1.png'
-import avatar2 from '../../assets/event_images/dashboard/Avatar 2.png'
-import avatar3 from '../../assets/event_images/dashboard/Avatar 3.png'
+import { useState } from "react";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import img from "../../assets/event_images/dashboard/eventcard.png";
+import avatar1 from "../../assets/event_images/dashboard/Avatar 1.png";
+import avatar2 from "../../assets/event_images/dashboard/Avatar 2.png";
+import avatar3 from "../../assets/event_images/dashboard/Avatar 3.png";
 
 const DashboardEventCard = () => {
-  const [isLoveProfile, setIsLoveProfile] = useState(false)
+  const [isLoveProfile, setIsLoveProfile] = useState(false);
 
   const toogleLoveProfile = () => {
-    setIsLoveProfile(!isLoveProfile)
-  }
+    setIsLoveProfile(!isLoveProfile);
+  };
 
   return (
     <div className="p-4 bg-white rounded-xl relative hover:scale-[1.01] duration-300">
@@ -43,14 +43,14 @@ const DashboardEventCard = () => {
       <div className="flex justify-between items-center font-bold text-sm">
         <span className="text-navyBlue">Current Data</span>
         <Link
-          to="/eventhive/register"
+          to="/event/register"
           className="bg-navyBlue text-white rounded-[2cm] py-2 px-7"
         >
           Register
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardEventCard
+export default DashboardEventCard;

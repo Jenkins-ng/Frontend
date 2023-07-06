@@ -1,38 +1,38 @@
-import { Outlet, Link, useLocation } from 'react-router-dom'
-import Logo from './Logo'
+import { Outlet, Link, useLocation } from "react-router-dom";
+import Logo from "./Logo";
 import {
   PiSquaresFourLight,
   PiTelevisionSimpleLight,
   PiPaperPlaneRightLight,
   PiUser,
-} from 'react-icons/pi'
-import ScrollToTop from './ScrollToTop'
+} from "react-icons/pi";
+import ScrollToTop from "./ScrollToTop";
 
 const sidebarLinks = [
   {
-    url: '/eventhive/dashboard',
-    text: 'Dashboard',
+    url: "/event/dashboard",
+    text: "Dashboard",
     icon: <PiSquaresFourLight size={30} />,
   },
   {
-    url: '/eventhive/dashboard/events',
-    text: 'Events',
+    url: "/event/dashboard/events",
+    text: "Events",
     icon: <PiTelevisionSimpleLight size={30} />,
   },
   {
-    url: '/eventhive/dashboard/messages',
-    text: 'Messages',
+    url: "/event/dashboard/messages",
+    text: "Messages",
     icon: <PiPaperPlaneRightLight size={30} />,
   },
   {
-    url: '/eventhive/dashboard/profile',
-    text: 'Profile',
+    url: "/event/dashboard/profile",
+    text: "Profile",
     icon: <PiUser size={30} />,
   },
-]
+];
 
 const DashboardLayout = () => {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <>
@@ -48,24 +48,24 @@ const DashboardLayout = () => {
                 to={url}
                 className={`flex gap-3 py-2 items-center text-lg px-2 ${
                   location.pathname === url
-                    ? 'text-white bg-primary'
-                    : 'bg-white text-black'
+                    ? "text-white bg-primary"
+                    : "bg-white text-black"
                 }  rounded-md hover:bg-primary hover:text-white`}
               >
                 {icon} {text}
               </Link>
-            )
+            );
           })}
         </div>
       </aside>
       <main
         className="absolute left-52 top-20 p-8"
-        style={{ width: 'calc(100% - 13rem)' }}
+        style={{ width: "calc(100% - 13rem)" }}
       >
         <Outlet />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;

@@ -126,9 +126,7 @@ const SectionThree = () => {
                   {...register("message", {
                     required: true,
                   })}
-                >
-                  Write a message
-                </textarea>
+                ></textarea>
                 {errors.message && errors.message.type === "required" && (
                   <p className="text-sm text-red-600 font-bold">
                     Message is required

@@ -25,9 +25,9 @@ const Foot = () => {
         </div>
       </div>
       <div className="md:flex md:justify-between md:items-center mt-10">
-        <div className="mb-4 md:mb-0 text-sm">
+        <div className="mb-4 md:mb-0 text-sm text-slate-500">
           <p>&copy; JENKINS DEVELOPMENT AND SUBSTANTIAL SERVICES LIMITED.</p>
-          <p>ALL RIGHTS RESERVED.</p>
+          <p>ALL RIGHTS RESERVED. 2023</p>
         </div>
         <Social />
       </div>

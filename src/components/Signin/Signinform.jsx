@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Loginbutton from "../Buttons/Loginbutton";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Preloader from "../eventhive/Preloader";
+import notifyError from "../../utils/notifyError";
+import api from "../../utils/api";
 // import { useAuth } from "../../Store/Authentication";
 
 async function loginuser(credential) {
@@ -19,26 +22,52 @@ async function loginuser(credential) {
 }
 
 const Signinform = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(true);
+  const [icon, setIcon] = useState("visibility");
+
   const history = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  ////////////
+
   const onSubmit = async (data, e) => {
     // const auth = useAuth();
     console.log(data);
     e.preventDefault();
     // login;
     // auth.login(data);
+    try {
+      const response = await api.post("/register", data);
+      navigate("/eventhive/login");
+      history("/");
+    } catch (error) {
+      notifyError(error.response ? error.response.data.message : error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    history("/");
+  ////////////////////////// LOGIC TO SHOW AND HIDE PASSWORD //////////////////////////////
+
+  const showPassword = (e) => {
+    setShow((prevstate) => !show);
+    e.preventDefault();
+    if (show) {
+      setIcon("visibility_off");
+    } else {
+      setIcon("visibility");
+    }
   };
 
   return (
     <>
-      <div className="md:w-1/3 w-full">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="md:w-1/3 w-full h-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="text-slate-500">
           <div>
             <div className="md:hidden block text-center">
               <Logo />
@@ -62,7 +91,7 @@ const Signinform = () => {
                   <input
                     type="text"
                     name="email"
-                    className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl"
+                    className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
                     id="email"
                     {...register("email", {
                       required: true,
@@ -84,13 +113,13 @@ const Signinform = () => {
               <div className="grid">
                 <label
                   htmlFor="password"
-                  className="text-bold grid text-base font-bold text-slate-500 w-full"
+                  className="text-bold grid text-base font-bold text-slate-500 w-full relative"
                 >
                   Password
                   <input
-                    type="password"
+                    type={show ? "password" : "text"}
                     name="password"
-                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
+                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
                     id="password"
                     {...register("password", {
                       required: true,
@@ -103,6 +132,12 @@ const Signinform = () => {
                       },
                     })}
                   />
+                  <span
+                    className="material-symbols-outlined absolute right-3 bottom-1"
+                    onClick={showPassword}
+                  >
+                    {icon}
+                  </span>
                 </label>
                 {errors.password && errors.password.type === "required" && (
                   <p className="text-sm text-red-600 font-bold">
@@ -151,6 +186,7 @@ const Signinform = () => {
             />
           </div>
         </form>
+        {isLoading && <Preloader />}{" "}
       </div>
     </>
   );
