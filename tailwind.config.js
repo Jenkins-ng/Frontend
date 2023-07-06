@@ -1,12 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx,html}",
-    "./app/**/*.{js,jsx,ts,tsx,html}",
-    "./pages/**/*.{js,jsx,ts,tsx,html}",
-    "./components/**/*.{js,jsx,ts,tsx,html}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+
   theme: {
     extend: {
       backgroundImage: (theme) => ({
@@ -14,7 +9,18 @@ export default {
         Ticket:
           "url('../src/assets/images/Ticket section/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg')",
       }),
+      colors: {
+        primary: '#7848F4',
+        backgroundGrey: '#F8F8FA',
+        navyBlue: '#10107B',
+        grey600: '#7E7E7E',
+      },
+      screens: {
+        lg: '992px',
+        xl: '1280px',
+        '2xl': '1400px',
+      },
     },
   },
   plugins: [],
-};
+}
