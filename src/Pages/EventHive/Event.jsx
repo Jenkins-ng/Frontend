@@ -2,6 +2,7 @@ import RenderEvents from '../../components/eventhive/RenderEvents'
 import { Link } from 'react-router-dom'
 import { PiCaretLeftBold } from 'react-icons/pi'
 import { CiLocationOn } from 'react-icons/ci'
+import map from '../../assets/event_images/map.png'
 import facebook from '../../assets/event_images/facebook.svg'
 import whatsapp from '../../assets/event_images/whatsapp.svg'
 import linkedIn from '../../assets/event_images/linkedIn.svg'
@@ -103,11 +104,7 @@ const Event = () => {
           {/* event location */}
           <div>
             <h3>Event location</h3>
-            <img
-              src="/src/assets/images/map.png"
-              alt="map"
-              className="mt-5 mb-8 w-full"
-            />
+            <img src={map} alt="map" className="mt-5 mb-8 w-full" />
             <h3>Dream world wide in jakatra</h3>
             <p className="text-grey600 mb-10">
               Dummy location generation model by RSU ... Our approach generates
