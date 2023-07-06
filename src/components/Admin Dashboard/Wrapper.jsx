@@ -1,9 +1,9 @@
-import React from "react";
-import Logo from "../Landing page/Header/Logo";
-import "./wrapper.css";
-import { NavLink, Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Events from "./Event/Events";
+import React from 'react'
+import Logo from '../Landing page/Header/Logo'
+import './wrapper.css'
+import { NavLink, Route, Routes } from 'react-router-dom'
+import Dashboard from './Dashboard'
+import Events from './Event/Events'
 
 const Wrapper = (props) => {
   return (
@@ -13,7 +13,7 @@ const Wrapper = (props) => {
         <ul>
           <NavLink to="/dashboard">
             <li>
-              <span className="material-symbols-outlined">dashboard</span>{" "}
+              <span className="material-symbols-outlined">dashboard</span>{' '}
               Dashboard
             </li>
           </NavLink>
@@ -34,9 +34,11 @@ const Wrapper = (props) => {
           </NavLink>
         </ul>
       </nav>
-      <main className="w-[80%] px-4 overflow-hidden">{props.children}</main>
+      <main className="w-[80%] px-4 overflow-hidden wrapper">
+        {props.children}
+      </main>
     </div>
-  );
-};
+  )
+}
 
-export default Wrapper;
+export default Wrapper
