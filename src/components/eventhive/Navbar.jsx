@@ -9,7 +9,7 @@ const Navbar = () => {
       <div>
         <Link
           className="py-4 px-10 hover:text-primary duration-300"
-          to="/eventthive/login"
+          to="/eventhive/login"
         >
           Login
         </Link>
