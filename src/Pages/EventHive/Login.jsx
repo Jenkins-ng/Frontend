@@ -58,7 +58,7 @@ const Login = () => {
       try {
         setIsLoading(true)
         const response = await api.post('/login', data)
-        navigate('/eventhive/register')
+        navigate('/eventhive/all-events')
       } catch (error) {
         notifyError(
           error.response ? error.response.data.message : error.message
