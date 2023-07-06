@@ -10,8 +10,6 @@ const Navlinks = (props) => {
       <Navlink label="SHOP" to="/shop" />
       <Navlink label="TICKETS" to="/eventhive" />
       <Navlink label="JOBS" to="/job" />
-      <Navlink label="TRAININGS" to="/training" />
-      <Navlink label="TUTORIALS" to="/tutorial" />
       <Navlink label="HELP & SUPPORT" to="/help" />
       <Navlink label="ABOUT US" to="/about-us" />
     </nav>

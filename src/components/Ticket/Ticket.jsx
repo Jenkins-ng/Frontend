@@ -12,6 +12,7 @@ import CTAtextcomponent from "../Landing page/CTA/CTAtextcomponent";
 import state, { StateProvider } from "../../Store/TicketProvider";
 import { initialState } from "../../Store/TicketReducer";
 import Reducer from "../../Store/TicketReducer";
+// import Events from "./Sections/Events";
 
 //
 
@@ -34,7 +35,7 @@ const Ticket = () => {
       <Event />
       <Categories />
       <Howitworks />
-      {/* <Keepup /> */}
+      <Keepup />
       <Partners />
       <Foot />
     </StateProvider>

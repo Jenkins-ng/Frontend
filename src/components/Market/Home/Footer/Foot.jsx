@@ -1,16 +1,15 @@
 import React from "react";
-import Loginbutton from "../../Buttons/Loginbutton";
-import Logo from "../Header/Logo";
-import Navlinks from "../Header/Navlinks";
-import Social from "./Socials";
-import Footbg from "./Footbg";
+import Socials from "../../../Landing page/Footer/Socials";
+import Footbg from "../../../Landing page/Footer/Footbg";
+import FootLinks from "./FootLinks";
+import Logo from "../../../Landing page/Header/Logo";
 
 const Foot = () => {
   return (
     <Footbg>
       <div className="md:flex block justify-between items-start content-center">
         <Logo />
-        <Navlinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
+        <FootLinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
         <div className="md:flex block justify-between">
           <div className="md:flex  h-8">
             <input
@@ -29,7 +28,7 @@ const Foot = () => {
           <p>&copy; JENKINS DEVELOPMENT AND SUBSTANTIAL SERVICES LIMITED.</p>
           <p>ALL RIGHTS RESERVED.</p>
         </div>
-        <Social />
+        <Socials />
       </div>
     </Footbg>
   );

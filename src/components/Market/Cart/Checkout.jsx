@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateValue } from "../../Store/StateProvider";
+import { useStateValue } from "../../../Store/StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 
 const Checkout = () => {

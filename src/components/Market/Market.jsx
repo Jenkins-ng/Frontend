@@ -1,19 +1,22 @@
 import React from "react";
-import Header from "./Header";
-import Home from "./Home";
-import state, { StateProvider } from "../../Store/StateProvider";
-import { initialState } from "../../Store/Reducer";
-import Reducer from "../../Store/Reducer";
+import Header from "./Home/Section/Header";
+import Categories from "./Home/Section/Catergories";
+import TopProducts from "./Products/TopProducts";
+import Benefits from "./Home/Benefits/Benefit";
+import Foot from "./Home/Footer/Foot";
+import Data from "./Data/Categoriesdata";
+import Category from "./Home/Section/Category";
 
-const market = () => {
+const Market = () => {
   return (
-    <StateProvider initialState={initialState} reducer={Reducer}>
-      <div>
-        <Header />
-        <Home />
-      </div>
-    </StateProvider>
+    <>
+      <Header />
+      <Categories />
+      <TopProducts />
+      <Benefits />
+      <Foot />
+    </>
   );
 };
 
-export default market;
+export default Market;
