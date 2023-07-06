@@ -43,8 +43,8 @@ const Signinform = () => {
     // auth.login(data);
     try {
       const response = await api.post("/register", data);
-      navigate("/eventhive/login");
-      history("/");
+      // navigate("/eventhive/login");
+      history("/event/all-events");
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message);
     } finally {
