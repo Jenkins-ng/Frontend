@@ -6,38 +6,45 @@ import image3 from '../assets/event_images/events/image3.png'
 import harvard from '../assets/event_images/colleges/harvard.png'
 import stanford from '../assets/event_images/colleges/stanford.png'
 import nanyang from '../assets/event_images/colleges/nanyang.png'
+
 const event = [
   {
+    id: 65850377403,
     img: image3,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',
     type: 'ONLINE EVENT - Attend anywhere',
   },
   {
+    id: 655845450397,
     img: image2,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',
     type: 'ONLINE EVENT - Attend anywhere',
   },
   {
+    id: 655859020987,
     img: image2,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',
     type: 'ONLINE EVENT - Attend anywhere',
   },
   {
+    id: 656025378567,
     img: image2,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',
     type: 'ONLINE EVENT - Attend anywhere',
   },
   {
+    id: 656025378567,
     img: image1,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',
     type: 'ONLINE EVENT - Attend anywhere',
   },
   {
+    id: 656025378567,
     img: image3,
     text: 'BestSelller Book Bootcamp -write, Market & Publish Your Book -Lucknow',
     date: 'Saturday, March 18, 9.30PM',

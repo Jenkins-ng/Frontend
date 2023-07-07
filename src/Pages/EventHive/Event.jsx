@@ -1,5 +1,5 @@
 import RenderEvents from '../../components/eventhive/RenderEvents'
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import { PiCaretLeftBold } from 'react-icons/pi'
 import { CiLocationOn } from 'react-icons/ci'
 import map from '../../assets/event_images/map.png'
@@ -7,8 +7,19 @@ import facebook from '../../assets/event_images/facebook.svg'
 import whatsapp from '../../assets/event_images/whatsapp.svg'
 import linkedIn from '../../assets/event_images/linkedIn.svg'
 import twitter from '../../assets/event_images/twitter.svg'
+import api from '../../utils/api'
+
+export const loader = async ({ params }) => {
+  try {
+    const { data } = await api.get(`/v1/events/${params.id}`)
+    return data
+  } catch (error) {
+    return []
+  }
+}
 
 const Event = () => {
+  const data = useLoaderData()
   return (
     <>
       <div className="white-bg">
