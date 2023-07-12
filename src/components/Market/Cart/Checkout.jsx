@@ -1,9 +1,10 @@
 import React from "react";
-import { useStateValue } from "../../../Store/StateProvider";
+import Products from "../Data/Products";
+// import { useStateValue } from "../../../Store/StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 
 const Checkout = () => {
-  const [{ cart }, dispatch] = useStateValue();
+  // const [{ cart }, dispatch] = useStateValue();
   return (
     <div className="checkout ">
       <div className="checkout__left">
@@ -11,7 +12,7 @@ const Checkout = () => {
         <div>
           <h2 className="checkout__title">Your Cart</h2>
           <div>
-            {cart.map((item) => (
+            {Products.map((item) => (
               <CheckoutProduct
                 id={item.id}
                 title={item.title}

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Products from "../Data/Products";
 
-const ProductDetails = () => {
+const ProductDetails = ({ identity }) => {
+  const data = (identity) => {
+    Products.filter((product) => product.id === identity);
+  };
+  data(identity);
+  console.log(identity);
+
   return (
     <section>
       <div>
         <div>
-          <div>lists of image</div>
+          <div>lists of images</div>
           <div>each image</div>
+          <div>{data}</div>
         </div>
         <div>
           <div>
