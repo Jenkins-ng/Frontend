@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AuthContext from "../../context/AuthContext";
 import Loginbutton from "../Buttons/Loginbutton";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
@@ -14,6 +15,8 @@ const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
   const [icon, setIcon] = useState("visibility");
+
+  // const {setAuth} = useContext(AuthContext)
 
   const history = useNavigate();
 
@@ -42,6 +45,7 @@ const Signinform = () => {
         .post("/login", data)
         .then((response) => response.data)
         .then((data) => {
+          // setAuth(data)
           if (data.status === "success") {
             notifySuccess(data.status);
           }

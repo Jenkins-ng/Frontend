@@ -1,6 +1,12 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
 
 import AuthProvider from "./context/AuthContext";
+import Required from "./components/Required";
 
 ///////////////////////// GENERAL PAGE //////////////////////
 
@@ -16,7 +22,7 @@ import UseToken from "./Store/UseToken";
 import Eventdetails from "./components/Ticket/Sections/Eventdetails";
 import Layout from "./components/Market/Layout";
 
-/////////////////////////////// Event Hive  ////////////////////////////////////////
+/////////////////////////////// EVENT HIVE  ////////////////////////////////////////
 
 import EventHomeLayout from "./components/eventhive/HomeLayout";
 import EventHome from "./Pages/EventHive/Home";
@@ -53,6 +59,7 @@ import { loader as eventLoader } from "./Pages/EventHive/Event";
 
 const router = createBrowserRouter([
   ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
+
   { path: "/", element: <Landingpage /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
@@ -126,11 +133,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
