@@ -34,7 +34,7 @@ const TopProducts = () => {
       <div className="flex justify-between">
         <h1 className="text-slate-400 font-bold text-xl ">TOP PRODUCTS</h1>
         <NavLink
-          to=""
+          to="/shop/product"
           className="text-slate-400 font-bold text-base hover:text-blue-400"
         >
           SEE ALL

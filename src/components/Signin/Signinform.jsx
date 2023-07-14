@@ -6,20 +6,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../eventhive/Preloader";
 import notifyError from "../../utils/notifyError";
+import notifySuccess from "../../utils/notifySuccess";
 import api from "../../utils/api";
 // import { useAuth } from "../../Store/Authentication";
-
-async function loginuser(credential) {
-  return fetch("https://api.jenkins.ng/api/login", {
-    method: "POST",
-    headers: {
-      "content-Type": "application/json",
-    },
-    body: JSON.stringify(credential),
-  })
-    .then((data) => data.json())
-    .then((res) => console.log(res));
-}
 
 const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +16,7 @@ const Signinform = () => {
   const [icon, setIcon] = useState("visibility");
 
   const history = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -42,14 +32,40 @@ const Signinform = () => {
     // login;
     // auth.login(data);
     try {
-      const response = await api.post("/register", data);
+      // const response = await api.post("/login", data);
+      // const data = await response.data;
+      // console.log(data);
       // navigate("/eventhive/login");
-      history("/event/all-events");
+      // history("/event/all-events");
+
+      api
+        .post("/login", data)
+        .then((response) => response.data)
+        .then((data) => {
+          if (data.status === "success") {
+            notifySuccess(data.status);
+          }
+          console.log(data);
+        });
     } catch (error) {
+      console.log(error);
       notifyError(error.response ? error.response.data.message : error.message);
     } finally {
       setIsLoading(false);
+      notifyError(data.message);
     }
+
+    // try {
+    //   const response = await api.post("/login", data);
+    //   if (response.status === "success") {
+    //     notifySuccess(response.status);
+    //     navigate("/event/all-events");
+    //   }
+    // } catch (error) {
+    //   notifyError(error.response ? error.response.data.message : error.message);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   ////////////////////////// LOGIC TO SHOW AND HIDE PASSWORD //////////////////////////////

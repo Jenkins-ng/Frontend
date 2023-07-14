@@ -1,11 +1,11 @@
 import React from "react";
-import { useStateValue } from "../../Store/StateProvider";
+// import { useStateValue } from "../../Store/StateProvider";
 
 const CheckoutProduct = ({ id, image, title, price, rating }) => {
-  const [{ cart }, dispatch] = useStateValue();
-  const removeFromCart = () => {
-    dispatch({ type: "REMOVE_FROM_CART", id: id });
-  };
+  // const [{ cart }, dispatch] = useStateValue();
+  // const removeFromCart = () => {
+  //   dispatch({ type: "REMOVE_FROM_CART", id: id });
+
   return (
     <div className="checkoutProduct">
       <img src={image} alt="" />
@@ -19,9 +19,7 @@ const CheckoutProduct = ({ id, image, title, price, rating }) => {
               <p>❤</p>;
             })}
         </div>
-        <button type="button" onClick={removeFromCart}>
-          Remove from cart
-        </button>
+        <button type="button">Remove from cart</button>
       </div>
     </div>
   );

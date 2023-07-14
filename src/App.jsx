@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-/////////////////////////////////////////////////////////////
-
 import AuthProvider from "./context/AuthContext";
+
+///////////////////////// GENERAL PAGE //////////////////////
+
 import Landingpage from "./Pages/Landingpage";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/signin";
@@ -10,14 +11,13 @@ import Signinform from "./components/Signin/Signinform";
 import Helpandsupport from "./Pages/H&S";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
-import Market from "./components/Market/Market";
 import Tutorial from "./components/Tutorial/Tutorial";
 import UseToken from "./Store/UseToken";
 import Eventdetails from "./components/Ticket/Sections/Eventdetails";
+import Layout from "./components/Market/Layout";
 
-///////////////////////////////////////////////////////
+/////////////////////////////// Event Hive  ////////////////////////////////////////
 
-// Event Hive
 import EventHomeLayout from "./components/eventhive/HomeLayout";
 import EventHome from "./Pages/EventHive/Home";
 import EventSignUp from "./Pages/EventHive/SignUp";
@@ -35,23 +35,35 @@ import Events from "./Pages/EventHive/Dashboard/Events";
 import Messages from "./Pages/EventHive/Dashboard/Messages";
 import Profile from "./Pages/EventHive/Dashboard/Profile";
 
-///////////////////////////////////////////////////////////////////
-// E-SHOP
-import ProductDetails from "./components/Market/Products/ProductDetails";
+/////////////////////////////////////////// E-SHOP //////////////////////////////////////////////////
 
-// loaders
+import Market from "./components/Market/Market";
+import TopProducts from "./components/Market/Products/TopProducts";
+import ProductDetails from "./components/Market/Products/ProductDetails";
+import ProductByCategory from "./components/Market/Products/ProductByCategory";
+import Cart from "./components/Market/Cart/Checkout";
+import Checkout from "./components/Market/checkout/Checkout";
+import AllProducts from "./components/Market/Products/AllProducts";
+
+////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
+
 import { loader as eventLoader } from "./Pages/EventHive/Event";
 
+///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
+
 const router = createBrowserRouter([
+  ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
   { path: "/", element: <Landingpage /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
   { path: "/help", element: <Helpandsupport /> },
   { path: "/signin/recover", element: <Recoveryrender /> },
+  // {path:"/signin/forgot", element:}
   { path: "/admin/dashboard", element: <Dashboard /> },
   { path: "/admin/events", element: <Events /> },
-  { path: "/shop", element: <Market /> },
   { path: "/tutorial", element: <Tutorial /> },
+
+  //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
   {
     path: "/event",
     element: <EventHomeLayout />,
@@ -70,6 +82,8 @@ const router = createBrowserRouter([
   { path: "/event/all-events", element: <AllEvents /> },
   { path: "/event/create-event", element: <CreateEvent /> },
   { path: "/event/register", element: <Register /> },
+
+  /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
   {
     path: "/event/dashboard",
     element: <EventDashboardLayout />,
@@ -80,16 +94,35 @@ const router = createBrowserRouter([
       { path: "/event/dashboard/profile", element: <Profile /> },
     ],
   },
+
+  //////////////////////// FOR THE E-SHOP ///////////////////////////
   {
-    path: "/shop/product/:id",
-    element: <ProductDetails />,
-    // children: [
-    //   { index: true, element: <EventDashboard /> },
-    //   { path: '/event/dashboard/events', element: <Events /> },
-    //   { path: '/event/dashboard/messages', element: <Messages /> },
-    //   { path: '/event/dashboard/profile', element: <Profile /> },
-    // ],
+    path: "/shop",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Market /> },
+
+      /////////////////////////// SEARCH ALL PRODUCT /////////////////////////////////
+      { path: "/shop/product", element: <AllProducts /> },
+
+      ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
+      { path: "/shop/product/:slug", element: <ProductDetails /> },
+
+      //////////////////////////////////////// CART ///////////////////////////////////////
+      { path: "/shop/cart", element: <Cart /> },
+
+      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
+      { path: "/shop/checkout", element: <Checkout /> },
+
+      //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
+      {
+        path: "/shop/product/category/:category",
+        element: <ProductByCategory />,
+      },
+    ],
   },
+
+  // { path: "/shop/orders", element: <Orders /> },
 ]);
 
 const App = () => {

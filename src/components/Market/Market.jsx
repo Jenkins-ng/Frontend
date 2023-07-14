@@ -14,7 +14,7 @@ const Market = () => {
       <Categories />
       <TopProducts />
       <Benefits />
-      <Foot />
+      {/* <Foot /> */}
     </>
   );
 };

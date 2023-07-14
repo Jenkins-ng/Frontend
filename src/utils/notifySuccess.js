@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-const notifyError = (message) => {
-  toast.error(message, {
+const notifySuccess = (message) => {
+  toast.success(message, {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: false,
@@ -13,4 +13,4 @@ const notifyError = (message) => {
   });
 };
 
-export default notifyError;
+export default notifySuccess;
