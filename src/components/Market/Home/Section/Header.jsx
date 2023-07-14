@@ -3,6 +3,7 @@ import Logo from "../../../Landing page/Header/Logo";
 import { Link, NavLink } from "react-router-dom";
 import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
 import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
+
 // import { useStateValue } from "../../Store/StateProvider";
 
 export const Modal = () => {
@@ -13,8 +14,11 @@ export const Modal = () => {
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/profile"}>Manage Account</Link>
           </li>
-          <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
+          <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium relative">
             <Link to={"/orders"}>My Orders</Link>
+            <div className="absolute  bg-red-600 px-[8px] py-[0.5px] rounded-full top-0 right-0 text-[9px] text-white">
+              0
+            </div>
           </li>
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/logout"}>Logout</Link>
@@ -35,7 +39,7 @@ export const Head = () => {
   // const [{ cart }, dispatch] = useStateValue();
 
   return (
-    <div className="flex fixed z-10 shadow-xl justify-between items-center px-5 py-[4px] w-full bg-white">
+    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-[4px] w-full bg-white">
       <div className="flex justify-between w-full md:w-4/6">
         <NavLink to="/">
           <Logo />
@@ -64,16 +68,16 @@ export const Head = () => {
         {/* <div className="grid">
           <span>Hello Guest</span>
         </div> */}
-        <nav className="md:flex justify-between w-4/6 px-4 hidden ">
+        <nav className="md:flex justify-between w-4/6 px-4 hidden tracking-wide">
           <ul className="text-blue-400 flex justify-between w-full">
             <li className="text-blue-400 font-bold hover:text-gray-500">
-              <NavLink>HOME</NavLink>
+              <NavLink to={"/shop"}>HOME</NavLink>
             </li>
             <li className="text-blue-400 font-bold hover:text-gray-500">
-              <NavLink>PRODUCTS</NavLink>
+              <NavLink to={"/shop/product"}>PRODUCTS</NavLink>
             </li>
             <li className="text-blue-400 font-bold hover:text-gray-500">
-              <NavLink>SUPPORT</NavLink>
+              <NavLink to={""}>SUPPORT</NavLink>
             </li>
             <li className="text-blue-400 font-bold hover:text-gray-500">
               <NavLink>ABOUT</NavLink>
@@ -83,7 +87,7 @@ export const Head = () => {
         <div className="flex justify-evenly w-2/6 flex-1 relative">
           <div className="">
             <span
-              className="material-symbols-outlined font-extrabold text-3xl cursor-pointer"
+              className="material-symbols-outlined font-regular text-2xl cursor-pointer bg-blue-400 rounded-full px-[6px] py-[2px]"
               onClick={showProfile}
             >
               person
@@ -91,9 +95,14 @@ export const Head = () => {
             {profile ? <Modal /> : ""}
           </div>
           <Link to={"/shop/cart"}>
-            <span className="material-symbols-outlined font-extrabold text-3xl cursor-pointer">
-              shopping_cart
-            </span>
+            <div className="relative">
+              <span className="material-symbols-outlined font-regular text-2xl cursor-pointer rounded-full bg-blue-400 px-[6px] py-[2px]">
+                shopping_cart
+              </span>
+              <p className="absolute bg-red-600 px-[6px] py-[2px] rounded-full top-0 right-0 text-xs text-white">
+                0
+              </p>
+            </div>
           </Link>
         </div>
       </div>
@@ -105,7 +114,7 @@ const Header = () => {
   return (
     <div>
       <Ctawrapper className="bg-Shop">
-        <Head />
+        {/* <Head /> */}
         <CTAtextcomponent
           headline="STOP. SHOP. REPEAT."
           tagword=" Enjoy the comfort of clicking away your needs."

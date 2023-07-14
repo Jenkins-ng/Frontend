@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../../Store/StateProvider";
 import { Link } from "react-router-dom";
+import StarRating from "../Home/Components/Star";
 
 const Product = ({ data }) => {
-  const [identity, setIdentity] = useState("");
+  // const [identity, setIdentity] = useState("");
   // console.log(data);
   // const [state, dispatch] = useStateValue();
 
@@ -39,21 +40,17 @@ const Product = ({ data }) => {
             <strong>{data.price}</strong>
           </p>
           <div className="flex gap-2">
-            {Array(data.rating)
-              .fill()
-              .map((_, i) => {
-                <p>❤</p>;
-              })}
+            <StarRating rate={+data.rating} />
           </div>
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <button
             type="submit"
             className="bg-blue-400  text-white hover:bg-slate-400 hover:text-slate-100 px-6 py-[3px] rounded-xl text-sm"
           >
             Add to cart{" "}
           </button>
-        </div>
+        </div> */}
       </div>
     </Link>
   );

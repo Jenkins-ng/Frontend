@@ -45,7 +45,7 @@ const Signupform = () => {
     }
 
     try {
-      const response = await api.post("/register", data);
+      const response = await api.post("/register", JSON.stringify(data));
       const message = await response.data;
       console.log(JSON.stringify(message));
 
@@ -54,6 +54,9 @@ const Signupform = () => {
       // navigate("/signin");
     } catch (error) {
       console.log(error);
+      if (!error?.response) {
+      } else if (error.response) {
+      }
       // notifyError(error.response ? error.response.data.message : error.message);
     } finally {
       setIsLoading(false);

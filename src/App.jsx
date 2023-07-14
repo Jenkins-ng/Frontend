@@ -14,6 +14,7 @@ import Dashboard from "./components/Admin Dashboard/Dashboard";
 import Tutorial from "./components/Tutorial/Tutorial";
 import UseToken from "./Store/UseToken";
 import Eventdetails from "./components/Ticket/Sections/Eventdetails";
+import Layout from "./components/Market/Layout";
 
 /////////////////////////////// Event Hive  ////////////////////////////////////////
 
@@ -39,8 +40,10 @@ import Profile from "./Pages/EventHive/Dashboard/Profile";
 import Market from "./components/Market/Market";
 import TopProducts from "./components/Market/Products/TopProducts";
 import ProductDetails from "./components/Market/Products/ProductDetails";
+import ProductByCategory from "./components/Market/Products/ProductByCategory";
 import Cart from "./components/Market/Cart/Checkout";
 import Checkout from "./components/Market/checkout/Checkout";
+import AllProducts from "./components/Market/Products/AllProducts";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
@@ -49,6 +52,7 @@ import { loader as eventLoader } from "./Pages/EventHive/Event";
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
 const router = createBrowserRouter([
+  ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
   { path: "/", element: <Landingpage /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
@@ -58,6 +62,8 @@ const router = createBrowserRouter([
   { path: "/admin/dashboard", element: <Dashboard /> },
   { path: "/admin/events", element: <Events /> },
   { path: "/tutorial", element: <Tutorial /> },
+
+  //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
   {
     path: "/event",
     element: <EventHomeLayout />,
@@ -76,6 +82,8 @@ const router = createBrowserRouter([
   { path: "/event/all-events", element: <AllEvents /> },
   { path: "/event/create-event", element: <CreateEvent /> },
   { path: "/event/register", element: <Register /> },
+
+  /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
   {
     path: "/event/dashboard",
     element: <EventDashboardLayout />,
@@ -90,14 +98,30 @@ const router = createBrowserRouter([
   //////////////////////// FOR THE E-SHOP ///////////////////////////
   {
     path: "/shop",
-    element: <Market />,
+    element: <Layout />,
+    children: [
+      { index: true, element: <Market /> },
+
+      /////////////////////////// SEARCH ALL PRODUCT /////////////////////////////////
+      { path: "/shop/product", element: <AllProducts /> },
+
+      ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
+      { path: "/shop/product/:slug", element: <ProductDetails /> },
+
+      //////////////////////////////////////// CART ///////////////////////////////////////
+      { path: "/shop/cart", element: <Cart /> },
+
+      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
+      { path: "/shop/checkout", element: <Checkout /> },
+
+      //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
+      {
+        path: "/shop/product/category/:category",
+        element: <ProductByCategory />,
+      },
+    ],
   },
 
-  { path: "/shop/product", element: <TopProducts /> },
-  { path: "/shop/product/:slug", element: <ProductDetails /> },
-  { path: "/shop/cart", element: <Cart /> },
-  { path: "/shop/checkout", element: <Checkout /> },
-  { path: "/shop/category/" },
   // { path: "/shop/orders", element: <Orders /> },
 ]);
 
