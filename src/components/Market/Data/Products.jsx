@@ -7,7 +7,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 10,
@@ -97,7 +97,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 11,
@@ -107,7 +107,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ const data = [
     description: "This is a phone and tablet catergory",
     price: "23,000",
     title: "phones and tablets",
-    rating: "5",
+    rating: 5,
   },
 ];
 

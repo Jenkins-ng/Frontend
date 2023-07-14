@@ -11,7 +11,7 @@ const Section = () => {
       <h2 className="text-center font-bold text-blue-400 text-3xl tracking-widest mt-14">
         WHAT WE OFFER?
       </h2>
-      <div className="md:flex gap-9 block justify-between w-5/6 m-auto overflow-hidden">
+      <div className="md:flex gap-9 block justify-between w-[90%] m-auto overflow-hidden">
         <Prototype
           src={FirstImage}
           Id="TIRED OF YOUR JOB?"

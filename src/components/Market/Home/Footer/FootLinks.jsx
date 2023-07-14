@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const FootLinks = () => {
   return (
-    <div className="md:flex block justify-between w-1/2 my-5 text-sm md:m-auto">
+    <div className="md:flex block gap-3 justify-between w-1/2 my-5 text-sm md:m-auto">
       <div>
         <p className="text-slate-500 font-bold text-xl">QUICK LINKS</p>
         <ul className="">
