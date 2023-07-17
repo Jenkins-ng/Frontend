@@ -4,7 +4,7 @@ const Checkout = () => {
   return (
     <section className="my-20 w-5/6 m-auto">
       <form action="">
-        <div className="grid grid-flow-col grid-cols-4 my-20 w-5/6">
+        <div className="grid grid-flow-col grid-cols-2 my-20 w-5/6">
           {/* <div>
             <label htmlFor="phoneNumber">
               Email Address
