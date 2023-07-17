@@ -1,6 +1,7 @@
 import React from "react";
 import Ctawrapper from "./Ctawrapper";
-import Signupbutton from "../../Buttons/Signupbutton";
+// import Signupbutton from "../../Buttons/Signupbutton";
+import Typewriter from "typewriter-effect";
 import Head from "../Header/Head";
 import CTAtextcomponent from "./CTAtextcomponent";
 
