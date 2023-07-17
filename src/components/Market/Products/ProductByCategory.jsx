@@ -12,8 +12,14 @@ const ProductByCategory = () => {
 
   return (
     <div>
-      <h1>{parameter}</h1>
-      <div>{<Product data={data[0]} key={data[0].id} />}</div>
+      <h1 className="text-2xl font-bold text-slate-500 m-5">
+        {parameter.toLocaleUpperCase()}
+      </h1>
+      <div>
+        {data.map((data) => (
+          <Product data={data} key={data.id} />
+        ))}
+      </div>
     </div>
   );
 };

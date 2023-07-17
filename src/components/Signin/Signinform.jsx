@@ -1,88 +1,56 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
-import Loginbutton from "../Buttons/Loginbutton";
-import Logo from "../Landing page/Header/Logo";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Preloader from "../eventhive/Preloader";
-import notifyError from "../../utils/notifyError";
-import notifySuccess from "../../utils/notifySuccess";
-import api from "../../utils/api";
+import React, { useState } from 'react'
+import Loginbutton from '../Buttons/Loginbutton'
+import Logo from '../Landing page/Header/Logo'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Preloader from '../eventhive/Preloader'
+import notifyError from '../../utils/notifyError'
+import notifySuccess from '../../utils/notifySuccess'
+import api from '../../utils/api'
 // import { useAuth } from "../../Store/Authentication";
 
 const Signinform = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [show, setShow] = useState(true);
-  const [icon, setIcon] = useState("visibility");
+  const [isLoading, setIsLoading] = useState(false)
+  const [show, setShow] = useState(true)
+  const [icon, setIcon] = useState('visibility')
 
-  // const {setAuth} = useContext(AuthContext)
-
-  const history = useNavigate();
-
+  const history = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
   ////////////
 
   const onSubmit = async (data, e) => {
-    // const auth = useAuth();
-    console.log(data);
-    e.preventDefault();
-    // login;
-    // auth.login(data);
+    // console.log(data)
+    e.preventDefault()
+
     try {
-      // const response = await api.post("/login", data);
-      // const data = await response.data;
-      // console.log(data);
-      // navigate("/eventhive/login");
-      // history("/event/all-events");
-
-      api
-        .post("/login", data)
-        .then((response) => response.data)
-        .then((data) => {
-          // setAuth(data)
-          if (data.status === "success") {
-            notifySuccess(data.status);
-          }
-          console.log(data);
-        });
+      setIsLoading(true)
+      const response = await api.post('/login', data)
+      console.log(response)
+      history('/event/all-events')
     } catch (error) {
-      console.log(error);
-      notifyError(error.response ? error.response.data.message : error.message);
+      notifyError(error.response ? error.response.data.message : error.message)
     } finally {
-      setIsLoading(false);
-      notifyError(data.message);
+      setIsLoading(false)
     }
-
-    // try {
-    //   const response = await api.post("/login", data);
-    //   if (response.status === "success") {
-    //     notifySuccess(response.status);
-    //     navigate("/event/all-events");
-    //   }
-    // } catch (error) {
-    //   notifyError(error.response ? error.response.data.message : error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  };
+  }
 
   ////////////////////////// LOGIC TO SHOW AND HIDE PASSWORD //////////////////////////////
 
   const showPassword = (e) => {
-    setShow((prevstate) => !show);
-    e.preventDefault();
+    setShow((prevstate) => !show)
+    e.preventDefault()
     if (show) {
-      setIcon("visibility_off");
+      setIcon('visibility_off')
     } else {
-      setIcon("visibility");
+      setIcon('visibility')
     }
-  };
+  }
 
   return (
     <>
@@ -113,18 +81,18 @@ const Signinform = () => {
                     name="email"
                     className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
                     id="email"
-                    {...register("email", {
+                    {...register('email', {
                       required: true,
                       pattern: /^[^@]+@[^@]+\.[^@ .]{2,}$/,
                     })}
                   />
                 </label>
-                {errors.email && errors.email.type === "required" && (
+                {errors.email && errors.email.type === 'required' && (
                   <p className="text-sm text-red-600 font-bold">
                     Email is required
                   </p>
                 )}
-                {errors.email && errors.email.type === "pattern" && (
+                {errors.email && errors.email.type === 'pattern' && (
                   <p className="text-sm text-red-600 font-bold">
                     Email is not valid
                   </p>
@@ -137,11 +105,11 @@ const Signinform = () => {
                 >
                   Password
                   <input
-                    type={show ? "password" : "text"}
+                    type={show ? 'password' : 'text'}
                     name="password"
                     className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
                     id="password"
-                    {...register("password", {
+                    {...register('password', {
                       required: true,
                       validate: {
                         checkLength: (value) => value.length >= 6,
@@ -159,17 +127,17 @@ const Signinform = () => {
                     {icon}
                   </span>
                 </label>
-                {errors.password && errors.password.type === "required" && (
+                {errors.password && errors.password.type === 'required' && (
                   <p className="text-sm text-red-600 font-bold">
                     password is required
                   </p>
                 )}
-                {errors.password && errors.password.type === "checkLength" && (
+                {errors.password && errors.password.type === 'checkLength' && (
                   <p className="text-sm text-red-600 font-bold">
                     password is must be up to six characters
                   </p>
                 )}
-                {errors.password && errors.password.type === "matchPattern" && (
+                {errors.password && errors.password.type === 'matchPattern' && (
                   <p className="text-sm text-red-600 font-bold">
                     password is must be contain at least a number, symbol,
                     uppercase letter and lowercase letter
@@ -188,7 +156,7 @@ const Signinform = () => {
             </div>
             <Loginbutton title="Log In" className="bg-blue-400 w-full" />
             <p className="text-center mt-4">
-              Yet to create account?{" "}
+              Yet to create account?{' '}
               <Link to="/signup" className="text-blue-400 font-bold">
                 Create account
               </Link>
@@ -206,13 +174,13 @@ const Signinform = () => {
             />
           </div>
         </form>
-        {isLoading && <Preloader />}{" "}
+        {isLoading && <Preloader />}{' '}
       </div>
     </>
-  );
+  )
   Signinform.PropTypes = {
     setToken: PropTypes.func.isRequired,
-  };
-};
+  }
+}
 
-export default Signinform;
+export default Signinform

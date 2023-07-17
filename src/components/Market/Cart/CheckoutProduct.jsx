@@ -1,24 +1,70 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import StarRating from "../Home/Components/Star";
-// import { useStateValue } from "../../Store/StateProvider";
+import { CartContext } from "../Context/Cart";
 
-const CheckoutProduct = ({ id, image, title, price, rating }) => {
-  // const [{ cart }, dispatch] = useStateValue();
-  // const removeFromCart = () => {
-  //   dispatch({ type: "REMOVE_FROM_CART", id: id });
+const CheckoutProduct = ({ item }) => {
+  const [quantity, setQuantity] = useState(item.quantity);
+  const { removeFromCart } = useContext(CartContext);
+  console.log(item);
 
   return (
     <div className="block mb-5">
       <div className="w-[300px] h-[250px]">
-        <img src={image} alt="" className="w-[300px]" />
+        <img src={item.image} alt="" className="w-[300px]" />
       </div>
       <div className="">
-        <p>{title}</p>
-        <p>{price}</p>
+        <p>{item.title}</p>
+        <p>{item.price}</p>
         <div className="rating">
-          <StarRating rate={rating} />
+          <StarRating rate={item.rating} />
         </div>
-        <button type="button">Remove from cart</button>
+        <div>
+          <div className="flex gap-5">
+            <h1>Quantity</h1>
+            <p>{item.quantity}</p>
+          </div>
+          <div className="flex items-center py-2">
+            <span
+              className="material-symbols-outlined cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                if (quantity <= 1) {
+                  return;
+                } else {
+                  setQuantity(quantity - 1);
+                }
+              }}
+            >
+              remove
+            </span>
+            <input
+              type="number"
+              name="quantity"
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              className="text-center outline-none border-slate-400 border-[1px] rounded-lg w-auto"
+            />
+            <span
+              className="material-symbols-outlined cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                setQuantity(quantity + 1);
+              }}
+            >
+              add
+            </span>
+          </div>
+          <button
+            type="button"
+            className="bg-slate-400 px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
+            onClick={() => {
+              removeFromCart(item);
+            }}
+          >
+            Remove From Cart
+          </button>
+        </div>
       </div>
     </div>
   );

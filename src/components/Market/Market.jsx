@@ -3,18 +3,17 @@ import Header from "./Home/Section/Header";
 import Categories from "./Home/Section/Catergories";
 import TopProducts from "./Products/TopProducts";
 import Benefits from "./Home/Benefits/Benefit";
-import Foot from "./Home/Footer/Foot";
-import Data from "./Data/Categoriesdata";
-import Category from "./Home/Section/Category";
+import { CartProvider } from "./Context/Cart";
 
 const Market = () => {
   return (
     <>
-      <Header />
-      <Categories />
-      <TopProducts />
-      <Benefits />
-      {/* <Foot /> */}
+      <CartProvider>
+        <Header />
+        <Categories />
+        <TopProducts />
+        <Benefits />
+      </CartProvider>
     </>
   );
 };

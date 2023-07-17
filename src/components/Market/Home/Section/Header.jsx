@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Logo from "../../../Landing page/Header/Logo";
 import { Link, NavLink } from "react-router-dom";
 import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
 import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
-
-// import { useStateValue } from "../../Store/StateProvider";
+import { CartContext } from "../../Context/Cart";
 
 export const Modal = () => {
   return (
@@ -36,7 +35,8 @@ export const Head = () => {
   const showProfile = () => {
     setProfile((prevstate) => !profile);
   };
-  // const [{ cart }, dispatch] = useStateValue();
+
+  const { cartItems } = useContext(CartContext);
 
   return (
     <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-[4px] w-full bg-white">
@@ -65,9 +65,6 @@ export const Head = () => {
         </div>
       </div>
       <div className="flex justify-between items-center w-3/6">
-        {/* <div className="grid">
-          <span>Hello Guest</span>
-        </div> */}
         <nav className="md:flex justify-between w-4/6 px-4 hidden tracking-wide">
           <ul className="text-blue-400 flex justify-between w-full">
             <li className="text-blue-400 font-bold hover:text-gray-500">
@@ -96,11 +93,11 @@ export const Head = () => {
           </div>
           <Link to={"/shop/cart"}>
             <div className="relative">
-              <span className="material-symbols-outlined font-regular text-2xl cursor-pointer rounded-full bg-blue-400 px-[6px] py-[2px]">
+              <span className="material-symbols-outlined font-regular text-2xl cursor-pointer rounded-full bg-blue-400 px-[6px] py-[2px] ">
                 shopping_cart
               </span>
               <p className="absolute bg-red-600 px-[6px] py-[2px] rounded-full top-0 right-0 text-xs text-white">
-                0
+                {cartItems.length}
               </p>
             </div>
           </Link>

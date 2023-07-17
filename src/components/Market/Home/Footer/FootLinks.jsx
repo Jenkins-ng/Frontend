@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const FootLinks = () => {
   return (
     <div className="md:flex block gap-3 justify-between w-1/2 my-5 text-sm md:m-auto">
-      <div>
+      <div className="mb-4 md:mb-0">
         <p className="text-slate-500 font-bold text-xl">QUICK LINKS</p>
         <ul className="">
           <li className="text-blue-400  hover:text-gray-500">
@@ -26,7 +26,7 @@ const FootLinks = () => {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="mb-4 md:mb-0">
         <p className="text-slate-500 font-bold text-xl">SUPPORT</p>
         <ul className="">
           <li className="text-blue-400  hover:text-gray-500">
@@ -40,7 +40,7 @@ const FootLinks = () => {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="mb-4 md:mb-0">
         <p className="text-slate-500 font-bold text-xl">CONTACT US</p>
         <ul className="">
           <li className="text-blue-400   whitespace-normal">

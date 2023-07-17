@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Products from "../Data/Products";
 import { useParams } from "react-router-dom";
+import notifySuccess from "../../../utils/notifySuccess";
+import notifyError from "../../../utils/notifyError";
+import { CartContext } from "../Context/Cart";
 
 const ProductDetails = () => {
-  const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
   const params = useParams();
   const parameter = params.slug;
 
@@ -13,7 +17,10 @@ const ProductDetails = () => {
     <section>
       <section className="w-[85%] m-auto mb-10">
         {data.map((items) => (
-          <div key={items.id} className="md:flex justify-evenly items mt-10">
+          <div
+            key={items.id}
+            className="md:flex justify-evenly items-center mt-20 rounded-lg"
+          >
             <div>
               <div>
                 <img src={items.image} alt="" />
@@ -36,7 +43,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div>
-                <div className="my-4">
+                <div className="my-4 flex items-center">
                   <span
                     className="material-symbols-outlined cursor-pointer bg-slate-400 w-auto p-2 rounded-full text-white"
                     onClick={(e) => {
@@ -51,7 +58,7 @@ const ProductDetails = () => {
                     remove
                   </span>
                   <input
-                    type="text"
+                    type="number"
                     name="number"
                     id="number"
                     value={quantity}
@@ -70,9 +77,11 @@ const ProductDetails = () => {
                 </div>
                 <div className="flex gap-5 text-lg font-regular">
                   <p>Total :</p>
-                  <p>{quantity * +items.price}</p>
+                  <p>
+                    <strike>N </strike> {quantity * +items.price}
+                  </p>
                 </div>
-                <div className="flex justify-between my-2">
+                <div className="flex md:justify-between gap-8 my-2">
                   <button
                     type="submit"
                     className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"
@@ -82,6 +91,10 @@ const ProductDetails = () => {
                   <button
                     type="submit"
                     className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"
+                    onClick={() => {
+                      addToCart(items, quantity);
+                      notifySuccess("Items added successfully!");
+                    }}
                   >
                     Add To Cart
                   </button>
@@ -91,7 +104,7 @@ const ProductDetails = () => {
           </div>
         ))}
         <div>
-          <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3">
+          <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3 mt-10">
             Related Items
           </h1>
         </div>

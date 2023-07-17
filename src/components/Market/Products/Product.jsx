@@ -1,29 +1,11 @@
 import React, { useState } from "react";
-import { useStateValue } from "../../../Store/StateProvider";
 import { Link } from "react-router-dom";
 import StarRating from "../Home/Components/Star";
 
 const Product = ({ data }) => {
-  // const [identity, setIdentity] = useState("");
-  // console.log(data);
-  // const [state, dispatch] = useStateValue();
-
-  // const addToCart = () => {
-  //   dispatch({
-  //     type: "ADD_TO_CART",
-  //     item: {
-  //       id: data.id,
-  //       title: data.title,
-  //       image: data.image,
-  //       price: data.price,
-  //       description: data.description,
-  //       rating: data.rating,
-  //     },
-  //   });
-  // };
   return (
     <Link to={`/shop/product/${data.id}`}>
-      <div className="shadow-xl bg-slate-100 rounded-lg mx-3 my-2 relative overflow-hidden text-sm hover:cursor-pointer">
+      <div className="shadow-xl bg-slate-100 rounded-lg mx-3 my-2 relative w-auto overflow-hidden text-sm hover:cursor-pointer">
         <img src={data.image} alt="" className="h-1/2 w-full" />
 
         <div className="p-2 grid grid-flow-row justify-between place-content-between">

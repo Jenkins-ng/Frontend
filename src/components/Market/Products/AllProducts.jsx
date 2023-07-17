@@ -5,12 +5,14 @@ import Product from "./Product";
 
 const AllProducts = () => {
   return (
-    <main>
-      <h1>Shop By Category</h1>
+    <main className="">
+      <h1 className="m-10 md:mx-20 md:text-2xl text-3xl text-slate-500 font-bold">
+        SHOP BY CATEGORY
+      </h1>
       <div>
         <Catergories />
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap  w-[90%] m-auto mb-10">
         {Products.map((product) => (
           <Product data={product} key={product.id} />
         ))}

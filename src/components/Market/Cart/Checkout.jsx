@@ -1,37 +1,109 @@
-import React from "react";
-import Products from "../Data/Products";
-// import { useStateValue } from "../../../Store/StateProvider";
+import React, { useContext } from "react";
+import { CartContext } from "../Context/Cart";
 import CheckoutProduct from "./CheckoutProduct";
+import Cart from "../../../assets/cart.png";
+import { Link } from "react-router-dom";
+import notifySuccess from "../../../utils/notifySuccess";
+import notifyError from "../../../utils/notifyError";
 
 const Checkout = () => {
-  // const [{ cart }, dispatch] = useStateValue();
+  const { cartItems, clearCart, getCartTotal } = useContext(CartContext);
+
+  console.log(cartItems);
+
   return (
-    <section className="m-auto flex justify-between w-6/6 my-10">
-      <main className="m-auto w-4/6">
-        <img className="" src="" alt="" />
-        <div className="my-5">
-          <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 m-auto">
-            YOUR CART
-          </h2>
-          <div className="flex m-auto flex-wrap justify-between w-5/6">
-            {Products.map((item) => (
-              <CheckoutProduct
-                id={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-                rating={item.rating}
-              />
-            ))}
+    <section className=" md:flex justify-between w-12/12 my-10 relative m-auto">
+      {cartItems.length > 0 ? (
+        <>
+          <main className="md:w-8/12 w-10/12 px-5 pl-5">
+            <div className="my-5">
+              <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
+                YOUR CART
+              </h2>
+              <div className="md:flex m-auto flex-wrap justify-between">
+                {cartItems.map((item) => (
+                  <CheckoutProduct item={item} key={item.id} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="text-center w-[90%] m-auto grid grid-flow-col justify-between">
+                <button
+                  type="submit"
+                  className="bg-slate-400  px-8 py-[4px] text-white hover:bg-blue-400 rounded-xl"
+                >
+                  UPDATE CART
+                </button>
+                <button
+                  type="submit"
+                  className="bg-slate-400 px-8 py-[4px] text-white hover:bg-blue-400 rounded-xl"
+                  onClick={() => {
+                    clearCart();
+                    notifySuccess("Cart Cleared Successfully");
+                  }}
+                >
+                  CLEAR CART
+                </button>
+              </div>
+            </div>
+          </main>
+          <aside className="m-auto md:w-4/12 my-5 md:fixed right-0 px-5 ">
+            <h2 className="text-blue-400 md:text-2xl text-xl mb-4 font-bold">
+              CART TOTAL
+            </h2>
+            <div className="border-slate-400 border-[1px] p-5 rounded-xl">
+              <div className="flex justify-between">
+                <h1 className="text-lg font-bold">Sub Total :</h1>
+                <p>
+                  <strike>N</strike>
+                  {getCartTotal()}
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <h1 className="text-lg font-bold">Delivery Fee :</h1>
+                <p>
+                  <strike>N</strike>
+                  {3000}
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <h1 className="text-lg font-bold">Total :</h1>
+                <p>
+                  <strike>N</strike>
+                  {getCartTotal() + 3000}
+                </p>
+              </div>
+              <div className="text-right">
+                <Link to="/shop/checkout">
+                  <button
+                    type="submit"
+                    className="bg-slate-400 px-4 py-1 text-white hover:bg-blue-400 rounded-xl mt-5"
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </aside>
+        </>
+      ) : (
+        <div className="text-center m-auto my-20">
+          <div className="block m-auto w-full text-center">
+            <img src={Cart} alt="" className="w-6/6 block text-center m-auto" />
           </div>
+          <p className="text-slate-400 font-bold text-xl text-center text-capitalise my-5">
+            YOU HAVE NOT ADDED ANYTHING YET.
+          </p>
+          <Link to="/shop/product">
+            <button
+              type="submit"
+              className="bg-blue-400 px-10 py-[6px] text-white hover:bg-slate-400 rounded-xl"
+            >
+              Go To Shop
+            </button>
+          </Link>
         </div>
-      </main>
-      <aside className="m-auto w-2/6 my-5">
-        <h2 className="text-blue-400 text-2xl mb-4 font-bold">
-          Your subtotal will be here
-        </h2>
-        <div className="border-slate-400 border-[1px]"></div>
-      </aside>
+      )}
     </section>
   );
 };

@@ -2,15 +2,15 @@ import React from "react";
 
 const Checkout = () => {
   return (
-    <section>
+    <section className="my-20 w-5/6 m-auto">
       <form action="">
-        <div>
-          <div>
+        <div className="grid grid-flow-col grid-cols-4 my-20 w-5/6">
+          {/* <div>
             <label htmlFor="phoneNumber">
               Email Address
               <input type="tel" name="" id="" />
             </label>
-          </div>
+          </div> */}
           <div>
             <label htmlFor="phoneNumber">
               Phone Number
