@@ -50,7 +50,7 @@ import ProductByCategory from "./components/Market/Products/ProductByCategory";
 import Cart from "./components/Market/Cart/Checkout";
 import Checkout from "./components/Market/checkout/Checkout";
 import AllProducts from "./components/Market/Products/AllProducts";
-// import Outpage from "./components/Market/Checkout/Checkout";
+import Outpage from "./components/Market/Checkout/Checkout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
@@ -129,10 +129,10 @@ const router = createBrowserRouter([
       },
 
       ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
-      // {
-      //   path: "/shop/checkout",
-      //   element: <Outpage />,
-      // },
+      {
+        path: "/shop/checkout",
+        element: <Outpage />,
+      },
     ],
   },
 
