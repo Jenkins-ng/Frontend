@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import Logo from '../Landing page/Header/Logo'
 import Preloader from '../eventhive/Preloader'
 import notifyError from '../../utils/notifyError'
 import api from '../../utils/api'
+import useAuth from '../../Hooks/useAuth'
 
 const email_regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -16,6 +17,7 @@ const Signupform = () => {
   const [isChecked, setIsChecked] = useState(false)
   const [show, setShow] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const { auth } = useAuth()
 
   //  reset formErrors when input changes
   useEffect(() => {
@@ -68,7 +70,7 @@ const Signupform = () => {
     e.preventDefault()
     validateInputs()
     const result = validateInputs()
-    if (Object.keys(result).length === 0) {
+    if (!Object.keys(result).length) {
       setIsLoading(true)
       const data = {
         name,
@@ -90,6 +92,11 @@ const Signupform = () => {
         setIsLoading(false)
       }
     }
+  }
+
+  // go back to home if user is logged in
+  if (auth) {
+    return <Navigate to="/" />
   }
 
   return (
