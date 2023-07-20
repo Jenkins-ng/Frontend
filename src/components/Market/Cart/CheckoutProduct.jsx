@@ -57,7 +57,7 @@ const CheckoutProduct = ({ item }) => {
           </div>
           <button
             type="button"
-            className="bg-slate-400 px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
+            className="bg-slate-400 text-sm sm:text-base md:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
             onClick={() => {
               removeFromCart(item);
             }}

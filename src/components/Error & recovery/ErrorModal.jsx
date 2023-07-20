@@ -4,7 +4,7 @@ import Signupbutton from "../Buttons/Signupbutton";
 
 const Backdrop = (props) => {
   return (
-    <div className="w-full h-100vh bg-transparent blur-lg">
+    <div className="w-full h-100vh bg-white blur-lg relative z-20">
       {props.children}
     </div>
   );

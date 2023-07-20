@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Products from "../Data/Products";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import notifySuccess from "../../../utils/notifySuccess";
 import notifyError from "../../../utils/notifyError";
 import { CartContext } from "../Context/Cart";
@@ -9,6 +9,7 @@ const ProductDetails = () => {
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
   const params = useParams();
+  const history = useNavigate();
   const parameter = params.slug;
 
   const data = Products.filter((product) => product.id === +parameter);
@@ -94,6 +95,7 @@ const ProductDetails = () => {
                     onClick={() => {
                       addToCart(items, quantity);
                       notifySuccess("Items added successfully!");
+                      history("/shop/product");
                     }}
                   >
                     Add To Cart

@@ -47,10 +47,9 @@ import Market from "./components/Market/Market";
 import TopProducts from "./components/Market/Products/TopProducts";
 import ProductDetails from "./components/Market/Products/ProductDetails";
 import ProductByCategory from "./components/Market/Products/ProductByCategory";
-import Cart from "./components/Market/Cart/Checkout";
-import Checkout from "./components/Market/checkout/Checkout";
+import Cart from "./components/Market/Cart/Cart";
+import Checkout from "./components/Market/Checkout Page/Checkout";
 import AllProducts from "./components/Market/Products/AllProducts";
-import Outpage from "./components/Market/Checkout/Checkout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
@@ -126,12 +125,6 @@ const router = createBrowserRouter([
       {
         path: "/shop/product/category/:category",
         element: <ProductByCategory />,
-      },
-
-      ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
-      {
-        path: "/shop/checkout",
-        element: <Outpage />,
       },
     ],
   },

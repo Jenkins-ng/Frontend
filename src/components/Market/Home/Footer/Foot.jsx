@@ -7,7 +7,7 @@ import Logo from "../../../Landing page/Header/Logo";
 const Foot = () => {
   return (
     <Footbg>
-      <div className="md:flex block justify-between items-start content-center">
+      <div className="lg:flex block justify-between items-start content-center">
         <Logo />
         <FootLinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
         <div className="md:flex block justify-between">

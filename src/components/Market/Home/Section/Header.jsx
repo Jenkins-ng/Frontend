@@ -32,6 +32,16 @@ export const Head = () => {
   const [profile, setProfile] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [icon, seticon] = useState("Menu");
+  const [navbar, setNavbar] = useState(true);
+  const NavbarHandler = () => {
+    setNavbar((prevstate) => !navbar);
+    if (navbar) {
+      seticon("close");
+    } else seticon("menu");
+    // seticon((prevstate) => !"Home" || "close");
+  };
+
   const showProfile = () => {
     setProfile((prevstate) => !profile);
   };
@@ -39,13 +49,13 @@ export const Head = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-[4px] w-full bg-white">
-      <div className="flex justify-between w-full md:w-4/6">
+    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-2 w-full bg-white">
+      <div className="flex justify-between w-full md:w-4/6 items-center ">
         <NavLink to="/">
           <Logo />
         </NavLink>
 
-        <div className="flex items-center px-3 w-5/6">
+        <div className="flex items-center px-3 w-8/12 sm:w-4/6 md:w-5/6">
           <input
             type="text"
             name=""
@@ -64,9 +74,13 @@ export const Head = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-between items-center w-3/6">
-        <nav className="md:flex justify-between w-4/6 px-4 hidden tracking-wide">
-          <ul className="text-blue-400 flex justify-between w-full">
+      <div
+        className={`${
+          !navbar ? "grid" : "hidden"
+        } md:flex sm:w-[50vw] sm:right-0 sm:top-[50px]  sm:text-center sm:bg-slate-200 absolute justify-between items-center md:w-3/6 md:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] md:relative md:top-0 md:pt-0 md:pb-0  md:justify-end transition-all delay-100"`}
+      >
+        <nav className="md:flex justify-between md:w-4/6 sm:w-full px-4 tracking-wide ">
+          <ul className="text-blue-400 md:flex block sm:grid gap-10 md:gap-0 justify-between w-full">
             <li className="text-blue-400 font-bold hover:text-gray-500">
               <NavLink to={"/shop"}>HOME</NavLink>
             </li>
@@ -81,7 +95,7 @@ export const Head = () => {
             </li>
           </ul>
         </nav>
-        <div className="flex justify-evenly w-2/6 flex-1 relative">
+        <div className="flex justify-evenly lg:w-1/6 md:w-2/6 lg:flex-none md:flex-1 relative">
           <div className="">
             <span
               className="material-symbols-outlined font-regular text-2xl cursor-pointer bg-blue-400 rounded-full px-[6px] py-[2px]"
@@ -103,6 +117,11 @@ export const Head = () => {
           </Link>
         </div>
       </div>
+      <button onClick={NavbarHandler} className="md:hidden">
+        <span className="material-symbols-outlined text-blue-400 text-3xl">
+          {icon}
+        </span>
+      </button>
     </div>
   );
 };
@@ -111,7 +130,6 @@ const Header = () => {
   return (
     <div>
       <Ctawrapper className="bg-Shop">
-        {/* <Head /> */}
         <CTAtextcomponent
           headline="STOP. SHOP. REPEAT."
           tagword=" Enjoy the comfort of clicking away your needs."
