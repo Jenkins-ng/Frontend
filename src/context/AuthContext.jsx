@@ -1,28 +1,16 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import api from '../utils/api'
+import { createContext, useEffect, useState } from 'react'
 
-const AuthContext = createContext(null)
-
-// custom hook
-export const useAuth = () => useContext(createContext)
+export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [auth, setAuth] = useState(null)
 
-  useEffect(() => {
-    // check if user exists here
-  }, [])
-
-  const login = (user) => {
-    setUser(user)
-  }
-
-  const logout = (user) => {
-    setUser(null)
+  const logout = () => {
+    setAuth(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ auth, setAuth, logout }}>
       {children}
     </AuthContext.Provider>
   )

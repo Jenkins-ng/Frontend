@@ -43,13 +43,13 @@ import Profile from "./Pages/EventHive/Dashboard/Profile";
 
 /////////////////////////////////////////// E-SHOP //////////////////////////////////////////////////
 
-import Market from "./components/Market/Market";
-import TopProducts from "./components/Market/Products/TopProducts";
-import ProductDetails from "./components/Market/Products/ProductDetails";
-import ProductByCategory from "./components/Market/Products/ProductByCategory";
-import Cart from "./components/Market/Cart/Cart";
-import Checkout from "./components/Market/Checkout Page/Checkout";
-import AllProducts from "./components/Market/Products/AllProducts";
+import Market from './components/Market/Market'
+import TopProducts from './components/Market/Products/TopProducts'
+import ProductDetails from './components/Market/Products/ProductDetails'
+import ProductByCategory from './components/Market/Products/ProductByCategory'
+import Cart from './components/Market/Cart/Cart'
+import Checkout from './components/Market/Checkout Page/Checkout'
+import AllProducts from './components/Market/Products/AllProducts'
 import Outpage from "./components/Market/Checkout/Checkout";
 
 //////////////////////////////////////// ADMIN DASHBOARD ////////////////////////////////////////////
@@ -64,7 +64,8 @@ import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
-import { loader as eventLoader } from "./Pages/EventHive/Event";
+import { loader as eventLoader } from './Pages/EventHive/Event'
+import ProtectedRoute from './components/ProtectedRoute'
 import Sign from "./components/UI/sign";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
@@ -78,15 +79,14 @@ const router = createBrowserRouter([
   { path: "/help", element: <Helpandsupport /> },
   { path: "/signin/recover", element: <Recoveryrender /> },
   // {path:"/signin/forgot", element:}
-  // { path: "/admin/dashboard", element: <Dashboard /> },
-  // { path: "/admin/events", element: <Events /> },
-  { path: "/tutorial", element: <Tutorial /> },
+  // { path: '/admin/dashboard', element: <Dashboard /> },
+  // { path: '/admin/events', element: <Events /> },
+  { path: '/tutorial', element: <Tutorial /> },
 
   //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
   {
     path: "/event",
     element: <EventHomeLayout />,
-    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <EventHome /> },
       { path: "/event/event/:id", loader: eventLoader, element: <Event /> },
@@ -99,8 +99,13 @@ const router = createBrowserRouter([
   // { path: "/event/signin", element: <Signin /> },
   { path: "/eventhive/login", element: <EventLogin /> },
   { path: "/event/all-events", element: <AllEvents /> },
-  { path: "/event/create-event", element: <CreateEvent /> },
-  { path: "/event/register", element: <Register /> },
+
+  {
+    path: "/event",
+    element: <ProtectedRoute />,
+    children: [
+      { path: "/event/create-event", element: <CreateEvent /> },
+      { path: "/event/register", element: <Register /> },
 
   /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
   {
@@ -114,7 +119,6 @@ const router = createBrowserRouter([
     ],
   },
   ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
-
   {
     path: "/admin",
     // element: <Layedout />,
@@ -185,6 +189,7 @@ const router = createBrowserRouter([
         path: "/shop/checkout",
         element: <Outpage />,
       },
+      { path: '*', element: <ErrorPage /> },
     ],
   },
 
@@ -192,7 +197,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;

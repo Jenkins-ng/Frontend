@@ -8,12 +8,15 @@ import Preloader from '../eventhive/Preloader'
 import notifyError from '../../utils/notifyError'
 import notifySuccess from '../../utils/notifySuccess'
 import api from '../../utils/api'
-// import { useAuth } from "../../Store/Authentication";
+import useAuth from '../../Hooks/useAuth'
+// import useApiPrivate from '../../Hooks/useApiPrivate'
 
 const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [show, setShow] = useState(true)
   const [icon, setIcon] = useState('visibility')
+  const { setAuth } = useAuth()
+  // const apiPrivate = useApiPrivate()
 
   const history = useNavigate()
   const {
@@ -22,16 +25,16 @@ const Signinform = () => {
     formState: { errors },
   } = useForm()
 
-  ////////////
-
   const onSubmit = async (data, e) => {
-    // console.log(data)
     e.preventDefault()
 
     try {
       setIsLoading(true)
       const response = await api.post('/login', data)
       console.log(response)
+      const { token } = response.data.authorisation
+      setAuth({ ...data, token })
+      // console.log(await apiPrivate.post('/me'))
       history('/event/all-events')
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message)
