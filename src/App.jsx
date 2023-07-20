@@ -50,10 +50,22 @@ import ProductByCategory from "./components/Market/Products/ProductByCategory";
 import Cart from "./components/Market/Cart/Cart";
 import Checkout from "./components/Market/Checkout Page/Checkout";
 import AllProducts from "./components/Market/Products/AllProducts";
+import Outpage from "./components/Market/Checkout/Checkout";
+
+//////////////////////////////////////// ADMIN DASHBOARD ////////////////////////////////////////////
+
+import Products from "./components/Admin Dashboard/Ecommerce/Products/Products";
+import Order from "./components/Admin Dashboard/Ecommerce/Order/Order";
+import OrderDetails from "./components/Admin Dashboard/Ecommerce/Order/OrderDetails";
+import EditProduct from "./components/Admin Dashboard/Ecommerce/Products/EditProduct";
+import CreateProduct from "./components/Admin Dashboard/Ecommerce/Products/CreateProduct";
+import Overview from "./components/Admin Dashboard/Ecommerce/Overview";
+import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
+import Sign from "./components/UI/sign";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -66,8 +78,8 @@ const router = createBrowserRouter([
   { path: "/help", element: <Helpandsupport /> },
   { path: "/signin/recover", element: <Recoveryrender /> },
   // {path:"/signin/forgot", element:}
-  { path: "/admin/dashboard", element: <Dashboard /> },
-  { path: "/admin/events", element: <Events /> },
+  // { path: "/admin/dashboard", element: <Dashboard /> },
+  // { path: "/admin/events", element: <Events /> },
   { path: "/tutorial", element: <Tutorial /> },
 
   //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
@@ -101,7 +113,48 @@ const router = createBrowserRouter([
       { path: "/event/dashboard/profile", element: <Profile /> },
     ],
   },
+  ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
 
+  {
+    path: "/admin",
+    // element: <Layedout />,
+    children: [
+      { path: "/admin/dashboard", element: <Dashboard /> },
+      { path: "/admin/event", element: <Event /> },
+      { path: "/admin/inbox" },
+      { path: "/admin/profile" },
+      {
+        path: "/admin/ecommerce",
+        children: [
+          { path: "/admin/ecommerce/overview", element: <Overview /> },
+          {
+            path: "/admin/ecommerce/product",
+            children: [
+              { path: "/admin/ecommerce/product", element: <Products /> },
+              {
+                path: "/admin/ecommerce/product/create",
+                element: <CreateProduct />,
+              },
+              {
+                path: "/admin/ecommerce/product/edit",
+                element: <EditProduct />,
+              },
+            ],
+          },
+          {
+            path: "/admin/ecommerce/order",
+            children: [
+              { path: "/admin/ecommerce/order/", element: <Order /> },
+              {
+                path: "/admin/ecommerce/order-detail",
+                element: <OrderDetails />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
   //////////////////////// FOR THE E-SHOP ///////////////////////////
   {
     path: "/shop",
@@ -125,6 +178,12 @@ const router = createBrowserRouter([
       {
         path: "/shop/product/category/:category",
         element: <ProductByCategory />,
+      },
+
+      ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
+      {
+        path: "/shop/checkout",
+        element: <Outpage />,
       },
     ],
   },
