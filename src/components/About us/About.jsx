@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Ctawrapper from "../Landing page/CTA/Ctawrapper";
 import Head from "../Landing page/Header/Head";
 import Typewriter from "typewriter-effect";
 import CTAtextcomponent from "../Landing page/CTA/CTAtextcomponent";
-import Foot from "../Landing page/Footer/foot";
+import { Team as Teams } from "../../utils/Teams";
+
+const Team = ({ name, image, profession }) => {
+  return (
+    <div className="grid place-items-center">
+      <img
+        src={image}
+        alt=""
+        className="h-24 w-24 rounded-full object-cover mb-2"
+      />
+      <div className="grid place-content-center place-items-center">
+        <p className="text-gray-500 font-semibold">{name}</p>
+        <p className="text-blue-400 font-semibold">{profession}</p>
+      </div>
+    </div>
+  );
+};
 
 const AboutUs = () => {
+  useEffect(() => {
+    document.title = "ABOUT US | JENKINS.NG";
+  }, []);
+
   return (
     <main>
       <Ctawrapper className="bg-about bg-neutral-800 background-blend-overlay">
@@ -113,9 +133,18 @@ const AboutUs = () => {
           </p>
         </div>
         <section className="my-10">
-          <h1 className="md:text-3xl text-2xl  font-bold tracking-widest mb-5">
+          <h1 className="md:text-3xl text-2xl  font-bold tracking-widest mb-7">
             MEET OUR TEAM
           </h1>
+          <section className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:grid-cols-4 lg:grid-cols-5">
+            {Teams.map((team) => (
+              <Team
+                name={team.name}
+                image={team.image}
+                profession={team.profession}
+              />
+            ))}
+          </section>
         </section>
       </section>
       {/* <Foot /> */}
