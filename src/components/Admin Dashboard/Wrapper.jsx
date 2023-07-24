@@ -25,9 +25,9 @@ const Wrapper = (props) => {
     <div className="flex h-[100vh]">
       <nav className="w-[20%] bg-neutral-400 flex flex-col items-center justify-evenly">
         <Logo />
-        <ul>
+        <ul className="text-blue-400">
           <li>
-            <Link to="/admin/dashboard" className="flex items-center gap-5">
+            <Link to="/admin/dashboard" className="flex items-center gap-5 ">
               <span className="material-symbols-outlined flex">dashboard</span>{" "}
               <p>Dashboard</p>
             </Link>
@@ -138,7 +138,7 @@ const Wrapper = (props) => {
           </li>
         </ul>
       </nav>
-      <main className="w-[80%] px-4 overflow-hidden wrapper">
+      <main className="w-[80%] px-4 overflow-auto wrapper">
         {props.children}
       </main>
     </div>

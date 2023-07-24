@@ -137,7 +137,7 @@ const SectionThree = () => {
             </form>
           </div>
         </div>
-        <div className="hidden md:grid md:w-full">
+        <div className="hidden lg:block md:w-full">
           <img src={Contact} className="w-full" alt="" />
         </div>
       </div>

@@ -3,12 +3,12 @@ import { CartContext } from "../Context/Cart";
 import CheckoutProduct from "./CheckoutProduct";
 import Cart from "../../../assets/cart.png";
 import { Link } from "react-router-dom";
-import notifySuccess from "../../../utils/notifySuccess";
-import notifyError from "../../../utils/notifyError";
-import ErrorModal from "../../Error & recovery/ErrorModal";
+import PopUpModal from "../../../utils/PopupModal";
 
 const Checkout = () => {
-  const { cartItems, clearCart, getCartTotal } = useContext(CartContext);
+  const { cartItems, clearCart, getCartTotal, updateCart } =
+    useContext(CartContext);
+  const [openModal, setOpenModal] = useState();
   const [showModal, setShowModal] = useState(false);
 
   console.log(cartItems);
@@ -17,8 +17,8 @@ const Checkout = () => {
     <section className=" md:flex justify-between w-12/12 my-10 relative m-auto">
       {cartItems.length > 0 ? (
         <>
-          <main className="md:w-8/12 w-10/12 px-5 pl-5">
-            {showModal ? <ErrorModal /> : ""}
+          <main className="lg:w-8/12 md:6/12 sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
+            {/* {showModal ? <PopUpModal /> : ""} */}
             <div className="my-5">
               <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
                 YOUR CART
@@ -34,6 +34,7 @@ const Checkout = () => {
               <button
                 type="submit"
                 className="bg-slate-400 px-4 text-xs sm:text-sm md:text-base md:px-8 py-[4px] text-white hover:bg-blue-400 rounded-xl"
+                // onClick={updateCart(cartItems)}
               >
                 UPDATE CART
               </button>
@@ -42,23 +43,39 @@ const Checkout = () => {
                 className="bg-slate-400 text-xs sm:text-sm md:text-base px-4 py-[4px] text-white hover:bg-blue-400 rounded-xl"
                 onClick={() => {
                   setShowModal((prevstate) => !showModal);
-                  // clearCart();
-                  notifySuccess("Cart Cleared Successfully");
+                  setOpenModal("pop-up");
                 }}
               >
                 CLEAR CART
               </button>
             </div>
+            <div>
+              {showModal ? (
+                <PopUpModal
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                  clearCart={clearCart}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </main>
-          <aside className="m-auto md:w-4/12 my-5 md:absolute right-0 px-5 ">
-            <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold">
+          <aside className="m-auto lg:w-4/12 md:6/12 md:absolute flex flex-col right-0 px-5">
+            <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold mt-4">
               CART TOTAL
             </h2>
             <div className="border-slate-400 border-[1px] p-5 rounded-xl text-sm">
               <div className="flex justify-between">
+                <h1 className="sm:text-lg text-base  font-bold">
+                  Number Of Items :
+                </h1>
+                <p>{cartItems.length}</p>
+              </div>
+              <div className="flex justify-between">
                 <h1 className="sm:text-lg text-base font-bold ">Sub Total :</h1>
-                <p>
-                  <strike>N</strike>
+                <p className="flex gap-2">
+                  <strike>#</strike>
                   {getCartTotal()}
                 </p>
               </div>
@@ -71,8 +88,8 @@ const Checkout = () => {
               </div> */}
               <div className="flex justify-between">
                 <h1 className="sm:text-lg text-base  font-bold">Total :</h1>
-                <p>
-                  <strike>N</strike>
+                <p className="flex gap-2">
+                  <strike>#</strike>
                   {getCartTotal()}
                 </p>
               </div>

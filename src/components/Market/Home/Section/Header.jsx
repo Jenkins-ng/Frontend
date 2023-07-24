@@ -49,13 +49,13 @@ export const Head = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-2 w-full bg-white">
+    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
       <div className="flex justify-between w-full md:w-4/6 items-center ">
         <NavLink to="/">
           <Logo />
         </NavLink>
 
-        <div className="flex items-center px-3 w-8/12 sm:w-4/6 md:w-5/6">
+        <div className="flex items-center px-3 w-8/12 sm:w-4/6 lg:w-6/6 m-auto">
           <input
             type="text"
             name=""
@@ -77,10 +77,10 @@ export const Head = () => {
       <div
         className={`${
           !navbar ? "grid" : "hidden"
-        } md:flex sm:w-[50vw] sm:right-0 sm:top-[50px]  sm:text-center sm:bg-slate-200 absolute justify-between items-center md:w-3/6 md:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] md:relative md:top-0 md:pt-0 md:pb-0  md:justify-end transition-all delay-100"`}
+        } lg:flex  sm:bg-slate-200 absolute justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
       >
-        <nav className="md:flex justify-between md:w-4/6 sm:w-full px-4 tracking-wide ">
-          <ul className="text-blue-400 md:flex block sm:grid gap-10 md:gap-0 justify-between w-full">
+        <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide ">
+          <ul className="text-blue-400 lg:flex block sm:grid gap-10  lg:gap-0 justify-between w-full">
             <li className="text-blue-400 font-bold hover:text-gray-500">
               <NavLink to={"/shop"}>HOME</NavLink>
             </li>
@@ -88,14 +88,14 @@ export const Head = () => {
               <NavLink to={"/shop/product"}>PRODUCTS</NavLink>
             </li>
             <li className="text-blue-400 font-bold hover:text-gray-500">
-              <NavLink to={""}>SUPPORT</NavLink>
+              <NavLink to={"/help "}>SUPPORT</NavLink>
             </li>
             <li className="text-blue-400 font-bold hover:text-gray-500">
-              <NavLink>ABOUT</NavLink>
+              <NavLink to={"/about-us"}>ABOUT</NavLink>
             </li>
           </ul>
         </nav>
-        <div className="flex justify-evenly lg:w-1/6 md:w-2/6 lg:flex-none md:flex-1 relative">
+        <div className="lg:flex lg:justify-evenly lg:gap-0 grid gap-5 grid-flow-col justify-between lg:w-3/12 md:w-2/6 sm:w-3/6 lg:flex-none md:flex-1 relative">
           <div className="">
             <span
               className="material-symbols-outlined font-regular text-2xl cursor-pointer bg-blue-400 rounded-full px-[6px] py-[2px]"
@@ -117,7 +117,7 @@ export const Head = () => {
           </Link>
         </div>
       </div>
-      <button onClick={NavbarHandler} className="md:hidden">
+      <button onClick={NavbarHandler} className="lg:hidden">
         <span className="material-symbols-outlined text-blue-400 text-3xl">
           {icon}
         </span>

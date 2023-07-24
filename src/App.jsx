@@ -14,13 +14,13 @@ import Landingpage from "./Pages/Landingpage";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/signin";
 import Signinform from "./components/Signin/Signinform";
-import Helpandsupport from "./Pages/H&S";
+import Helpandsupport from "./Pages/Help";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
 import Tutorial from "./components/Tutorial/Tutorial";
 import UseToken from "./Store/UseToken";
 import Eventdetails from "./components/Ticket/Sections/Eventdetails";
-import Layout from "./components/Market/Layout";
+import HomeLayout from "./components/Landing page/Layout";
 
 /////////////////////////////// EVENT HIVE  ////////////////////////////////////////
 
@@ -43,14 +43,15 @@ import Profile from "./Pages/EventHive/Dashboard/Profile";
 
 /////////////////////////////////////////// E-SHOP //////////////////////////////////////////////////
 
-import Market from './components/Market/Market'
-import TopProducts from './components/Market/Products/TopProducts'
-import ProductDetails from './components/Market/Products/ProductDetails'
-import ProductByCategory from './components/Market/Products/ProductByCategory'
-import Cart from './components/Market/Cart/Cart'
-import Checkout from './components/Market/Checkout Page/Checkout'
-import AllProducts from './components/Market/Products/AllProducts'
+import Market from "./components/Market/Market";
+import TopProducts from "./components/Market/Products/TopProducts";
+import ProductDetails from "./components/Market/Products/ProductDetails";
+import ProductByCategory from "./components/Market/Products/ProductByCategory";
+import Cart from "./components/Market/Cart/Cart";
+import Checkout from "./components/Market/Checkout Page/Checkout";
+import AllProducts from "./components/Market/Products/AllProducts";
 import Outpage from "./components/Market/Checkout/Checkout";
+import MarketLayout from "./components/Market/Layout";
 
 //////////////////////////////////////// ADMIN DASHBOARD ////////////////////////////////////////////
 
@@ -64,24 +65,32 @@ import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
-import { loader as eventLoader } from './Pages/EventHive/Event'
-import ProtectedRoute from './components/ProtectedRoute'
+import { loader as eventLoader } from "./Pages/EventHive/Event";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Sign from "./components/UI/sign";
+import AboutUs from "./components/About us/About";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
 const router = createBrowserRouter([
   ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { index: true, element: <Landingpage /> },
+      { path: "/about-us", element: <AboutUs /> },
+    ],
+  },
 
-  { path: "/", element: <Landingpage /> },
+  { path: "/help", element: <Helpandsupport /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
-  { path: "/help", element: <Helpandsupport /> },
   { path: "/signin/recover", element: <Recoveryrender /> },
   // {path:"/signin/forgot", element:}
   // { path: '/admin/dashboard', element: <Dashboard /> },
   // { path: '/admin/events', element: <Events /> },
-  { path: '/tutorial', element: <Tutorial /> },
+  { path: "/tutorial", element: <Tutorial /> },
 
   //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
   {
@@ -106,7 +115,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/event/create-event", element: <CreateEvent /> },
       { path: "/event/register", element: <Register /> },
-
+    ],
+  },
   /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
   {
     path: "/event/dashboard",
@@ -162,7 +172,7 @@ const router = createBrowserRouter([
   //////////////////////// FOR THE E-SHOP ///////////////////////////
   {
     path: "/shop",
-    element: <Layout />,
+    element: <MarketLayout />,
     children: [
       { index: true, element: <Market /> },
 
@@ -189,7 +199,7 @@ const router = createBrowserRouter([
         path: "/shop/checkout",
         element: <Outpage />,
       },
-      { path: '*', element: <ErrorPage /> },
+      { path: "*", element: <ErrorPage /> },
     ],
   },
 

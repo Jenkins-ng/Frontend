@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+  ],
 
   theme: {
     extend: {
@@ -9,6 +13,8 @@ export default {
         Ticket:
           "url('../src/assets/images/Ticket section/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg')",
         Shop: "url('../src/assets/images/bruno-kelzer-LvySG1hvuzI-unsplash.jpg')",
+        about:
+          "url('../src/assets/images/floriane-vita-FyD3OWBuXnY-unsplash.jpg')",
       }),
       colors: {
         primary: "#60a5fd",
@@ -24,5 +30,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
