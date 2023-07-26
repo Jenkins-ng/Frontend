@@ -7,7 +7,7 @@ const Navbar = () => {
   const { auth, logout } = useAuth()
 
   return (
-    <nav className="flex justify-between items-center w-11/12 mx-auto pt-[3%] pb-[2%] sticky">
+    <nav className="flex justify-between items-center w-10/12 mx-auto pt-[3%] pb-[2%] sticky">
       <Logo />
       <div>
         {!auth ? (

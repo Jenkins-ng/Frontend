@@ -9,14 +9,13 @@ import notifyError from '../../utils/notifyError'
 import notifySuccess from '../../utils/notifySuccess'
 import api from '../../utils/api'
 import useAuth from '../../Hooks/useAuth'
-// import useApiPrivate from '../../Hooks/useApiPrivate'
+import { setCookie } from '../../utils/cookie'
 
 const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [show, setShow] = useState(true)
   const [icon, setIcon] = useState('visibility')
   const { setAuth } = useAuth()
-  // const apiPrivate = useApiPrivate()
 
   const history = useNavigate()
   const {
@@ -31,10 +30,10 @@ const Signinform = () => {
     try {
       setIsLoading(true)
       const response = await api.post('/login', data)
-      console.log(response)
+      const { user } = response.data
       const { token } = response.data.authorisation
-      setAuth({ ...data, token })
-      // console.log(await apiPrivate.post('/me'))
+      setAuth({ ...user })
+      setCookie('token', token, 7)
       history('/event/all-events')
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message)
