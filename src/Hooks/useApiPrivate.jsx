@@ -1,15 +1,17 @@
 import { useEffect } from 'react'
 import { apiPrivate } from '../utils/api'
 import useAuth from './useAuth'
+import useRefreshToken from './useRefreshToken'
 
 const useApiPrivate = () => {
+  const refresh = useRefreshToken()
   const { auth } = useAuth()
 
   useEffect(() => {
     const requestIntercept = apiPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers['Authorization']) {
-          config.headers['Authorization'] = `Bearer ${auth?.accessToken}`
+          config.headers['Authorization'] = `Bearer ${auth?.token}`
         }
         return config
       },
@@ -34,7 +36,7 @@ const useApiPrivate = () => {
       apiPrivate.interceptors.request.eject(requestIntercept)
       apiPrivate.interceptors.response.eject(responseIntercept)
     }
-  }, [auth])
+  }, [auth, refresh])
 
   return apiPrivate
 }
