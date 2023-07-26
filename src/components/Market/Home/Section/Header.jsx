@@ -134,7 +134,9 @@ const Header = () => {
           headline="STOP. SHOP. REPEAT."
           tagword=" Enjoy the comfort of clicking away your needs."
           title="START BUYING"
-        />
+        >
+          <Link to="/signup">START BUYING</Link>
+        </CTAtextcomponent>
       </Ctawrapper>
     </div>
   );

@@ -11,14 +11,15 @@ import {
 import Foot from "../components/Landing page/Footer/foot";
 // import { ExpandMoreIcon } from "@mui/icon-material";
 
-const Faq = () => {
+const Faq = (props) => {
   return (
     <>
-      <Head />
+      {/* <Head /> */}
       <Box
         style={{
-          top: "90px",
-          position: "absolute",
+          top: "100px",
+          height: "max-content",
+          position: "relative",
           width: "100%",
         }}
       >
@@ -36,7 +37,15 @@ const Faq = () => {
             of frequently asked questions.
           </Typography>
         </Box>
-        <Box style={{ margin: "20px auto", width: "80%", color: "dodgerblue" }}>
+        <Box
+          style={{
+            margin: "20px auto",
+            width: "80%",
+            color: "dodgerblue",
+            display: "grid",
+            gap: "5px",
+          }}
+        >
           <Accordion>
             <AccordionSummary id="panel1-header">
               <Typography
@@ -93,7 +102,8 @@ const Faq = () => {
             <AccordionSummary id="panel4-header">
               <Typography
                 style={{
-                  color: "dodgerblue",
+                  color: "gray",
+                  fontWeight: "bold",
                 }}
               >
                 What is the procedure for ticket purchase?
@@ -210,7 +220,9 @@ const Faq = () => {
             </AccordionDetails>
           </Accordion>
         </Box>
-        <Foot />
+        <footer className="invisible">
+          <Foot />
+        </footer>
       </Box>
     </>
   );

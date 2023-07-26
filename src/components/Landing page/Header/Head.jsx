@@ -16,7 +16,7 @@ const Head = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center px-10 py-[11px] sm:py-4 lg:py-2 bg-white fixed shadow-2xl w-full z-10 ">
+      <div className="flex justify-between items-center px-10 py-[11px] sm:py-4 lg:py-3 bg-white fixed shadow-2xl w-full z-10 ">
         <Link to="/">
           <Logo />
         </Link>

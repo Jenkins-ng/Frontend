@@ -76,10 +76,10 @@ const Checkout = () => {
         </div>
       </form>
       <section>
-        <h1>CART TOATL</h1>
+        <h1>CART TOTALL</h1>
         <div>
           <div>
-            <h1>SUBTOAL:</h1>
+            <h1>SUBTOTAL:</h1>
           </div>
           <div>
             <h1>DELIVERY FEE:</h1>

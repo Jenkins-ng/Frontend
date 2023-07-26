@@ -4,6 +4,10 @@ import Head from "../Landing page/Header/Head";
 import Typewriter from "typewriter-effect";
 import CTAtextcomponent from "../Landing page/CTA/CTAtextcomponent";
 import { Team as Teams } from "../../utils/Teams";
+import { CoreValue } from "../../utils/Teams";
+import { Mission } from "../../utils/Teams";
+import { Vision } from "../../utils/Teams";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Team = ({ name, image, profession }) => {
   return (
@@ -13,9 +17,9 @@ const Team = ({ name, image, profession }) => {
         alt=""
         className="h-24 w-24 rounded-full object-cover mb-2"
       />
-      <div className="grid place-content-center place-items-center">
+      <div className="grid place-content-center place-items-center whitespace-normal">
         <p className="text-gray-500 font-semibold">{name}</p>
-        <p className="text-blue-400 font-semibold">{profession}</p>
+        <p className="text-blue-400 font-semibold uppercase">{profession}</p>
       </div>
     </div>
   );
@@ -35,8 +39,9 @@ const AboutUs = () => {
           tagword="At our tridimensional structure website, we strive to provide you
             with a seamless and engaging experience across all our services."
           title="LEARN MORE"
-          to="/about-us#more"
-        />
+        >
+          <AnchorLink href="#more">Learn More</AnchorLink>
+        </CTAtextcomponent>
         {/* <p className="my-2 text-2xl text-blue-500 absolute z-10 w-4/5 h-1/2 items-center content-center grid  pl-20 translate-y-2/4">
           <Typewriter
             onInit={(typewriter) => {
@@ -121,7 +126,7 @@ const AboutUs = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-10">
+        <div className="mt-10 text-lg">
           <p>
             At our tridimensional structure website, we strive to provide you
             with a seamless and engaging experience across all our services. We
@@ -132,16 +137,52 @@ const AboutUs = () => {
             possibilities that await you!
           </p>
         </div>
+        <section className="mt-5">
+          <h1 className="md:text-3xl text-2xl font-bold tracking-wider mb-4">
+            OUR MISSION
+          </h1>
+          <div>
+            <p>{Mission}</p>
+          </div>
+        </section>
+        <section className="mt-5">
+          <h1 className="md:text-3xl text-2xl  font-bold tracking-wider mb-4">
+            OUR VISION
+          </h1>
+          <div>
+            <p>{Vision}</p>
+          </div>
+        </section>
+        <section className="mt-5">
+          <h1 className="md:text-3xl text-2xl  font-bold tracking-wider mb-4">
+            OUR CORE VALUES
+          </h1>
+          <ul className="grid gap-3 list-decima list-disc">
+            {CoreValue.map((value) => (
+              <li key={value.number}>
+                {/* <span className="font-extrabold sm:text-xl">
+                  {value.number}.
+                </span> */}
+                <div className="flex items-center gap-1">
+                  <p className="text-lg">
+                    {value.title.toUpperCase()} : {value.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
         <section className="my-10">
           <h1 className="md:text-3xl text-2xl  font-bold tracking-widest mb-7">
             MEET OUR TEAM
           </h1>
-          <section className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:grid-cols-4 lg:grid-cols-5">
+          <section className="grid grid-cols-2 sm:grid-cols-2 gap-5 md:grid-cols-4 lg:grid-cols-5">
             {Teams.map((team) => (
               <Team
                 name={team.name}
                 image={team.image}
                 profession={team.profession}
+                key={team.name}
               />
             ))}
           </section>

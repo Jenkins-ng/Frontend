@@ -10,7 +10,7 @@ const SectionTwo = () => {
       <p className="text-center font-semibold text-blue-400 mb-8 mt-4 text-xl sm:tracking-wider">
         Trusted By Many With Over 500+ Traffic Request per Day.
       </p>
-      <div className="block mt-8 md:flex md:justify-between md:text-center py-10 md:w-[95%] md:m-auto">
+      <div className="block mt-8 gap-3 md:grid md:grid-cols-2 lg:grid-cols-5 md:justify-between md:text-center py-10 md:w-[95%] md:m-auto">
         <Prototype name="assured_workload" title="Secure Payment System." />
         <Prototype name="local_shipping" title="Endless Shopping." />
         <Prototype name="speed" title="Fast and swift response" />

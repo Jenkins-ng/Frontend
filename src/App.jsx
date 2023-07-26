@@ -13,13 +13,15 @@ import Required from "./components/Required";
 import Landingpage from "./Pages/Landingpage";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/signin";
-import Signinform from "./components/Signin/Signinform";
+import AboutUs from "./components/About us/About";
+import Faq from "./Pages/Faq";
+import Privacy from "./Pages/PrivacyPolicy";
 import Helpandsupport from "./Pages/Help";
+import Emailverify from "./Pages/Emailverify";
+import Recoverysuccess from "./Pages/Recoverysuccess";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
 import Tutorial from "./components/Tutorial/Tutorial";
-import UseToken from "./Store/UseToken";
-import Eventdetails from "./components/Ticket/Sections/Eventdetails";
 import HomeLayout from "./components/Landing page/Layout";
 
 /////////////////////////////// EVENT HIVE  ////////////////////////////////////////
@@ -67,8 +69,6 @@ import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Sign from "./components/UI/sign";
-import AboutUs from "./components/About us/About";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -80,6 +80,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Landingpage /> },
       { path: "/about-us", element: <AboutUs /> },
+      { path: "/faq", element: <Faq /> },
+      { path: "/privacy-policy", element: <Privacy /> },
     ],
   },
 
@@ -199,9 +201,9 @@ const router = createBrowserRouter([
         path: "/shop/checkout",
         element: <Outpage />,
       },
-      { path: "*", element: <ErrorPage /> },
     ],
   },
+  { path: "*", element: <ErrorPage /> },
 
   // { path: "/shop/orders", element: <Orders /> },
 ]);

@@ -34,13 +34,13 @@ const FootLinks = () => {
         </p>
         <ul className="flex flex-col gap-[3px] whitespace-nowrap text-sm sm:text-lg md:text-base">
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">PRIVACY POLICY</NavLink>
+            <NavLink to="/privacy-policy">PRIVACY POLICY</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
             <NavLink to="">TERM OF USE</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">FAQ</NavLink>
+            <NavLink to="/faq">FAQ</NavLink>
           </li>
         </ul>
       </div>

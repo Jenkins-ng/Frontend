@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Ctawrapper from "./Ctawrapper";
 // import Signupbutton from "../../Buttons/Signupbutton";
 import Typewriter from "typewriter-effect";
@@ -13,8 +14,9 @@ const Ctatext = () => {
         headline="STOP. SHOP. REPEAT."
         tagword=" Enjoy the comfort of clicking away your needs."
         title="GET STARTED"
-        to="/signup"
-      />
+      >
+        <Link to="/signup">GET STARTED</Link>
+      </CTAtextcomponent>
     </Ctawrapper>
   );
 };
