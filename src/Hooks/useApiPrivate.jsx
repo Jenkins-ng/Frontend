@@ -1,17 +1,17 @@
 import { useEffect } from 'react'
 import { apiPrivate } from '../utils/api'
-import useAuth from './useAuth'
 import useRefreshToken from './useRefreshToken'
+import { getCookie } from '../utils/cookie'
 
 const useApiPrivate = () => {
   const refresh = useRefreshToken()
-  const { auth } = useAuth()
+  const token = getCookie('token')
 
   useEffect(() => {
     const requestIntercept = apiPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers['Authorization']) {
-          config.headers['Authorization'] = `Bearer ${auth?.token}`
+          config.headers['Authorization'] = `Bearer ${token}`
         }
         return config
       },
@@ -36,7 +36,7 @@ const useApiPrivate = () => {
       apiPrivate.interceptors.request.eject(requestIntercept)
       apiPrivate.interceptors.response.eject(responseIntercept)
     }
-  }, [auth, refresh])
+  }, [token, refresh])
 
   return apiPrivate
 }
