@@ -10,7 +10,7 @@ const Foot = () => {
     <Footbg>
       <div className="md:flex block justify-between items-start content-center">
         <Logo />
-        <Navlinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
+        <Navlinks className="grid justify-between gap-2 my-5 grid-cols-2 md:grid md:grid-cols-2 md:justify-end lg:grid-col-3 " />
         <div className="md:flex block justify-between">
           <div className="md:flex  h-8">
             <input

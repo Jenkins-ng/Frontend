@@ -9,20 +9,11 @@ const Ctatext = () => {
   return (
     <Ctawrapper className="bg-CTA">
       <Head />
-      <Typewriter
-        onInit={(typewriter) => {
-          typewriter
-            .typeString("JENKINS COMPANY")
-            .pauseFor(1000)
-            .deleteAll()
-            .typeString("Welcomes you")
-            .start();
-        }}
-      />
       <CTAtextcomponent
         headline="STOP. SHOP. REPEAT."
         tagword=" Enjoy the comfort of clicking away your needs."
         title="GET STARTED"
+        to="/signup"
       />
     </Ctawrapper>
   );

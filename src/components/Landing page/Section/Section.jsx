@@ -11,9 +11,9 @@ const Section = () => {
       <h2 className="text-center font-bold text-blue-400 text-3xl tracking-widest mt-14">
         WHAT WE OFFER?
       </h2>
-      <div className="md:flex gap-9 block justify-between w-[90%] m-auto overflow-hidden">
+      <div className="md:grid md:grid-cols-2 gap-9 block justify-between w-[95%] m-auto overflow-hidden">
         <Prototype
-          src={FirstImage}
+          src={SecondImage}
           Id="TIRED OF YOUR JOB?"
           heading="Become so powerful that your competitors become your allies. Reach the top position and work smart with competition."
           text="Jobs near me"
@@ -21,7 +21,7 @@ const Section = () => {
           to="/job"
         />
         <Prototype
-          src={SecondImage}
+          src={FourthImage}
           Id="MARKET"
           heading="We display to our viewers quality products on our site and the benefit they would get."
           text="Start Buying"
@@ -34,14 +34,14 @@ const Section = () => {
           text="Click here to get upskilled"
           to="/training"
         /> */}
-        {/* <Prototype
-          src={FourthImage}
+        <Prototype
+          src={ThirdImage}
           Id="LEARN ONLINE SEAMLESSLY"
           heading="Increase your knowledge, and clear your doubt with tons of tutorials from the comfort of your house."
           text="Click here to start watching"
           className="flex-row-reverse"
           to="/tutorial"
-        /> */}
+        />
         <Prototype
           src={FifthImage}
           Id="EVENTS AND BOOKINGS"

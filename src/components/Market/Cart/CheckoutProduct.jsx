@@ -20,10 +20,10 @@ const CheckoutProduct = ({ item }) => {
         </div>
         <div>
           <div className="flex gap-5">
-            <h1>Quantity</h1>
-            <p>{item.quantity}</p>
+            <h1>Quantity: </h1>
+            <p>{quantity}</p>
           </div>
-          <div className="flex items-center py-2">
+          <div className="flex items-center py-2 gap-4 md:gap-2">
             <span
               className="material-symbols-outlined cursor-pointer"
               onClick={(e) => {
@@ -43,7 +43,7 @@ const CheckoutProduct = ({ item }) => {
               id="quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="text-center outline-none border-slate-400 border-[1px] rounded-lg w-auto"
+              className="text-center outline-none border-slate-400 py-[2px] border-[1px] rounded-lg w-auto"
             />
             <span
               className="material-symbols-outlined cursor-pointer"
@@ -57,7 +57,7 @@ const CheckoutProduct = ({ item }) => {
           </div>
           <button
             type="button"
-            className="bg-slate-400 px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
+            className="bg-slate-400 text-sm sm:text-base md:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
             onClick={() => {
               removeFromCart(item);
             }}
