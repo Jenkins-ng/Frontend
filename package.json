@@ -1,7 +1,7 @@
 {
   "name": "jenkins-company",
   "private": true,
-  "homepage": "www.jenkins.ng",
+  "homepage": "https://www.jenkins.ng",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
