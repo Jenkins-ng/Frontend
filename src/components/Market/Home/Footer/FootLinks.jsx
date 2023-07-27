@@ -5,47 +5,54 @@ import { NavLink } from "react-router-dom";
 
 const FootLinks = () => {
   return (
-    <div className="md:flex block gap-3 justify-between w-1/2 my-5 text-sm md:m-auto">
-      <div className="mb-4 md:mb-0">
-        <p className="text-slate-500 font-bold text-xl">QUICK LINKS</p>
-        <ul className="">
+    <div className="lg:flex md:grid md:grid-cols-3 md:w-full md:mt-10 block gap-3 justify-between w-1/2 my-5 text-sm md:m-auto">
+      <div className="mb-4  md:mb-0">
+        <p className="text-slate-500 font-bold mb-2 text-sm sm:text-lg md:text-xl">
+          QUICK LINKS
+        </p>
+        <ul className="flex flex-col gap-[3px] whitespace-nowrap text-sm sm:text-lg md:text-base">
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">HOME</NavLink>
+            <NavLink to="/shop">HOME</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">PRODUCTS</NavLink>
+            <NavLink to="/shop/product">PRODUCTS</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">ABOUT</NavLink>
+            <NavLink to="/about-us">ABOUT</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">SUPPORT</NavLink>
+            <NavLink to="/help">SUPPORT</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">CART</NavLink>
+            <NavLink to="/shop/cart">CART</NavLink>
           </li>
         </ul>
       </div>
       <div className="mb-4 md:mb-0">
-        <p className="text-slate-500 font-bold text-xl">SUPPORT</p>
-        <ul className="">
+        <p className="text-slate-500 font-bold mb-2 text-sm sm:text-lg md:text-xl">
+          SUPPORT
+        </p>
+        <ul className="flex flex-col gap-[3px] whitespace-nowrap text-sm sm:text-lg md:text-base">
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">PRIVACY POLICY</NavLink>
+            <NavLink to="/privacy-policy">PRIVACY POLICY</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
             <NavLink to="">TERM OF USE</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="">FAQ</NavLink>
+            <NavLink to="/faq">FAQ</NavLink>
           </li>
         </ul>
       </div>
       <div className="mb-4 md:mb-0">
-        <p className="text-slate-500 font-bold text-xl">CONTACT US</p>
-        <ul className="">
+        <p className="text-slate-500 font-bold mb-2 text-sm sm:text-lg md:text-xl">
+          CONTACT US
+        </p>
+        <ul className="flex flex-col gap-[3px] whitespace-nowrap text-sm sm:text-lg md:text-base">
           <li className="text-blue-400   whitespace-normal">
-            Plot 11C, Circular Road, <br /> Presidential Estate, GRA Phase II,
-            <br /> Port Harcourt, Rivers State, NG.
+            Plot 11C, Circular Road, <br /> Presidential Estate, GRA Phase II,{" "}
+            <br />
+            Port Harcourt, Rivers State, NG.
           </li>
           <li className="text-blue-400  ">contact@jenkins.ng</li>
           <li className="text-blue-400   block">

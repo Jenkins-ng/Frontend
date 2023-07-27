@@ -10,17 +10,19 @@ const Foot = () => {
     <Footbg>
       <div className="md:flex block justify-between items-start content-center">
         <Logo />
-        <Navlinks className="grid justify-between grid-cols-2 md:grid md:grid-cols-3 " />
-        <div className="md:flex block justify-between">
-          <div className="md:flex  h-8">
+        <Navlinks className="grid justify-between gap-2 my-5 grid-cols-2 md:grid md:grid-cols-2 md:justify-end lg:grid-cols-3" />
+        <div className="xl:flex flex sm:block justify-between">
+          <div className="flex sm:block xl:flex  h-8">
             <input
               type="email"
               placeholder="Jenkins@info.com"
               className="px-[10px] py-[3px] rounded-lg text-sm outline-none"
             />
-            <button className="px-[20px]  py-[3px] bg-blue-400 text-white rounded-md font-bold text-md">
-              Subscribe
-            </button>
+            <div className="sm:w-full">
+              <button className="px-[20px]  py-[3px] bg-blue-400 text-white rounded-md font-bold text-base sm:w-full">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </div>

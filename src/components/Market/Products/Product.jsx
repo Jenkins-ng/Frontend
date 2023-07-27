@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import StarRating from "../Home/Components/Star";
 
 const Product = ({ data }) => {
+  console.log(data.image);
   return (
-    <Link to={`/shop/product/${data.id}`}>
-      <div className="shadow-xl bg-slate-100 rounded-lg mx-3 my-2 relative w-auto overflow-hidden text-sm hover:cursor-pointer">
-        <img src={data.image} alt="" className="h-1/2 w-full" />
+    <Link to={`/shop/product/${data.slug}`}>
+      <div className="shadow-xl bg-slate-100 rounded-lg mx-3 my-2 relative w-auto overflow-hidden text-sm hover:cursor-pointer h-[350px]">
+        <img src={data.image} alt="" className="h-4/6 w-full" />
 
         <div className="p-2 grid grid-flow-row justify-between place-content-between">
-          <div className="py-2">
+          <div className="pb-2">
             <p className="font-[500] text-slate-600 text-[16px]">
               {data.title}
             </p>
@@ -22,7 +23,7 @@ const Product = ({ data }) => {
             <strong>{data.price}</strong>
           </p>
           <div className="flex gap-2">
-            <StarRating rate={+data.rating} />
+            <StarRating rate={5} />
           </div>
         </div>
         {/* <div className="text-center">

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Sign = (props) => {
-  const classes = `flex  items-center  content-center justify-end gap-9 w-full  m-auto h-[100vh] + ${props.className}`;
+  const classes = `flex  items-center justify-center justify-center gap-9 w-full + ${props.className}`;
   return <div className={classes}>{props.children}</div>;
 };
 

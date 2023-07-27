@@ -4,18 +4,14 @@ import Prototype from "../SectionTwo/Prototype";
 const SectionTwo = () => {
   return (
     <div>
-      <h2 className="text-center font-bold text-blue-400 text-3xl tracking-widest mt-14">
+      <h2 className="text-center font-bold text-blue-400 text-3xl tracking-wider mt-14">
         WHY CHOOSE US?
       </h2>
-      <p className="text-center font-semibold text-blue-400 mb-8 mt-4 text-xl tracking-wider">
+      <p className="text-center font-semibold text-blue-400 mb-8 mt-4 text-xl sm:tracking-wider">
         Trusted By Many With Over 500+ Traffic Request per Day.
       </p>
-      <div className="block md:flex md:justify-between md:text-center py-10 md:w-5/6 md:m-auto">
-        <Prototype
-          name="assured_workload"
-          title="Secure Payment System."
-          className="mt-8"
-        />
+      <div className="block mt-8 gap-3 md:grid md:grid-cols-2 lg:grid-cols-5 md:justify-between md:text-center py-10 md:w-[95%] md:m-auto">
+        <Prototype name="assured_workload" title="Secure Payment System." />
         <Prototype name="local_shipping" title="Endless Shopping." />
         <Prototype name="speed" title="Fast and swift response" />
         <Prototype name="all_inclusive" title="Unending learning" />

@@ -1,31 +1,43 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import api from '../utils/api'
+import { createContext, useEffect, useState } from "react";
+import { deleteCookie } from "../utils/cookie";
+import useApiPrivate from "../Hooks/useApiPrivate";
+import Preloader from "../components/eventhive/Preloader";
 
-const AuthContext = createContext(null)
-
-// custom hook
-export const useAuth = () => useContext(createContext)
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const apiPrivate = useApiPrivate();
+  const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    // check if user exists here
-  }, [])
+    const getUser = async () => {
+      try {
+        const response = await apiPrivate.post("/me");
+        const data = response.data;
+        setAuth({ ...data });
+        notifySuccess("Signed Up Successfully!");
+      } catch (error) {
+        if (error.response?.status === 401) {
+          setAuth(null);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    getUser();
+  }, []);
 
-  const login = (user) => {
-    setUser(user)
-  }
-
-  const logout = (user) => {
-    setUser(null)
-  }
+  const logout = () => {
+    deleteCookie("token");
+    setAuth(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ auth, setAuth, logout }}>
+      {loading ? <Preloader /> : children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-export default AuthProvider
+export default AuthProvider;

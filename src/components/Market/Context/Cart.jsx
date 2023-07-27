@@ -25,8 +25,21 @@ export const CartProvider = ({ children }) => {
       setCartItems([...cartItems, { ...item, quantity: quantities }]);
     }
   };
+  //////////////////////////////////////////////// UPDATE CART //////////////////////////////////////////
+  const updateCart = (item, quantities) => {
+    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    if (isItemInCart) {
+      setCartItems(
+        cartItems.map((cartitem) => {
+          cartitem.id === item.id
+            ? { ...cartitem, quantity: quantities }
+            : cartitem;
+        })
+      );
+    }
+  };
 
-  ////////////////////////////////////////////// REMOVE FROM CART ////////////////////////////////////////////////
+  ////////////////////////////////////////////// REMOVE FROM CART ////////////////////////////////////////////
 
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -43,13 +56,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  /////////////////////////////////////////////////// CLEAR CART ////////////////////////////////////////////////////////
+  //////////////////////////////////////////////// CLEAR CART ///////////////////////////////////////////
 
   const clearCart = () => {
     setCartItems([]);
   };
 
-  ///////////////////////////////////////////////////// GET CART TOTAL ////////////////////////////////////////////////////
+  /////////////////////////////////////////////// GET CART TOTAL /////////////////////////////////////////////
 
   const getCartTotal = () => {
     return cartItems.reduce(
@@ -73,7 +86,14 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart, getCartTotal }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        getCartTotal,
+        updateCart,
+      }}
     >
       {children}
     </CartContext.Provider>

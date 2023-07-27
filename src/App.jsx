@@ -13,14 +13,16 @@ import Required from "./components/Required";
 import Landingpage from "./Pages/Landingpage";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/signin";
-import Signinform from "./components/Signin/Signinform";
-import Helpandsupport from "./Pages/H&S";
+import AboutUs from "./components/About us/About";
+import Faq from "./Pages/Faq";
+import Privacy from "./Pages/PrivacyPolicy";
+import Helpandsupport from "./Pages/Help";
+import Emailverify from "./Pages/Emailverify";
+import Recoverysuccess from "./Pages/Recoverysuccess";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
 import Tutorial from "./components/Tutorial/Tutorial";
-import UseToken from "./Store/UseToken";
-import Eventdetails from "./components/Ticket/Sections/Eventdetails";
-import Layout from "./components/Market/Layout";
+import HomeLayout from "./components/Landing page/Layout";
 
 /////////////////////////////// EVENT HIVE  ////////////////////////////////////////
 
@@ -47,35 +49,56 @@ import Market from "./components/Market/Market";
 import TopProducts from "./components/Market/Products/TopProducts";
 import ProductDetails from "./components/Market/Products/ProductDetails";
 import ProductByCategory from "./components/Market/Products/ProductByCategory";
-import Cart from "./components/Market/Cart/Checkout";
-import Checkout from "./components/Market/checkout/Checkout";
+import Cart from "./components/Market/Cart/Cart";
+import Checkout from "./components/Market/Checkout Page/Checkout";
 import AllProducts from "./components/Market/Products/AllProducts";
 import Outpage from "./components/Market/Checkout/Checkout";
+import MarketLayout from "./components/Market/Layout";
+
+//////////////////////////////////////// ADMIN DASHBOARD ////////////////////////////////////////////
+
+import Products from "./components/Admin Dashboard/Ecommerce/Products/Products";
+import Order from "./components/Admin Dashboard/Ecommerce/Order/Order";
+import OrderDetails from "./components/Admin Dashboard/Ecommerce/Order/OrderDetails";
+import EditProduct from "./components/Admin Dashboard/Ecommerce/Products/EditProduct";
+import CreateProduct from "./components/Admin Dashboard/Ecommerce/Products/CreateProduct";
+import Overview from "./components/Admin Dashboard/Ecommerce/Overview";
+import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
 const router = createBrowserRouter([
   ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { index: true, element: <Landingpage /> },
+      { path: "/about-us", element: <AboutUs /> },
+      { path: "/faq", element: <Faq /> },
+      { path: "/privacy-policy", element: <Privacy /> },
+    ],
+  },
 
-  { path: "/", element: <Landingpage /> },
+  { path: "/help", element: <Helpandsupport /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
-  { path: "/help", element: <Helpandsupport /> },
   { path: "/signin/recover", element: <Recoveryrender /> },
   // {path:"/signin/forgot", element:}
-  { path: "/admin/dashboard", element: <Dashboard /> },
-  { path: "/admin/events", element: <Events /> },
+  // { path: '/admin/dashboard', element: <Dashboard /> },
+  // { path: '/admin/events', element: <Events /> },
   { path: "/tutorial", element: <Tutorial /> },
 
   //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
   {
     path: "/event",
     element: <EventHomeLayout />,
-    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <EventHome /> },
       { path: "/event/event/:id", loader: eventLoader, element: <Event /> },
@@ -88,9 +111,15 @@ const router = createBrowserRouter([
   // { path: "/event/signin", element: <Signin /> },
   { path: "/eventhive/login", element: <EventLogin /> },
   { path: "/event/all-events", element: <AllEvents /> },
-  { path: "/event/create-event", element: <CreateEvent /> },
-  { path: "/event/register", element: <Register /> },
 
+  {
+    path: "/event",
+    element: <ProtectedRoute />,
+    children: [
+      { path: "/event/create-event", element: <CreateEvent /> },
+      { path: "/event/register", element: <Register /> },
+    ],
+  },
   /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
   {
     path: "/event/dashboard",
@@ -102,11 +131,52 @@ const router = createBrowserRouter([
       { path: "/event/dashboard/profile", element: <Profile /> },
     ],
   },
-
+  ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
+  {
+    path: "/admin",
+    // element: <AdminRoute />,
+    // element: <Dashboard />,
+    children: [
+      { path: "/admin/dashboard", element: <Dashboard /> },
+      { path: "/admin/event", element: <Event /> },
+      { path: "/admin/inbox" },
+      { path: "/admin/profile" },
+      {
+        path: "/admin/ecommerce",
+        children: [
+          { path: "/admin/ecommerce/overview", element: <Overview /> },
+          {
+            path: "/admin/ecommerce/product",
+            children: [
+              { path: "/admin/ecommerce/product", element: <Products /> },
+              {
+                path: "/admin/ecommerce/product/create",
+                element: <CreateProduct />,
+              },
+              {
+                path: "/admin/ecommerce/product/edit",
+                element: <EditProduct />,
+              },
+            ],
+          },
+          {
+            path: "/admin/ecommerce/order",
+            children: [
+              { path: "/admin/ecommerce/order/", element: <Order /> },
+              {
+                path: "/admin/ecommerce/order-detail",
+                element: <OrderDetails />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
   //////////////////////// FOR THE E-SHOP ///////////////////////////
   {
     path: "/shop",
-    element: <Layout />,
+    element: <MarketLayout />,
     children: [
       { index: true, element: <Market /> },
 
@@ -116,18 +186,21 @@ const router = createBrowserRouter([
       ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
       { path: "/shop/product/:slug", element: <ProductDetails /> },
 
-      //////////////////////////////////////// CART ///////////////////////////////////////
-      { path: "/shop/cart", element: <Cart /> },
-
-      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
-      { path: "/shop/checkout", element: <Checkout /> },
-
       //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
       {
         path: "/shop/product/category/:category",
         element: <ProductByCategory />,
       },
-
+    ],
+  },
+  {
+    path: "/shop",
+    element: <ProtectedRoute />,
+    children: [
+      //////////////////////////////////////// CART ///////////////////////////////////////
+      { path: "/shop/cart", element: <Cart /> },
+      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
+      { path: "/shop/checkout", element: <Checkout /> },
       ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
       {
         path: "/shop/checkout",
@@ -135,12 +208,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <ErrorPage /> },
 
   // { path: "/shop/orders", element: <Orders /> },
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;

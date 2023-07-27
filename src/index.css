@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'product-sans';
-  src: url('./assets/Product Sans Regular.ttf');
+  font-family: "product-sans";
+  src: url("./assets/Product Sans Regular.ttf");
 }
+
+/* * {
+  font-family: "poppins", sans-serif;
+} */
 body:has(.eventhive) {
   background-color: #f8f8fa;
-  font-family: 'product-sans';
+  font-family: "product-sans";
 }
 body:has(.eventhive) :is(h1, h2, h3) {
   font-weight: 700;

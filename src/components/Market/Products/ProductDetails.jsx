@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import Products from "../Data/Products";
-import { useParams } from "react-router-dom";
+// import Products from "../Data/Products";
+import { useParams, useNavigate } from "react-router-dom";
+import { apiPrivate as api } from "../../../utils/api";
 import notifySuccess from "../../../utils/notifySuccess";
 import notifyError from "../../../utils/notifyError";
 import { CartContext } from "../Context/Cart";
@@ -8,15 +9,32 @@ import { CartContext } from "../Context/Cart";
 const ProductDetails = () => {
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState([]);
   const params = useParams();
+  const history = useNavigate();
   const parameter = params.slug;
+  // console.log(parameter);
 
-  const data = Products.filter((product) => product.id === +parameter);
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const response = await api.get(`/products/${parameter}`);
+        const result = await response.data.data;
+        setProduct([result]);
+        console.log(result);
+      } catch (error) {
+        // console.log(error.response);
+      }
+    }
+    fetch();
+  }, []);
 
+  console.log(product);
+  // console.log(data);
   return (
     <section>
       <section className="w-[85%] m-auto mb-10">
-        {data.map((items) => (
+        {product.map((items) => (
           <div
             key={items.id}
             className="md:flex justify-evenly items-center mt-20 rounded-lg"
@@ -94,6 +112,7 @@ const ProductDetails = () => {
                     onClick={() => {
                       addToCart(items, quantity);
                       notifySuccess("Items added successfully!");
+                      history("/shop/product");
                     }}
                   >
                     Add To Cart
