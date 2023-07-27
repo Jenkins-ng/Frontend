@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { deleteCookie } from '../utils/cookie'
+import { deleteCookie, getCookie } from '../utils/cookie'
 import useApiPrivate from '../Hooks/useApiPrivate'
 import Preloader from '../components/eventhive/Preloader'
 
@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false)
       }
     }
-    getUser()
+    getCookie('token') ? getUser() : setLoading(false)
   }, [])
 
   const logout = () => {
