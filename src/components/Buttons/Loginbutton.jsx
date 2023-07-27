@@ -5,7 +5,7 @@ const Loginbutton = (props) => {
   return (
     <div>
       <Link to={props.to}>
-        <button href="" type="submit" className={classes}>
+        <button type="submit" className={classes}>
           {props.title}
         </button>
       </Link>

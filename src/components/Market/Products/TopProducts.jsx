@@ -1,33 +1,26 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Product from "./Product";
-import ProductData from "../Data/Products";
+// import ProductData from "../Data/Products";
+import { apiPrivate as api } from "../../../utils/api";
 import { NavLink } from "react-router-dom";
 
-const url =
-  "https://aliexpress-datahub.p.rapidapi.com/item_details?itemId=3256804591426248";
-const option = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "6938c6e432mshe3a01b58ac44e0ep113ae2jsn2b887700961a",
-    "X-RapidAPI-Host": "aliexpress-datahub.p.rapidapi.com",
-  },
-};
 const TopProducts = () => {
   const [Data, setData] = useState([]);
 
-  //   useEffect(() => {
-  // try {
-  //   fetch(url, option)
-  //     .then((data) => data.text())
-  //     .then((response) => {
-  //       setData(response);
-  //       console.log(response);
-  //     });
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  //   });
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const response = await api.get("/products");
+        const result = await response.data.data;
+        setData(result);
+        console.log(result);
+      } catch (error) {
+        // console.log(error.response);
+      }
+    }
+    fetch();
+  }, []);
 
   return (
     <div className="w-[87%] sm:w-[90%] m-auto mb-10">
@@ -41,7 +34,7 @@ const TopProducts = () => {
         </NavLink>
       </div>
       <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
-        {ProductData.map((data) => (
+        {Data.map((data) => (
           <Product data={data} key={data.id} />
         ))}
       </div>

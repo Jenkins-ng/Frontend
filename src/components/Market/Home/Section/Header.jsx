@@ -4,8 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
 import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
 import { CartContext } from "../../Context/Cart";
+import useAuth from "../../../../Hooks/useAuth";
 
 export const Modal = () => {
+  const { auth, logout } = useAuth();
   return (
     <div className="w-full h-full relative">
       <div className="absolute bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg">
@@ -19,9 +21,14 @@ export const Modal = () => {
               0
             </div>
           </li>
-          <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
-            <Link to={"/logout"}>Logout</Link>
-          </li>
+          {/* <li
+            className="py-[4px] text-blue-400 hover:text-slate-500 font-medium"
+            // onClick={logout}
+          > */}
+          <button type="submit" onClick={logout}>
+            Logout
+          </button>
+          {/* </li> */}
         </ul>
       </div>
     </div>
@@ -77,7 +84,7 @@ export const Head = () => {
       <div
         className={`${
           !navbar ? "grid" : "hidden"
-        } lg:flex  sm:bg-slate-200 absolute justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
+        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
       >
         <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide ">
           <ul className="text-blue-400 lg:flex block sm:grid gap-10  lg:gap-0 justify-between w-full">

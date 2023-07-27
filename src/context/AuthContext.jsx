@@ -1,42 +1,44 @@
-import { createContext, useEffect, useState } from 'react'
-import { deleteCookie } from '../utils/cookie'
-import useApiPrivate from '../Hooks/useApiPrivate'
-import Preloader from '../components/eventhive/Preloader'
+import { createContext, useEffect, useState } from "react";
+import { deleteCookie } from "../utils/cookie";
+import useApiPrivate from "../Hooks/useApiPrivate";
+import Preloader from "../components/eventhive/Preloader";
+import notifySuccess from "../utils/notifySuccess";
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const apiPrivate = useApiPrivate()
-  const [loading, setLoading] = useState(true)
-  const [auth, setAuth] = useState(null)
+  const apiPrivate = useApiPrivate();
+  const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await apiPrivate.post('/me')
-        const data = response.data
-        setAuth({ ...data })
+        const response = await apiPrivate.post("/me");
+        const data = response.data;
+        setAuth({ ...data });
+        notifySuccess("Signed Up Successfully!");
       } catch (error) {
         if (error.response?.status === 401) {
-          setAuth(null)
+          setAuth(null);
         }
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    getUser()
-  }, [])
+    };
+    getUser();
+  }, []);
 
   const logout = () => {
-    deleteCookie('token')
-    setAuth(null)
-  }
+    deleteCookie("token");
+    setAuth(null);
+  };
 
   return (
     <AuthContext.Provider value={{ auth, setAuth, logout }}>
       {loading ? <Preloader /> : children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-export default AuthProvider
+export default AuthProvider;

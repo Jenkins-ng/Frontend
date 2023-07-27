@@ -224,8 +224,9 @@ const Signupform = () => {
         <button
           disabled={!isChecked ? true : false}
           className="disabled:bg-slate-100 bg-blue-400 w-full my-3 text-white font-bold rounded-xl mt-6 py-[4px]"
+          type="submit"
         >
-          Create Account
+          CREATE ACCOUNT
         </button>
         <p className="text-center mt-4">
           Already created an account?{" "}

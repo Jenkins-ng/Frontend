@@ -69,6 +69,7 @@ import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -133,7 +134,8 @@ const router = createBrowserRouter([
   ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
   {
     path: "/admin",
-    // element: <Layedout />,
+    // element: <AdminRoute />,
+    // element: <Dashboard />,
     children: [
       { path: "/admin/dashboard", element: <Dashboard /> },
       { path: "/admin/event", element: <Event /> },
@@ -184,18 +186,21 @@ const router = createBrowserRouter([
       ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
       { path: "/shop/product/:slug", element: <ProductDetails /> },
 
-      //////////////////////////////////////// CART ///////////////////////////////////////
-      { path: "/shop/cart", element: <Cart /> },
-
-      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
-      { path: "/shop/checkout", element: <Checkout /> },
-
       //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
       {
         path: "/shop/product/category/:category",
         element: <ProductByCategory />,
       },
-
+    ],
+  },
+  {
+    path: "/shop",
+    element: <ProtectedRoute />,
+    children: [
+      //////////////////////////////////////// CART ///////////////////////////////////////
+      { path: "/shop/cart", element: <Cart /> },
+      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
+      { path: "/shop/checkout", element: <Checkout /> },
       ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
       {
         path: "/shop/checkout",
