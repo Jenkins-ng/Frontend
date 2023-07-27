@@ -96,6 +96,7 @@ const CreateProduct = () => {
       description: Description,
       price: Price,
     };
+    console.log(data);
 
     try {
       const response = await api.post("/products", data);
@@ -113,7 +114,7 @@ const CreateProduct = () => {
 
   return (
     <Wrapper>
-      <section className="my-4">
+      <section className="my-4 grid place-content-center">
         <h1 className="text-blue-400 font-bold text-2xl my-5">NEW PRODUCT</h1>
 
         {/* TO CREATE A CATEGORY */}

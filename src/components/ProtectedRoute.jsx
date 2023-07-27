@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
 
   if (!auth) {
     notifyError("Kindly Sign Up");
-    return <Navigate to="/" />;
+    return <Navigate to="/signin" />;
   }
   notifySuccess("WELCOME BACK!");
   return (

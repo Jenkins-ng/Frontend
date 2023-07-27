@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Loginbutton from "../Buttons/Loginbutton";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
@@ -16,8 +16,9 @@ const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
   const [icon, setIcon] = useState("visibility");
-  const { setAuth } = useAuth();
-
+  const { auth, setAuth } = useAuth();
+  const AuthRef = useRef(auth?.is_admin);
+  console.log(auth);
   const history = useNavigate();
   const {
     register,
@@ -34,9 +35,15 @@ const Signinform = () => {
       const { user } = response.data;
       const { token } = response.data.authorisation;
       setAuth({ ...user });
-      // notifySuccess("WELCOME BACK!");
+      AuthRef.current = user.is_admin;
+      console.log(AuthRef.current);
       setCookie("token", token, 7);
-      history("/event/all-events");
+      console.log(auth);
+      if (AuthRef.current === 1) {
+        history("/admin/dashboard");
+      } else {
+        history("/event/all-events");
+      }
       console.log(data);
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message);
