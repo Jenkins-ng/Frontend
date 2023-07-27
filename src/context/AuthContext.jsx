@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import { deleteCookie } from "../utils/cookie";
 import useApiPrivate from "../Hooks/useApiPrivate";
 import Preloader from "../components/eventhive/Preloader";
-import notifySuccess from "../utils/notifySuccess";
 
 export const AuthContext = createContext(null);
 
