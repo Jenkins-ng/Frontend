@@ -2,9 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Emailverifybutton from "../Buttons/Emailverifybutton";
 import Emailverification from "../UI/Emailverification";
+import Spinner from "../../utils/spinner";
+import { useState } from "react";
+
 const Emailverify = () => {
+  const [firstInput, setfirstInput] = useState("");
+  const [secondInput, setsecondInput] = useState("");
+  const [thirdInput, setthirdInput] = useState("");
+  const [fourthInput, setfourthInput] = useState("");
+
   return (
     <Emailverification className="border-blue-600">
+      <Spinner />
       <h1 className="text-blue-900 font-bold text-2xl space-x-2">
         Email Verification
       </h1>
@@ -23,6 +32,17 @@ const Emailverify = () => {
             <input
               type="tel"
               placeholder="*"
+              value={firstInput}
+              onChange={(e) => setfirstInput(e.target.valueAsNumber)}
+              className="h-10 w-10 text-center outline-blue-950 bg-slate-200 rounded-sm"
+              maxLength={1}
+              required
+            />
+            <input
+              type="tel"
+              placeholder="*"
+              value={secondInput}
+              onChange={(e) => setsecondInput(e.target.valueAsNumber)}
               className="h-10 w-10 text-center outline-blue-950 bg-slate-200 rounded-sm"
               maxLength={1}
               required
@@ -31,13 +51,8 @@ const Emailverify = () => {
               type="tel"
               placeholder="*"
               className="h-10 w-10 text-center outline-blue-950 bg-slate-200 rounded-sm"
-              maxLength={1}
-              required
-            />
-            <input
-              type="tel"
-              placeholder="*"
-              className="h-10 w-10 text-center outline-blue-950 bg-slate-200 rounded-sm"
+              value={thirdInput}
+              onChange={(e) => setthirdInput(e.target.valueAsNumber)}
               maxLength={1}
               required
             />
@@ -45,6 +60,8 @@ const Emailverify = () => {
               type="text"
               placeholder="*"
               className="h-10 w-10 text-center outline-blue-950 bg-slate-200 rounded-sm"
+              value={fourthInput}
+              onChange={(e) => setfourthInput(e.target.valueAsNumber)}
               maxLength={1}
               required
             />
