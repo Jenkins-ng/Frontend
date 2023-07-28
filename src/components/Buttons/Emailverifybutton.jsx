@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 
 const Emailverifybutton = (props) => {
   return (
-    <div className="flex gap-10 items-center ">
-      <a
-        href=""
-        className="px-8 py-2 text-sm bg-blue-950 text-slate-100 rounded-lg"
+    <div className="flex gap-10 items-center justify-between whitespace-nowrap">
+      <button
+        type="submit"
+        onClick={props.onclick}
+        className="px-8 py-2 text-md bg-blue-400 text-slate-500 font-bold rounded-lg"
       >
         {props.title}
-      </a>
-      <Link to="/signin" className="text-sm text-blue-800 font-bold">
-        Back to login
+      </button>
+      <Link to="/signin" className="text-base text-slate-500 font-bold">
+        BACK TO LOGIN
       </Link>
     </div>
   );

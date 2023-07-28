@@ -17,7 +17,8 @@ import AboutUs from "./components/About us/About";
 import Faq from "./Pages/Faq";
 import Privacy from "./Pages/PrivacyPolicy";
 import Helpandsupport from "./Pages/Help";
-import Emailverify from "./Pages/Emailverify";
+import Emailverify from "./Pages/RecoveryToken";
+import ResetPassword from "./Pages/ResetPassword";
 import Recoverysuccess from "./Pages/Recoverysuccess";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
@@ -89,7 +90,9 @@ const router = createBrowserRouter([
   { path: "/help", element: <Helpandsupport /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
-  { path: "/signin/recover", element: <Recoveryrender /> },
+  { path: "/forget-password", element: <Recoveryrender /> },
+  { path: "/recover", element: <Emailverify /> },
+  { path: "/reset-password", element: <ResetPassword /> },
   // {path:"/signin/forgot", element:}
   // { path: '/admin/dashboard', element: <Dashboard /> },
   // { path: '/admin/events', element: <Events /> },

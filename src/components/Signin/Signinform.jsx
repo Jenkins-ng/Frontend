@@ -18,7 +18,9 @@ const Signinform = () => {
   const [icon, setIcon] = useState("visibility");
   const { auth, setAuth } = useAuth();
   const AuthRef = useRef(auth?.is_admin);
-  console.log(auth);
+
+// /////////////////////////////////////////////////////////////////
+
   const history = useNavigate();
   const {
     register,
@@ -36,7 +38,6 @@ const Signinform = () => {
       const { token } = response.data.authorisation;
       setAuth({ ...user });
       AuthRef.current = user.is_admin;
-      console.log(AuthRef.current);
       setCookie("token", token, 7);
       console.log(auth);
       if (AuthRef.current === 1) {
@@ -66,7 +67,7 @@ const Signinform = () => {
 
   return (
     <>
-      <div className="md:w-1/3 w-full h-full">
+      <div className="md:w-1/3 w-full">
         <form onSubmit={handleSubmit(onSubmit)} className="text-slate-500">
           <div>
             <div className="md:hidden block text-center">
@@ -160,7 +161,7 @@ const Signinform = () => {
 
             <div className="text-right mt-2">
               <Link
-                to="/signin/recover"
+                to="/forget-password"
                 className="text-blue-400 font-bold text-right"
               >
                 forgot password
