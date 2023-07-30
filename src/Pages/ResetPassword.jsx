@@ -3,9 +3,20 @@ import Emailverifybutton from "../components/Buttons/Emailverifybutton";
 import Inputfield from "../components/Error & recovery/Inputfield";
 import Emailverification from "../components/UI/Emailverification";
 Emailverification;
+import Error from "../components/Error & recovery/ErrorModal";
 
 const ResetPassword = () => {
-  const [input, setInput] = useState();
+  const [firstPassword, setFirstPassword] = useState("");
+  const [secondPassword, setSecondPassword] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+
+  const setShow = (e) => {
+    e.preventDefault();
+    setOpenModal("pop-up");
+    setShowModal((prev) => !showModal);
+  };
+
   return (
     <Emailverification>
       <section>
@@ -14,22 +25,36 @@ const ResetPassword = () => {
         </h1>
       </section>
       <section>
-        <form action="">
-          <Inputfield
-            placeholder="ENTER NEW PASSWORD"
-            input={input}
-            setinput={setInput}
-            title="NEW PASSWORD"
-          />
-          <Inputfield
-            placeholder="ENTER CONFIRM PASSWORD"
-            input={input}
-            setinput={setInput}
-            title="CONFIRM PASSWORD"
-          />
-          <Emailverifybutton title="RESET PASSWORD" />
-        </form>
+        {/* <form> */}
+        <Inputfield
+          placeholder="ENTER NEW PASSWORD"
+          input={firstPassword}
+          setinput={setFirstPassword}
+          title="NEW PASSWORD"
+        />
+        <Inputfield
+          placeholder="ENTER CONFIRM PASSWORD"
+          input={secondPassword}
+          setinput={setSecondPassword}
+          title="CONFIRM PASSWORD"
+        />
+        <Emailverifybutton title="RESET PASSWORD" onclick={setShow} />
+        {/* </form> */}
       </section>
+      <div>
+        {showModal ? (
+          <Error
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            message="Your password has been reset successfully!"
+            icon=""
+            to="signin"
+            firstOption="CLOSE"
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </Emailverification>
   );
 };

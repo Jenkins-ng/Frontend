@@ -1,19 +1,30 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Emailverifybutton from "../Buttons/Emailverifybutton";
 import Emailverification from "../UI/Emailverification";
 import Spinner from "../../utils/spinner";
-import { useState } from "react";
+import { apiPrivate as api } from "../../utils/api";
 
 const Emailverify = () => {
   const [firstInput, setfirstInput] = useState("");
   const [secondInput, setsecondInput] = useState("");
   const [thirdInput, setthirdInput] = useState("");
   const [fourthInput, setfourthInput] = useState("");
+  // const [showSpinner, setshowSpinner] = useState(false);
+
+  // const setSpinner = (e) => {
+  //   e.preventDefault();
+  //   setshowSpinner((prev) => showSpinner);
+  // };
+
+  const submitToken = async () => {
+    const response = await api.post()
+  }
 
   return (
     <Emailverification className="border-blue-600">
-      <Spinner />
+      {/* <Spinner /> */}
       <h1 className="text-blue-900 font-bold text-2xl space-x-2">
         Email Verification
       </h1>
@@ -67,7 +78,12 @@ const Emailverify = () => {
             />
           </div>
           <Link to="/reset-password">
-            <Emailverifybutton title="VERIFY EMAIL" />
+            <Emailverifybutton
+              title="VERIFY EMAIL"
+              // showSpinner={showSpinner}
+              // setshowSpinner={setshowSpinner}
+              // setSpinner={setSpinner}
+            />
           </Link>
         </div>
       </form>

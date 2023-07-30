@@ -10,17 +10,15 @@ import { Link } from "react-router-dom";
 const Recoverpassword = () => {
   const [input, setInput] = useState("");
   const [openModal, setOpenModal] = useState();
-  const [showModal, setShowModal] = useState(false);
- 
+  const [showModal, setShowModal] = useState(true);
 
   const setShow = (e) => {
     e.preventDefault();
     setOpenModal("pop-up");
     setShowModal((prev) => !showModal);
-    
   };
   console.log(input);
-  
+
   return (
     <Emailverification>
       <h1 className="text-blue-400 text-2xl mb-3 font-bold tracking-wide">
@@ -51,6 +49,7 @@ const Recoverpassword = () => {
             setOpenModal={setOpenModal}
             message="A 4-digit Email has been sent to your email address"
             icon=""
+            to="recover"
             firstOption="CLOSE"
           />
         ) : (

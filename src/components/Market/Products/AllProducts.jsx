@@ -3,6 +3,7 @@ import Catergories from "../Home/Section/Catergories";
 // import Products from "../Data/Products";
 import { apiPrivate as api } from "../../../utils/api";
 import Product from "./Product";
+import { Spinner } from "flowbite-react";
 
 const AllProducts = () => {
   const [product, setProduct] = useState([]);
@@ -30,9 +31,13 @@ const AllProducts = () => {
         <Catergories />
       </div>
       <div className="flex flex-wrap  w-[90%] m-auto mb-10">
-        {product.map((product) => (
-          <Product data={product} key={product.id} />
-        ))}
+        {product === "" ? (
+          product.map((product) => <Product data={product} key={product.id} />)
+        ) : (
+          <div className="text-center my-10 m-auto">
+            <Spinner size="xl" />
+          </div>
+        )}
       </div>
     </main>
   );

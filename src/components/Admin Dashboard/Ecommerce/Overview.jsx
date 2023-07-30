@@ -1,7 +1,8 @@
 import React from "react";
+import Wrapper from "../Wrapper";
 
 const Overview = () => {
-  return <div>Overview</div>;
+  return <Wrapper>OVERVIEW</Wrapper>;
 };
 
 export default Overview;

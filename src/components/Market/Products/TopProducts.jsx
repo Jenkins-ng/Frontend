@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Spinner } from "flowbite-react";
 import Product from "./Product";
 // import ProductData from "../Data/Products";
 import { apiPrivate as api } from "../../../utils/api";
@@ -33,11 +34,17 @@ const TopProducts = () => {
           SEE ALL
         </NavLink>
       </div>
-      <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
-        {Data.map((data) => (
-          <Product data={data} key={data.id} />
-        ))}
-      </div>
+      {Data === "" ? (
+        <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
+          {Data.map((data) => (
+            <Product data={data} key={data.id} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center my-10 m-auto">
+          <Spinner size="xl" />
+        </div>
+      )}
     </div>
   );
 };

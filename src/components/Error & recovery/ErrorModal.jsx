@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 // import notifySuccess from "../utils/notifySuccess";
 import { Button, Modal } from "flowbite-react";
@@ -8,7 +8,7 @@ import Signupbutton from "../Buttons/Signupbutton";
 
 const Backdrop = (props) => {
   return (
-    <div className="w-full h-100vh bg-white blur-lg relative z-20">
+    <div className="w-full h-100vh bg-white blur-xl relative z-20">
       {props.children}
     </div>
   );
@@ -21,8 +21,9 @@ export const Error = ({
   icon,
   firstOption,
   secondOption,
+  to,
 }) => {
-  const props = { openModal, setOpenModal };
+  const props = { openModal, setOpenModal, to };
   const history = useNavigate();
 
   return (
@@ -30,7 +31,7 @@ export const Error = ({
       <>
         <Modal
           show={props.openModal === "pop-up"}
-          size="md"
+          size="xl"
           popup
           onClose={() => props.setOpenModal(undefined)}
         >
@@ -45,11 +46,12 @@ export const Error = ({
                 {message}
               </h3>
               <div className="flex justify-center gap-4">
+                {/* <Link to={`/${to}`}></Link> */}
                 <Button
                   color="success"
                   onClick={() => {
                     props.setOpenModal(undefined);
-                    history("/recover");
+                    history(`/${to}`);
                   }}
                 >
                   {firstOption}

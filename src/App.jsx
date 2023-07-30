@@ -64,6 +64,8 @@ import OrderDetails from "./components/Admin Dashboard/Ecommerce/Order/OrderDeta
 import EditProduct from "./components/Admin Dashboard/Ecommerce/Products/EditProduct";
 import CreateProduct from "./components/Admin Dashboard/Ecommerce/Products/CreateProduct";
 import Overview from "./components/Admin Dashboard/Ecommerce/Overview";
+import AdminProfile from "./components/Admin Dashboard/Profile/Profile";
+import Inbox from "./components/Admin Dashboard/Message"
 import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
@@ -138,12 +140,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     // element: <AdminRoute />,
-    // element: <Dashboard />,
     children: [
       { path: "/admin/dashboard", element: <Dashboard /> },
       { path: "/admin/event", element: <Event /> },
-      { path: "/admin/inbox" },
-      { path: "/admin/profile" },
+      { path: "/admin/inbox", element: <Inbox/> },
+      { path: "/admin/profile", element: <AdminProfile /> },
       {
         path: "/admin/ecommerce",
         children: [
@@ -198,7 +199,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/shop",
-    element: <ProtectedRoute />,
+    // element: <ProtectedRoute />,
     children: [
       //////////////////////////////////////// CART ///////////////////////////////////////
       { path: "/shop/cart", element: <Cart /> },

@@ -56,7 +56,7 @@ export const Head = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="flex sticky z-10 shadow-xl justify-between items-center px-5 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
+    <div className="flex fixed z-10 shadow-xl justify-between items-center px-5 md:pl-3 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
       <div className="flex justify-between w-full md:w-4/6 items-center ">
         <NavLink to="/">
           <Logo />

@@ -34,7 +34,7 @@ const Checkout = () => {
               <button
                 type="submit"
                 className="bg-slate-400 px-4 text-xs sm:text-sm md:text-base md:px-8 py-[4px] text-white hover:bg-blue-400 rounded-xl"
-                // onClick={updateCart(cartItems)}
+                onClick={updateCart(cartItems)}
               >
                 UPDATE CART
               </button>

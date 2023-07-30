@@ -36,10 +36,10 @@ const ProductByCategory = () => {
         {/* {category.map((data) => (
           <Product data={data} key={data.id} />
         ))} */}
-        {category ? (
+        {category === "" ? (
           category.map((data) => <Product data={data} key={data.id} />)
         ) : (
-          <p className="capitalise text-slate-500 font-bold text-center my-10">
+          <p className="uppercase text-xl text-slate-500 font-bold text-center my-10">
             No Product Under this category
           </p>
         )}
