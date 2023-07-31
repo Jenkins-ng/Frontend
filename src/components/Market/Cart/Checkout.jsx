@@ -14,7 +14,7 @@ const Checkout = () => {
   console.log(cartItems);
 
   return (
-    <section className=" md:flex justify-between w-12/12 my-10 relative m-auto">
+    <section className=" md:flex justify-between w-12/12 mb-10 relative m-auto top-[60px]  overflow-scroll h-[calc(100% - 70px)]">
       {cartItems.length > 0 ? (
         <>
           <main className="lg:w-8/12 md:6/12 sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
@@ -119,7 +119,7 @@ const Checkout = () => {
               type="submit"
               className="bg-blue-400 px-10 sm:py-[4px] py-[4px] md:py-[6px] text-white hover:bg-slate-400 rounded-xl"
             >
-              Go To Shop
+             GO TO SHOP
             </button>
           </Link>
         </div>

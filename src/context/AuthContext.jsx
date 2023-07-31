@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
         const response = await apiPrivate.post("/me");
         const data = response.data;
         setAuth({ ...data });
-        notifySuccess("Signed Up Successfully!");
+        // notifySuccess("Signed Up Successfully!");
       } catch (error) {
         if (error.response?.status === 401) {
           setAuth(null);

@@ -9,21 +9,21 @@ const Social = () => {
   return (
     <span className="flex gap-[5px] items-center">
       <a href="mailto:jenkins@info.com">
-        <img src={Mail} alt="" className="w-[30px]" />
+        <img src={Mail} alt="mail-icon" className="w-[30px]" />
       </a>
       <span>
-        <a href="">
-          <img src={Twitter} alt="" className="w-[35px]" />
+        <a href="https://twitter.com/jenkins_ng">
+          <img src={Twitter} alt="twitter-icon" className="w-[35px]" />
         </a>
       </span>
       <span>
-        <a href="">
-          <img src={Linkedin} alt="" className="w-[35px]" />
+        <a href="https://linkedin.com/in/jenkinsng">
+          <img src={Linkedin} alt="linkedin-icon" className="w-[35px]" />
         </a>
       </span>
       <span>
-        <a href="">
-          <img src={Facebook} alt="" className="w-[35px]" />
+        <a href="https://facebook.com/jenkins.ng1">
+          <img src={Facebook} alt="facebook-icon" className="w-[35px]" />
         </a>
       </span>
       <span>

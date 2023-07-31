@@ -84,20 +84,32 @@ export const Head = () => {
       <div
         className={`${
           !navbar ? "grid" : "hidden"
-        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
+        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[68px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
       >
         <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide ">
           <ul className="text-blue-400 lg:flex block sm:grid gap-10  lg:gap-0 justify-between w-full">
-            <li className="text-blue-400 font-bold hover:text-gray-500">
+            <li
+              className="text-blue-400 font-bold hover:text-gray-500"
+              onClick={NavbarHandler}
+            >
               <NavLink to={"/shop"}>HOME</NavLink>
             </li>
-            <li className="text-blue-400 font-bold hover:text-gray-500">
+            <li
+              className="text-blue-400 font-bold hover:text-gray-500"
+              onClick={NavbarHandler}
+            >
               <NavLink to={"/shop/product"}>PRODUCTS</NavLink>
             </li>
-            <li className="text-blue-400 font-bold hover:text-gray-500">
+            <li
+              className="text-blue-400 font-bold hover:text-gray-500"
+              onClick={NavbarHandler}
+            >
               <NavLink to={"/help "}>SUPPORT</NavLink>
             </li>
-            <li className="text-blue-400 font-bold hover:text-gray-500">
+            <li
+              className="text-blue-400 font-bold hover:text-gray-500"
+              onClick={NavbarHandler}
+            >
               <NavLink to={"/about-us"}>ABOUT</NavLink>
             </li>
           </ul>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import Products from "../Data/Products";
 import { apiPrivate as api } from "../../../utils/api";
+// import Foot from "../Home/Footer/Foot";
+// import { Head } from "../Home/Section/Header";
 import Product from "./Product";
 
 const ProductByCategory = () => {
@@ -28,23 +30,27 @@ const ProductByCategory = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-slate-500 m-5">
-        {parameter.toLocaleUpperCase()}
-      </h1>
-      <div>
-        {/* {category.map((data) => (
+    <main>
+      {/* <Head /> */}
+      <div className="top-[68px] relative overflow-scroll h-[calc(100% - 68px)]">
+        <h1 className="text-2xl font-bold text-slate-500 mx-5">
+          {parameter.toLocaleUpperCase()}
+        </h1>
+        <div>
+          {/* {category.map((data) => (
           <Product data={data} key={data.id} />
         ))} */}
-        {category === "" ? (
-          category.map((data) => <Product data={data} key={data.id} />)
-        ) : (
-          <p className="uppercase text-xl text-slate-500 font-bold text-center my-10">
-            No Product Under this category
-          </p>
-        )}
+          {category === "" ? (
+            category.map((data) => <Product data={data} key={data.id} />)
+          ) : (
+            <p className="uppercase text-xl text-slate-500 font-bold text-center my-10">
+              No Product Under this category
+            </p>
+          )}
+        </div>
       </div>
-    </div>
+      {/* <Foot /> */}
+    </main>
   );
 };
 

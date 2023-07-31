@@ -32,7 +32,7 @@ const ProductDetails = () => {
   console.log(product);
   // console.log(data);
   return (
-    <section>
+    <section className="top-[68px] relative overflow-scroll h-[calc(100% - 68px)]">
       <section className="w-[85%] m-auto mb-10">
         {product.map((items) => (
           <div

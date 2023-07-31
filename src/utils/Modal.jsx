@@ -19,9 +19,9 @@ export default function DismissableModal({ openModal, setOpenModal }) {
           <div className="space-y-6">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
               <span className="uppercase text-xl text-center font-bold mb-2 grid">
-                Welcome to Jenkins.ng
+                Welcome to Jenkins.ng.
               </span>
-              . <br />
+              <br />
               At <span className="uppercase font-bold">Jenkins.ng</span>, we are
               committed to protecting your privacy and ensuring the security of
               your personal information.
