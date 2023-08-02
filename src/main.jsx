@@ -7,12 +7,12 @@ import "./index.css";
 import { CartProvider } from "./components/Market/Context/Cart.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <>
-    <CartProvider>
-      <App />
-    </CartProvider>
-    <ToastContainer />
-  </>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <>
+      <CartProvider>
+        <App />
+      </CartProvider>
+      <ToastContainer />
+    </>
+  </React.StrictMode>
 );

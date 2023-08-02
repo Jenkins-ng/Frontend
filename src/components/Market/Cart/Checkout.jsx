@@ -14,7 +14,7 @@ const Checkout = () => {
   console.log(cartItems);
 
   return (
-    <section className=" md:flex justify-between w-12/12 mb-10 relative m-auto top-[60px]  overflow-scroll h-[calc(100% - 70px)]">
+    <section className=" md:flex justify-between w-12/12 mb-10 relative m-auto top-[60px]  overflow-scroll h-[calc(100% - 70px)] Hide">
       {cartItems.length > 0 ? (
         <>
           <main className="lg:w-8/12 md:6/12 sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">

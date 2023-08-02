@@ -68,6 +68,12 @@ import AdminProfile from "./components/Admin Dashboard/Profile/Profile";
 import Inbox from "./components/Admin Dashboard/Message";
 import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
+///////////////////////////////////////// JOBS /////////////////////////////////////////////////
+import JobLayout from "./components/Jobs/Layout";
+import HomePage from "./Pages/Jobs/HomePage";
+import JobDetails from "./Pages/Jobs/JobDetails";
+import JobApply from "./Pages/Jobs/JobApply";
+import AllJobs from "./Pages/Jobs/AllJobs";
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
@@ -211,6 +217,22 @@ const router = createBrowserRouter([
         path: "/shop/checkout",
         element: <Outpage />,
       },
+    ],
+  },
+  {
+    path: "/job",
+    element: <JobLayout />,
+    children: [
+      /////////////////////////////////// HOME PAGE ////////////////////////////////////////
+      { path: "/job", element: <HomePage /> },
+      /////////////////////////////////// ALL JOBS ////////////////////////////////////////
+      { path: "/jobs", element: <AllJobs /> },
+      ///////////////////////////////////// DETAILED JOB ////////////////////////////////////
+      { path: "/job/:id", element: <JobDetails /> },
+      ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
+      { path: "/job/:catergory" },
+      /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
+      { path: "/job/apply", element: <JobApply /> },
     ],
   },
   { path: "*", element: <ErrorPage /> },

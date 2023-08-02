@@ -23,7 +23,7 @@ const AllProducts = () => {
   }, []);
 
   return (
-    <main className="relative top-[68px] overflow-scroll h-[calc(100% - 68px)]">
+    <main className="relative top-[68px] overflow-scroll h-[calc(100% - 68px)] Hide">
       <h1 className="m-10 md:mx-20 md:text-2xl text-3xl text-slate-500 font-bold">
         SHOP BY CATEGORY
       </h1>

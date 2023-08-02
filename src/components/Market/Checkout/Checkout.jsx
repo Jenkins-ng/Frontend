@@ -2,7 +2,7 @@ import React from "react";
 
 const Checkout = () => {
   return (
-    <section className="my-20 w-5/6 m-auto">
+    <section className="my-20 w-5/6 m-auto Hide">
       <form action="">
         <div className="grid grid-flow-row grid-cols-2 my-20 w-5/6">
           {/* <div>

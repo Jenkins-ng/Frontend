@@ -4,7 +4,7 @@ import { CartContext } from "../Context/Cart";
 const Checkout = () => {
   const { getCartTotal } = useContext(CartContext);
   return (
-    <section className="my-20 w-5/6 m-auto">
+    <section className="my-20 w-5/6 m-auto Hide">
       <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
         BILLING DETAILS
       </h2>

@@ -1,13 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Head } from "./Home/Section/Header";
-import Foot from "./Home/Footer/Foot";
+import { Head } from "./Landing Page/Header";
+import Foot from "./Landing Page/Foot";
 const Layout = () => {
   return (
     <main>
       <Head />
       <main className="Hide">
-        <Outlet />
+
+      <Outlet />
       </main>
       <Foot />
     </main>
