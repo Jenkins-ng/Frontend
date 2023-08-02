@@ -3,12 +3,12 @@ import { deleteCookie } from "../utils/cookie";
 import useApiPrivate from "../Hooks/useApiPrivate";
 import Preloader from "../components/eventhive/Preloader";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const apiPrivate = useApiPrivate();
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState({});
 
   useEffect(() => {
     const getUser = async () => {

@@ -11,7 +11,9 @@ export const Head = () => {
   return (
     <header className="grid grid-flow-col justify-between items-center content-center px-5 py-4 sm:h-18">
       <div className="flex sm:gap-20 gap-5 items-center">
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <ul>
           <li className="text-slate-500 font-bold text-lg sm:text-xl tracking-tighter sm:tracking-wide ">
             <Link to="/jobs">FIND JOBS</Link>
@@ -19,7 +21,7 @@ export const Head = () => {
         </ul>
       </div>
 
-      {!auth ? (
+      {auth ? (
         <div className="flex gap-2 sm:gap-5">
           <>
             {/* <Signupbutton className="bg-blue-400">
