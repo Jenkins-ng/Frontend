@@ -113,7 +113,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <EventHome /> },
       { path: "/event/event/:id", loader: eventLoader, element: <Event /> },
-      { path: "/event/trendinng", element: <College /> },
+      { path: "/event/college-events", element: <College /> },
       { path: "/event/trending-events", element: <CollegeEvents /> },
     ],
   },
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
 
   {
     path: "/event",
-    element: <ProtectedRoute />,
+    // element: <ProtectedRoute />,
     children: [
       { path: "/event/create-event", element: <CreateEvent /> },
       { path: "/event/register", element: <Register /> },

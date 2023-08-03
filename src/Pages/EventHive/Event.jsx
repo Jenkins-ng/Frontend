@@ -1,25 +1,25 @@
-import RenderEvents from '../../components/eventhive/RenderEvents'
-import { Link, useLoaderData } from 'react-router-dom'
-import { PiCaretLeftBold } from 'react-icons/pi'
-import { CiLocationOn } from 'react-icons/ci'
-import map from '../../assets/event_images/map.png'
-import facebook from '../../assets/event_images/facebook.svg'
-import whatsapp from '../../assets/event_images/whatsapp.svg'
-import linkedIn from '../../assets/event_images/linkedIn.svg'
-import twitter from '../../assets/event_images/twitter.svg'
-import api from '../../utils/api'
+import RenderEvents from "../../components/eventhive/RenderEvents";
+import { Link, useLoaderData } from "react-router-dom";
+import { PiCaretLeftBold } from "react-icons/pi";
+import { CiLocationOn } from "react-icons/ci";
+import map from "../../assets/event_images/map.png";
+import facebook from "../../assets/event_images/facebook.svg";
+import whatsapp from "../../assets/event_images/whatsapp.svg";
+import linkedIn from "../../assets/event_images/linkedIn.svg";
+import twitter from "../../assets/event_images/twitter.svg";
+import api from "../../utils/api";
 
 export const loader = async ({ params }) => {
   try {
-    const { data } = await api.get(`/v1/events/${params.id}`)
-    return data
+    const { data } = await api.get(`/v1/events/${params.id}`);
+    return data;
   } catch (error) {
-    return []
+    return [];
   }
-}
+};
 
 const Event = () => {
-  const data = useLoaderData()
+  const data = useLoaderData();
   return (
     <>
       <div className="white-bg">
@@ -29,14 +29,14 @@ const Event = () => {
           role="banner"
         >
           <Link
-            to="/eventhive"
+            to="/event"
             className="bg-primary text-white rounded-md py-3 px-4 mx-auto absolute top-10 left-14 flex items-center"
           >
             <PiCaretLeftBold className="mr-2" size={20} />
             Back
           </Link>
-          <div className="w-11/12 flex justify-between">
-            <div className="text-white max-w-[50%]">
+          <div className="w-11/12 grid sm:flex sm:justify-between">
+            <div className="text-white w-full sm:max-w-[50%]">
               <h1 className="text-6xl">Dream world wide in jakatra</h1>
               <h2 className="mt-10 mb-5">IIIT Sonepat</h2>
               <p>
@@ -72,7 +72,7 @@ const Event = () => {
             </div>
           </div>
         </div>
-        <article className="grid grid-cols-2 gap-20 pt-10 pb-20 w-9/12 mx-auto">
+        <article className="grid grid-cols-1 sm:grid-cols-2 gap-20 pt-10 pb-20 w-9/12 mx-auto">
           {/* description */}
           <div>
             <h3>Description</h3>
@@ -95,20 +95,20 @@ const Event = () => {
             {/* hours */}
             <h3>Hours</h3>
             <p className="my-5 text-grey600">
-              Weekdays hour:{' '}
+              Weekdays hour:{" "}
               <span className="text-primary text-lg font-bold">7PM - 10PM</span>
             </p>
             <p className="text-grey600 mb-10">
-              Sunday hour:{' '}
+              Sunday hour:{" "}
               <span className="text-primary text-lg font-bold">7PM - 10PM</span>
             </p>
             {/* organizer contact */}
             <h3>Organizer Contact</h3>
             <p className="my-5 text-grey600">
-              Please go to{' '}
+              Please go to{" "}
               <a href="https://www.sneakypeeks.com" className="text-primary">
                 www.sneakypeeks.com
-              </a>{' '}
+              </a>{" "}
               and refer the FAQ section for more detail
             </p>
           </div>
@@ -119,7 +119,7 @@ const Event = () => {
             <h3>Dream world wide in jakatra</h3>
             <p className="text-grey600 mb-10">
               Dummy location generation model by RSU ... Our approach generates
-              more realistic dummy locations{' '}
+              more realistic dummy locations{" "}
             </p>
             {/* tags */}
             <h3>Tags</h3>
@@ -157,7 +157,7 @@ const Event = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Event
+export default Event;
