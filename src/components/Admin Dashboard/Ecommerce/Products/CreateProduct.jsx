@@ -91,7 +91,7 @@ const CreateProduct = () => {
     e.preventDefault();
     const data = {
       category_id: Number(selectedCategory),
-      image: Image.data.name,
+      image: Image.data,
       title: Title,
       description: Description,
       price: Price,
@@ -114,7 +114,7 @@ const CreateProduct = () => {
 
   return (
     <Wrapper>
-      <section className="my-4 grid place-content-center">
+      <section className="my-4 grid ml-10">
         <h1 className="text-blue-400 font-bold text-2xl my-5">NEW PRODUCT</h1>
 
         {/* TO CREATE A CATEGORY */}
@@ -257,7 +257,7 @@ const CreateProduct = () => {
               </div>
               <div>
                 {Image ? (
-                  <div className="block h-[400px] overflow-hidden object-contain w-6/6">
+                  <div className="block h-[300px] overflow-hidden object-contain w-6/6">
                     <img
                       src={Image.preview}
                       alt="Product image"

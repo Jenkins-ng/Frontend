@@ -2,6 +2,8 @@ import React from "react";
 import Recoveryfinal from "../components/UI/Recoveryfinal";
 import Signupbutton from "../components/Buttons/Signupbutton";
 
+
+
 const Recover = () => {
   return (
     <Recoveryfinal>

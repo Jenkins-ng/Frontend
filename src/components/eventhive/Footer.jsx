@@ -10,11 +10,11 @@ import {
 const links = [
   {
     text: "Home",
-    url: "/eventhive",
+    url: "/event",
   },
   {
     text: "About",
-    url: "",
+    url: "/about-us",
   },
   {
     text: "Services",
@@ -22,11 +22,11 @@ const links = [
   },
   {
     text: "Get in touch",
-    url: "",
+    url: "/help",
   },
   {
     text: "FAQs",
-    url: "",
+    url: "/faq",
   },
 ];
 
@@ -54,7 +54,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="eventhive bg-backgroundGrey pt-[3%] pb-[2%] px-[3%] text-center text-white">
+    <footer className="eventhive bg-backgroundGrey py-10 px-[3%] text-center text-white">
       <Logo color="text-white" />
       <form
         onSubmit={handleSubmit}
@@ -83,7 +83,7 @@ const Footer = () => {
         })}
       </div>
       <div className="w-full h-[1px] bg-white mt-8 mb-7"></div>
-      <div className="flex justify-between items-center  text-slate-500">
+      <div className="grid grid-flow-cols sm:grid-cols-3 grid-cols-1 items-center gap-5 sm:gap-0 text-slate-500">
         <div className="flex gap-4 items-center">
           <button className="px-3 py-1 bg-primary rounded-md hover:text-white">
             English
@@ -106,7 +106,7 @@ const Footer = () => {
             <PiFacebookLogo size={30} />
           </a>
         </div>
-        <div className="mb-4 md:mb-0 text-base text-right  text-slate-500 ">
+        <div className=" md:mb-0 text-base text-left  text-slate-500 ">
           <p className="flex items-center gap-1">
             Jenkins Development And Substantial Services Limited.
             <span className="material-symbols-outlined text-lg">copyright</span>

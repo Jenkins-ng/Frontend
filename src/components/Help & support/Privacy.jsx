@@ -5,7 +5,7 @@ const Privacy = () => {
   return (
     <>
       <main className="relative top-[80px] w-5/6 m-auto">
-        <h1 className="uppercase font-bold sm:text-2xl text-xl  text-gray-500">
+        <h1 className="uppercase font-bold sm:text-2xl text-xl my-10  text-gray-500">
           privacy Policy
         </h1>
         <section className="">

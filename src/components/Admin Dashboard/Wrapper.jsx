@@ -8,7 +8,9 @@ const Wrapper = (props) => {
   const [showProduct, setShowProduct] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    document.title = "ADMIN PAGE | DASHBOARD";
+  }, []);
 
   const Reveal = () => {
     setShow((prev) => !show);

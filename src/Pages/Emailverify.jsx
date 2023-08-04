@@ -1,6 +1,8 @@
 import React from "react";
 import Emailverifybutton from "../components/Buttons/Emailverifybutton";
 import Emailverification from "../components/UI/Emailverification";
+
+
 const Emailverify = () => {
   return (
     <Emailverification className="border-blue-600">

@@ -5,7 +5,7 @@ const EditProduct = () => {
   return (
     <Wrapper>
       <main>
-        <section className="my-4">
+        <section className="my-4 ml-10">
           <h1 className="text-blue-400 font-bold text-2xl my-5">
             EDIT PRODUCT
           </h1>

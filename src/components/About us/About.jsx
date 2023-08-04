@@ -17,7 +17,7 @@ const Team = ({ name, image, profession }) => {
         alt=""
         className="h-24 w-24 rounded-full object-cover mb-2"
       />
-      <div className="grid place-content-center place-items-center whitespace-normal">
+      <div className="grid place-content-center place-items-center whitespace-nowrap">
         <p className="text-gray-500 font-semibold">{name}</p>
         <p className="text-blue-400 font-semibold uppercase">{profession}</p>
       </div>

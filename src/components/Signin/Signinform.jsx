@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Loginbutton from "../Buttons/Loginbutton";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../eventhive/Preloader";
 import notifyError from "../../utils/notifyError";
@@ -17,8 +17,9 @@ const Signinform = () => {
   const [show, setShow] = useState(true);
   const [icon, setIcon] = useState("visibility");
   const { auth, setAuth } = useAuth();
-  const AuthRef = useRef(auth?.is_admin);
-  console.log(auth);
+
+  // /////////////////////////////////////////////////////////////////
+
   const history = useNavigate();
   const {
     register,
@@ -35,11 +36,9 @@ const Signinform = () => {
       const { user } = response.data;
       const { token } = response.data.authorisation;
       setAuth({ ...user });
-      AuthRef.current = user.is_admin;
-      console.log(AuthRef.current);
       setCookie("token", token, 7);
       console.log(auth);
-      if (AuthRef.current === 1) {
+      if (user.is_admin) {
         history("/admin/dashboard");
       } else {
         history("/event/all-events");
@@ -64,9 +63,13 @@ const Signinform = () => {
     }
   };
 
+  // navigate to home if user exists
+  if (auth) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
-      <div className="md:w-1/3 w-full h-full ">
+      <div className="md:w-1/3 w-full">
         <form onSubmit={handleSubmit(onSubmit)} className="text-slate-500">
           <div>
             <div className="md:hidden block text-center">
@@ -160,7 +163,7 @@ const Signinform = () => {
 
             <div className="text-right mt-2">
               <Link
-                to="/signin/recover"
+                to="/forget-password"
                 className="text-blue-400 font-bold text-right"
               >
                 forgot password

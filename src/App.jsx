@@ -17,7 +17,8 @@ import AboutUs from "./components/About us/About";
 import Faq from "./Pages/Faq";
 import Privacy from "./Pages/PrivacyPolicy";
 import Helpandsupport from "./Pages/Help";
-import Emailverify from "./Pages/Emailverify";
+import Emailverify from "./Pages/RecoveryToken";
+import ResetPassword from "./Pages/ResetPassword";
 import Recoverysuccess from "./Pages/Recoverysuccess";
 import Recoveryrender from "./Pages/Recoveryrender";
 import Dashboard from "./components/Admin Dashboard/Dashboard";
@@ -63,8 +64,16 @@ import OrderDetails from "./components/Admin Dashboard/Ecommerce/Order/OrderDeta
 import EditProduct from "./components/Admin Dashboard/Ecommerce/Products/EditProduct";
 import CreateProduct from "./components/Admin Dashboard/Ecommerce/Products/CreateProduct";
 import Overview from "./components/Admin Dashboard/Ecommerce/Overview";
+import AdminProfile from "./components/Admin Dashboard/Profile/Profile";
+import Inbox from "./components/Admin Dashboard/Message";
 import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
 
+///////////////////////////////////////// JOBS /////////////////////////////////////////////////
+import JobLayout from "./components/Jobs/Layout";
+import HomePage from "./Pages/Jobs/HomePage";
+import JobDetails from "./Pages/Jobs/JobDetails";
+import JobApply from "./Pages/Jobs/JobApply";
+import AllJobs from "./Pages/Jobs/AllJobs";
 ////////////////////////////////////////// LOADERS ///////////////////////////////////////////////////
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
@@ -89,7 +98,9 @@ const router = createBrowserRouter([
   { path: "/help", element: <Helpandsupport /> },
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
-  { path: "/signin/recover", element: <Recoveryrender /> },
+  { path: "/forget-password", element: <Recoveryrender /> },
+  { path: "/recover", element: <Emailverify /> },
+  { path: "/reset-password", element: <ResetPassword /> },
   // {path:"/signin/forgot", element:}
   // { path: '/admin/dashboard', element: <Dashboard /> },
   // { path: '/admin/events', element: <Events /> },
@@ -102,7 +113,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <EventHome /> },
       { path: "/event/event/:id", loader: eventLoader, element: <Event /> },
-      { path: "/event/trendinng", element: <College /> },
+      { path: "/event/college-events", element: <College /> },
       { path: "/event/trending-events", element: <CollegeEvents /> },
     ],
   },
@@ -114,7 +125,7 @@ const router = createBrowserRouter([
 
   {
     path: "/event",
-    element: <ProtectedRoute />,
+    // element: <ProtectedRoute />,
     children: [
       { path: "/event/create-event", element: <CreateEvent /> },
       { path: "/event/register", element: <Register /> },
@@ -135,12 +146,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     // element: <AdminRoute />,
-    // element: <Dashboard />,
     children: [
       { path: "/admin/dashboard", element: <Dashboard /> },
       { path: "/admin/event", element: <Event /> },
-      { path: "/admin/inbox" },
-      { path: "/admin/profile" },
+      { path: "/admin/inbox", element: <Inbox /> },
+      { path: "/admin/profile", element: <AdminProfile /> },
       {
         path: "/admin/ecommerce",
         children: [
@@ -195,7 +205,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/shop",
-    element: <ProtectedRoute />,
+    // element: <ProtectedRoute />,
+    element: <MarketLayout />,
     children: [
       //////////////////////////////////////// CART ///////////////////////////////////////
       { path: "/shop/cart", element: <Cart /> },
@@ -206,6 +217,22 @@ const router = createBrowserRouter([
         path: "/shop/checkout",
         element: <Outpage />,
       },
+    ],
+  },
+  {
+    path: "/job",
+    element: <JobLayout />,
+    children: [
+      /////////////////////////////////// HOME PAGE ////////////////////////////////////////
+      { path: "/job", element: <HomePage /> },
+      /////////////////////////////////// ALL JOBS ////////////////////////////////////////
+      { path: "/jobs", element: <AllJobs /> },
+      ///////////////////////////////////// DETAILED JOB ////////////////////////////////////
+      { path: "/job/:id", element: <JobDetails /> },
+      ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
+      { path: "/job/:catergory" },
+      /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
+      { path: "/job/apply", element: <JobApply /> },
     ],
   },
   { path: "*", element: <ErrorPage /> },

@@ -19,40 +19,40 @@ const Home = () => {
       {/* <div className="fixed top-0 left-0 w-full h-screen z-50 bg-white lg:hidden">
         <h3>Sorry this site is not available for mobile, coming soon...</h3>
       </div> */}
-      <header className="w-12/12 px-3 mx-auto relative">
+      <header className="w-12/12 mx-auto relative ">
         <h1 className="text-white absolute xl:text-[4rem] top-20 left-1/2 -translate-x-1/2 text-center uppercase max-w-xl">
           Made for those who do
         </h1>
         <img src={banner} alt="" role="banner" className="w-full" />
         {/* left right btn container */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full">
+        {/* <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full">
           <button className="absolute left-10 w-[50px] h-[50px] bg-[#f2f2f233] rounded-full flex items-center justify-center text-white">
             <PiCaretLeftLight size={30} />
           </button>
           <button className="absolute right-10 w-[50px] h-[50px] bg-[#f2f2f233] rounded-full flex items-center justify-center text-white">
             <PiCaretRightLight size={30} />
           </button>
-        </div>
+        </div> */}
         {/* search bar */}
-        <form className="absolute -bottom-14 w-11/12 left-1/2 -translate-x-1/2 bg-navyBlue rounded-[20px] py-3 px-10 flex items-center justify-between">
-          <div className="grid gap-[4px] w-60">
-            <p className="text-backgroundGrey text-lg">Looking for</p>
+        <form className="absolute -bottom-14 w-11/12 left-1/2 -translate-x-1/2 bg-navyBlue rounded-[20px] gap-3 py-2 sm:py-3 px-5 sm:px-10 flex items-center justify-between">
+          <div className="grid gap-[4px] sm:w-60">
+            <p className="text-backgroundGrey sm:text-lg">Looking for:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span>Choose event type</span>
+              <span className="text-sm sm:text-base">Choose event type</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
-          <div className="grid gap-[4px] w-60">
-            <p className="text-backgroundGrey text-lg">Location</p>
+          <div className="grid gap-[4px] sm:w-60">
+            <p className="text-backgroundGrey sm:text-lg">Location:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span>Choose location</span>
+              <span className="text-sm sm:text-base">Choose location</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
-          <div className="grid gap-[4px] w-60">
-            <p className="text-backgroundGrey text-lg">When</p>
+          <div className="grid gap-[4px] sm:w-60">
+            <p className="text-backgroundGrey sm:text-lg">When:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span>Choose date and time</span>
+              <span className="text-sm sm:text-base">Choose date and time</span>
               <PiCaretDownBold size={24} />
             </div>
           </div>
@@ -63,21 +63,21 @@ const Home = () => {
       </header>
       <main>
         {/* upcoming events */}
-        <section className="w-10/12 mx-auto py-36">
-          <div className="flex items-center justify-between">
+        <section className="w-10/12 m-auto py-36">
+          <div className="sm:flex sm:items-center sm:justify-between grid gap-5">
             <h2>
               Upcoming <span className="text-primary">Events</span>
             </h2>
             <div className="flex gap-4">
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer w-36 rounded-md text-sm">
+              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Weekdays</span>
                 <PiCaretDownBold size={20} />
               </div>
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer w-36 rounded-md text-sm">
+              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Event type</span>
                 <PiCaretDownBold size={20} />
               </div>
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer w-36 rounded-md text-sm">
+              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Any category</span>
                 <PiCaretDownBold size={20} />
               </div>
@@ -87,26 +87,26 @@ const Home = () => {
             <RenderEvents />
           </div>
           <Link
-            to="/eventhive/all-events"
+            to="/event/all-events"
             className="bg-primary text-white rounded-md py-3 px-7 block mx-auto w-max"
           >
             Load more...
           </Link>
         </section>
         {/* make event */}
-        <div className="relative before:absolute before:bg-navyBlue before:-z-10 before:h-[85%] before:w-full before:left-0 before:bottom-0 text-backgroundGrey flex pt-8 items-center pr-64 pl-20 justify-between">
-          <img src={makeEvent} alt="" />
-          <div className="w-max">
-            <h2>Make your own Event</h2>
-            <p className="text-lg pt-4 pb-5">
+        <div className="relative before:absolute before:bg-navyBlue before:-z-10 before:h-[85%] before:w-full before:left-0 before:bottom-0 text-backgroundGrey flex items-center sm:pr-64 sm:pl-20 px-6 py-6 justify-between">
+          <img src={makeEvent} alt="" className="w-1/2 sm:w-full" />
+          <div className="w-ma">
+            <h2 className="pt-5 line-clamp-2">Attend Events Near You</h2>
+            <p className="text-sm sm:text-lg pt-4 pb-5">
               Lorem ipsum dolor sit amet, consectetur <br />
               adipiscing elit.
             </p>
             <Link
-              to="/eventhive/create-event"
-              className="py-4 px-10 text-lg bg-primary rounded-md"
+              to="/event/create-event"
+              className="py-2 px-4 sm:py-4 sm:px-10 text-sm sm:text-lg bg-primary rounded-md"
             >
-              Create Events
+              Book Events
             </Link>
           </div>
         </div>
@@ -119,17 +119,17 @@ const Home = () => {
             We've had the pleasure of working with industry-defining brands.
             These are just some of them.
           </p>
-          <div className="py-20">
-            <div className="grid grid-cols-5 items-center">
-              {brands.slice(0, 5).map((src, i) => {
+          <div className="py-10">
+            <div className="grid grid-cols-3 sm:grid-cols-5 items-center gap-3">
+              {brands.map((src, i) => {
                 return <img src={src} alt="" key={i} />;
               })}
             </div>
-            <div className="grid grid-cols-4 items-center">
+            {/* <div className="grid grid-cols-2 sm:grid-cols-4 items-center">
               {brands.slice(5, 9).map((src, i) => {
                 return <img src={src} alt="" key={i} />;
               })}
-            </div>
+            </div> */}
           </div>
         </section>
         {/* trending colleges */}
@@ -137,13 +137,13 @@ const Home = () => {
           <h2>
             Trending <span className="text-primary">Events</span>
           </h2>
-          <div className="grid gap-5 grid-cols-3 w-full pt-8 pb-10">
+          <div className="grid gap-5 grid-cols-1 sm:grid-cols-3 w-full pt-8 pb-10">
             {cards.map((data, i) => {
               return <CollegeCard key={i} {...data} />;
             })}
           </div>
           <Link
-            to="/eventhive/college-events"
+            to="/event/college-events"
             className="bg-primary text-white rounded-md py-3 px-7 block mx-auto w-max"
           >
             Load more...
@@ -156,7 +156,7 @@ const Home = () => {
               Our <span className="text-primary">Blogs</span>
             </h2>
           </div>
-          <div className="grid gap-5 grid-cols-3 w-full py-8">
+          <div className="grid gap-5 grid-cols-1 sm:grid-cols-3 w-full py-8">
             {event.slice(2, 5).map((data, i) => {
               return <EventCard key={i} {...data} />;
             })}

@@ -18,7 +18,6 @@ const Landingpage = () => {
       <Action />
       <SectionThree />
       <Reviews />
-      {/* <Foot /> */}
     </div>
   );
 };

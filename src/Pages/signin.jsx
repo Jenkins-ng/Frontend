@@ -6,7 +6,7 @@ import Signupbutton from "../components/Buttons/Signupbutton";
 
 const Signin = (props) => {
   return (
-    <Sign className="p-">
+    <Sign className="p-10 place-content-center">
       <Signinform token={props.setToken} />
       <div className="w-1/2 md:block hidden">
         <img src={signupimage} alt="" />
