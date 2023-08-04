@@ -66,7 +66,7 @@ const Signinform = () => {
 
   return (
     <>
-      <div className="md:w-1/3 w-full h-full">
+      <div className="md:w-1/3 w-full h-full ">
         <form onSubmit={handleSubmit(onSubmit)} className="text-slate-500">
           <div>
             <div className="md:hidden block text-center">
