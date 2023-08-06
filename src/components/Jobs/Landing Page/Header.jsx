@@ -38,7 +38,7 @@ export const Head = () => {
                 SIGNUP
               </button>
             </Link>
-            <Link to="/login">
+            <Link to="/signin">
               <button
                 type="submit"
                 className="sm:px-7 sm:py-2 px-5 py-[4px] text-slate-500 bg-blue-400 font-bold rounded-lg"

@@ -7,7 +7,7 @@ import { apiPrivate as api } from "../../../../utils/api";
 
 const CreateProduct = () => {
   // THE SELECTED IMAGE
-  const [Image, setImage] = useState({ preview: "", data: "" });
+  const [Image, setImage] = useState();
   // THE SELECTED IMAGE
   const [SentImage, setSentImage] = useState(null);
 
@@ -35,25 +35,25 @@ const CreateProduct = () => {
   };
 
   // FUNCTION FOR THE CHOSEN PRODUCT IMAGE
-  // const ProductImage = (event) => {
-  //   const target = event.target;
-  //   if (target && target.files) {
-  //     const file = target.files[0];
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = (e) => {
-  //       const fileContents = e.target?.result;
-  //       setImage(fileContents);
-  //     };
-  //   }
-  // };
-  const ProductImage = (e) => {
-    const img = {
-      preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0],
-    };
-    setImage(img);
+  const ProductImage = (event) => {
+    const target = event.target;
+    if (target && target.files) {
+      const file = target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        const fileContents = e.target?.result;
+        setImage(fileContents);
+      };
+    }
   };
+  // const ProductImage = (e) => {
+  //   const img = {
+  //     preview: URL.createObjectURL(e.target.files[0]),
+  //     data: e.target.files[0],
+  //   };
+  //   setImage(img);
+  // };
 
   // FUNCTION THAT RETRIEVES CREATED PRODUCT EACH TIME A NEW ONE IS PRODUCED
   useEffect(() => {
@@ -91,7 +91,7 @@ const CreateProduct = () => {
     e.preventDefault();
     const data = {
       category_id: Number(selectedCategory),
-      image: Image.data,
+      image: Image,
       title: Title,
       description: Description,
       price: Price,
@@ -159,7 +159,7 @@ const CreateProduct = () => {
           <h1 className="text-blue-400 font-bold text-2xl my-5">
             PRODUCT INFORMATION
           </h1>
-          <form onSubmit={CreateProduct} encType="multipart/form-data">
+          <form onSubmit={CreateProduct} enctype="multipart/form-data">
             <div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="w-3/6">
@@ -259,7 +259,7 @@ const CreateProduct = () => {
                 {Image ? (
                   <div className="block h-[300px] overflow-hidden object-contain w-6/6">
                     <img
-                      src={Image.preview}
+                      src={Image}
                       alt="Product image"
                       className="object-contain block"
                     />

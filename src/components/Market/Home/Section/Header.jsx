@@ -130,7 +130,7 @@ export const Head = () => {
                 shopping_cart
               </span>
               <p className="absolute bg-red-600 px-[6px] py-[2px] rounded-full top-0 right-0 text-xs text-white">
-                {cartItems.length}
+                {cartItems?.length}
               </p>
             </div>
           </Link>

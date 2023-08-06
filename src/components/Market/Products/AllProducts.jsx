@@ -31,7 +31,7 @@ const AllProducts = () => {
         <Catergories />
       </div>
       <div className="flex flex-wrap  w-[90%] m-auto mb-10">
-        {product === "" ? (
+        {!product ? (
           product.map((product) => <Product data={product} key={product.id} />)
         ) : (
           <div className="text-center my-10 m-auto">

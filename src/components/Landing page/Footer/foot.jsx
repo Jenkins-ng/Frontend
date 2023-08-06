@@ -12,7 +12,7 @@ const Foot = () => {
         <Logo />
         <Navlinks className="grid justify-between gap-2 my-5 grid-cols-2 md:grid md:grid-cols-2 md:justify-end lg:grid-cols-3" />
         <div className="xl:flex flex sm:block justify-between">
-          <div className="flex sm:block xl:flex  h-8">
+          <div className="grid sm:block xl:flex  h-8">
             <input
               type="email"
               placeholder="Jenkins@info.com"

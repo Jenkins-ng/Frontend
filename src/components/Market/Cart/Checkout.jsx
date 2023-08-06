@@ -14,10 +14,10 @@ const Checkout = () => {
   console.log(cartItems);
 
   return (
-    <section className=" md:flex justify-between w-12/12 mb-10 relative m-auto top-[60px]  overflow-scroll h-[calc(100% - 70px)] Hide">
-      {cartItems.length > 0 ? (
+    <section className="relative top-[68px] overflow-scroll h-[calc(100%-70px)] Hide">
+      {cartItems?.length > 0 ? (
         <>
-          <main className="lg:w-8/12 md:6/12 sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
+          <main className="lg:w-8/12 md:6/12 relative sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
             {/* {showModal ? <PopUpModal /> : ""} */}
             <div className="my-5">
               <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
@@ -61,7 +61,7 @@ const Checkout = () => {
               )}
             </div>
           </main>
-          <aside className="m-auto lg:w-4/12 md:6/12 md:absolute flex flex-col right-0 px-5">
+          <aside className="m-auto lg:w-4/12 md:6/12 md:fixed flex flex-col right-0 px-5">
             <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold mt-4">
               CART TOTAL
             </h2>
@@ -119,7 +119,7 @@ const Checkout = () => {
               type="submit"
               className="bg-blue-400 px-10 sm:py-[4px] py-[4px] md:py-[6px] text-white hover:bg-slate-400 rounded-xl"
             >
-             GO TO SHOP
+              GO TO SHOP
             </button>
           </Link>
         </div>

@@ -6,7 +6,7 @@ const Prototype = (props) => {
       <span className="material-symbols-outlined text-blue-400 font-bold text-5xl">
         {props.name}
       </span>
-      <p className="text-slate-500 text-base sm:text-lg font-semibold whitespace-nowrap">
+      <p className="text-slate-500 text-base sm:text-lg font-semibold text-center">
         {props.title}
       </p>
     </div>
