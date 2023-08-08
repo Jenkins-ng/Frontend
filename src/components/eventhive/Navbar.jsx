@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center w-10/12 mx-auto pt-[3%] pb-[2%] sticky">
       <Logo />
       <div>
-        {!auth ? (
+        {!Object.keys(auth).length ? (
           <>
             <Link
               className="py-4 px-10 hover:text-primary duration-300"
