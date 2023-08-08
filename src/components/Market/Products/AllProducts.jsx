@@ -7,6 +7,7 @@ import { Spinner } from "flowbite-react";
 
 const AllProducts = () => {
   const [product, setProduct] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     async function fetch() {
@@ -17,6 +18,10 @@ const AllProducts = () => {
         console.log(result);
       } catch (error) {
         console.log(error.response);
+        if (error.message === "Network Error") {
+          notifyError(error.message);
+          setIsError(true);
+        }
       }
     }
     fetch();
@@ -31,12 +36,20 @@ const AllProducts = () => {
         <Catergories />
       </div>
       <div className="flex flex-wrap  w-[90%] m-auto mb-10">
-        {!product ? (
-          product.map((product) => <Product data={product} key={product.id} />)
-        ) : (
+        {product ? (
+          <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
+            {product.map((data) => (
+              <Product data={data} key={data.id} />
+            ))}
+          </div>
+        ) : !isError ? (
           <div className="text-center my-10 m-auto">
             <Spinner size="xl" />
           </div>
+        ) : (
+          <p className="text-center font-bold my-10 text-slate-500 uppercase">
+            Network Error. Make sure you are connected to the internet.
+          </p>
         )}
       </div>
     </main>

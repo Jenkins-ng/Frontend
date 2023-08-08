@@ -53,6 +53,7 @@ const CreateProduct = () => {
   //     data: e.target.files[0],
   //   };
   //   setImage(img);
+  //   console.log(Image);
   // };
 
   // FUNCTION THAT RETRIEVES CREATED PRODUCT EACH TIME A NEW ONE IS PRODUCED
@@ -159,7 +160,7 @@ const CreateProduct = () => {
           <h1 className="text-blue-400 font-bold text-2xl my-5">
             PRODUCT INFORMATION
           </h1>
-          <form onSubmit={CreateProduct} enctype="multipart/form-data">
+          <form onSubmit={CreateProduct} encType="multipart/form-data">
             <div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="w-3/6">

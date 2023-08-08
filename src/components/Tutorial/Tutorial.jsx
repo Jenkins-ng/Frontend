@@ -6,10 +6,10 @@ import { Spinner } from "flowbite-react";
 let queryLink = "https://www.googleapis.com/youtube/v3/search?";
 let api_key = "AIzaSyBshwIa6nPWeJZ8rbBmjQ_h9Drl_SdWYjQ";
 
-const Inputcomponent = () => {
+const Inputcomponent = ({ data, setdata }) => {
   // const input = useRef("");
   const [input, setInput] = useState("");
-  const [data, setdata] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   //
@@ -22,11 +22,12 @@ const Inputcomponent = () => {
           type: "videos",
           part: "snippet",
           maxResults: 1000,
-          q: input,
+          q: "" | input,
         })
     );
-    const result = await response.json();
-    setdata(result.data);
+    const result = await response.data;
+    console.log(result);
+    setdata({ ...data, ...result.items });
   };
 
   useEffect(() => {
@@ -81,36 +82,35 @@ const Inputcomponent = () => {
           id="search"
         />
         <button onClick={eventHandler}>
-          <span className="material-symbols-outlined text-3xl p-2 bg-blue-400 rounded drop-shadow-xl">
+          <span className="material-symbols-outlined text-2xl sm:text-3xl p-1 bg-blue-400 rounded drop-shadow-xl">
             search
           </span>
         </button>
       </div>
-      {data ? (
-        <div>
-          {data.items?.map((data) => {
-            `<iframe
-        width="350"
-        height="300"
-        src="http://www.youtube.com/embed/${data.id.videoId}"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>`;
-          })}
-        </div>
-      ) : (
-        <p>Type into the search bar to start searching</p>
-      )}
     </div>
   );
 };
 
 const Tutorial = () => {
+  const [data, setdata] = useState([]);
   return (
     <div>
       <Head />
-      <section className="relative top-28">
-        <Inputcomponent />
+      <section className=" relative top-28 overflow-scroll h-[calc(100%-70px)] Hide m-auto">
+        <Inputcomponent data={data} setdata={setdata} />
+        <div>
+          {data ? (
+            <div className="">
+              {console.log(data)}
+              {data.map((data) => {
+                console.log(typeof data);
+                <div className="h-full">{data} this is my code</div>;
+              })}
+            </div>
+          ) : (
+            <p>Type into the search bar to start searching</p>
+          )}
+        </div>
       </section>
     </div>
   );

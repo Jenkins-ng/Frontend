@@ -40,7 +40,7 @@ const TopProducts = () => {
           SEE ALL
         </NavLink>
       </div>
-      {!Data ? (
+      {Data ? (
         <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
           {Data.map((data) => (
             <Product data={data} key={data.id} />
