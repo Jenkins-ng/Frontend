@@ -1,43 +1,46 @@
-import { createContext, useEffect, useState } from "react";
-import { deleteCookie } from "../utils/cookie";
-import useApiPrivate from "../Hooks/useApiPrivate";
-import Preloader from "../components/eventhive/Preloader";
+import { createContext, useEffect, useState } from 'react'
+import { deleteCookie } from '../utils/cookie'
+import useApiPrivate from '../Hooks/useApiPrivate'
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext({})
 
 const AuthProvider = ({ children }) => {
-  const apiPrivate = useApiPrivate();
-  const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState({});
+  const apiPrivate = useApiPrivate()
+  const [loading, setLoading] = useState(true)
+  const [auth, setAuth] = useState({})
+  const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await apiPrivate.post("/me");
-        const data = response.data;
-        setAuth({ ...data });
-        // notifySuccess("Signed Up Successfully!");
+        const response = await apiPrivate.post('/me')
+        setIsAuth(true)
+        const data = response.data
+        setAuth({ ...data })
       } catch (error) {
-        if (error.response?.status === 401) {
-          setAuth(null);
-        }
+        if (error.status === 401) deleteCookie('token')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    getUser();
-  }, []);
+    }
+    getUser()
+  }, [])
+
+  useEffect(() => {
+    Object.keys(auth).length ? setAuth(true) : setAuth(false)
+  }, [auth])
 
   const logout = () => {
-    deleteCookie("token");
-    setAuth(null);
-  };
+    setAuth({})
+    setIsAuth(false)
+    deleteCookie('token')
+  }
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, logout }}>
-      {loading ? <Preloader /> : children}
+    <AuthContext.Provider value={{ auth, setAuth, isAuth, loading, logout }}>
+      {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export default AuthProvider;
+export default AuthProvider

@@ -1,21 +1,21 @@
-import { Navigate, Outlet } from "react-router-dom";
-import notifyError from "../utils/notifyError";
-import notifySuccess from "../utils/notifySuccess";
-import useAuth from "../Hooks/useAuth";
+import { Outlet, Navigate } from 'react-router-dom'
+import useAuth from '../Hooks/useAuth'
+import Preloader from './eventhive/Preloader'
 
 const ProtectedRoute = () => {
-  const { auth } = useAuth();
+  const { isAuth, loading } = useAuth()
 
-  if (!auth) {
-    notifyError("Kindly Sign Up");
-    return <Navigate to="/signin" />;
-  }
-  notifySuccess("WELCOME BACK!");
   return (
     <>
-      <Outlet />
+      {loading ? (
+        <Preloader />
+      ) : isAuth ? (
+        <Outlet />
+      ) : (
+        <Navigate to="/signup" />
+      )}
     </>
-  );
-};
+  )
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute
