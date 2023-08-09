@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { deleteCookie } from '../utils/cookie'
+import { deleteCookie, getCookie } from '../utils/cookie'
 import useApiPrivate from '../Hooks/useApiPrivate'
 
 export const AuthContext = createContext({})
@@ -23,9 +23,8 @@ const AuthProvider = ({ children }) => {
         setLoading(false)
       }
     }
-    getUser()
+    getCookie('token') ? getUser : setAuth({})
   }, [])
-
   useEffect(() => {
     Object.keys(auth).length ? setAuth(true) : setAuth(false)
   }, [auth])
