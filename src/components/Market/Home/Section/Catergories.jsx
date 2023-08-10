@@ -6,7 +6,7 @@ import "./Style.css";
 const Catergories = () => {
   //   console.log(Data);
   return (
-    <div className="w-[87%] sm:w-[90%] m-auto my-10">
+    <div className="w-[87%] sm:w-[90%] m-auto my-10 mb-20">
       <h1 className="text-slate-400 font-bold text-xl ">TOP CATEGORIES</h1>
       <div className="relative">
         <div className="grid my-4 grid-flow-col overflow-auto overflow-y-hidden justify-between  Hide relative">

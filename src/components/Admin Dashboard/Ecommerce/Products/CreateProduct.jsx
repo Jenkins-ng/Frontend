@@ -35,26 +35,26 @@ const CreateProduct = () => {
   };
 
   // FUNCTION FOR THE CHOSEN PRODUCT IMAGE
-  const ProductImage = (event) => {
-    const target = event.target;
-    if (target && target.files) {
-      const file = target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        const fileContents = e.target?.result;
-        setImage(fileContents);
-      };
-    }
-  };
-  // const ProductImage = (e) => {
-  //   const img = {
-  //     preview: URL.createObjectURL(e.target.files[0]),
-  //     data: e.target.files[0],
-  //   };
-  //   setImage(img);
-  //   console.log(Image);
+  // const ProductImage = (event) => {
+  //   const target = event.target;
+  //   if (target && target.files) {
+  //     const file = target.files[0];
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = (e) => {
+  //       const fileContents = e.target?.result;
+  //       setImage(fileContents);
+  //     };
+  //   }
   // };
+  const ProductImage = (e) => {
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    };
+    setImage(img);
+    console.log(Image);
+  };
 
   // FUNCTION THAT RETRIEVES CREATED PRODUCT EACH TIME A NEW ONE IS PRODUCED
   useEffect(() => {
@@ -90,17 +90,28 @@ const CreateProduct = () => {
   // FUNCTION TO CREATE THE PRODUCT
   const CreateProduct = async (e) => {
     e.preventDefault();
-    const data = {
-      category_id: Number(selectedCategory),
-      image: Image,
-      title: Title,
-      description: Description,
-      price: Price,
-    };
-    console.log(data);
+    const data = new FormData();
+    data.append("category_id", Number(selectedCategory));
+    data.append("image", Image.data);
+    data.append("title", Title);
+    data.append("description", Description);
+    data.append("price", Price);
+    // {
+    //   category_id: Number(selectedCategory),
+    //   image: Image.data,
+    //   title: Title,
+    //   description: Description,
+    //   price: Price,
+    // };
+    console.log(typeof data.image);
+    console.log(typeof Image);
 
     try {
-      const response = await api.post("/products", data);
+      const response = await api.post("/products", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       const result = await response.data;
       notifySuccess(result.message);
       console.log(result);
@@ -249,6 +260,7 @@ const CreateProduct = () => {
                   <input
                     type="file"
                     name="image"
+                    multiple
                     id="image"
                     onChange={ProductImage}
                     accept="image/*"
@@ -256,19 +268,18 @@ const CreateProduct = () => {
                   />
                 </label>
               </div>
-              <div>
-                {Image ? (
-                  <div className="block h-[300px] overflow-hidden object-contain w-6/6">
-                    <img
-                      src={Image}
-                      alt="Product image"
-                      className="object-contain block"
-                    />
-                  </div>
-                ) : (
-                  <p className="text-red-600 text-lg">No Image Selected</p>
-                )}
-              </div>
+
+              {Image ? (
+                <div className="block max-h overflow-hidden object-contain w-6/6">
+                  <img
+                    src={Image.preview}
+                    alt="Product image"
+                    className="object-contain block"
+                  />
+                </div>
+              ) : (
+                <p className="text-red-600 text-lg">No Image Selected</p>
+              )}
             </section>
             <div className="text-right w-5/6">
               <button

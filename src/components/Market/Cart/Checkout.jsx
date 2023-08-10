@@ -14,7 +14,7 @@ const Checkout = () => {
   console.log(cartItems);
 
   return (
-    <section className="relative top-[68px] overflow-scroll h-[calc(100%-70px)] Hide">
+    <main className="relative top-[68px] overflow-scroll h-[calc(100% - 68px)] Hide">
       {cartItems?.length > 0 ? (
         <>
           <main className="lg:w-8/12 md:6/12 relative sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
@@ -107,7 +107,7 @@ const Checkout = () => {
           </aside>
         </>
       ) : (
-        <div className="text-center m-auto my-20">
+        <div className="text-center m-auto my-20 h-full">
           <div className="block m-auto w-full text-center">
             <img src={Cart} alt="" className="w-6/6 block text-center m-auto" />
           </div>
@@ -117,14 +117,14 @@ const Checkout = () => {
           <Link to="/shop/product">
             <button
               type="submit"
-              className="bg-blue-400 px-10 sm:py-[4px] py-[4px] md:py-[6px] text-white hover:bg-slate-400 rounded-xl"
+              className="bg-blue-400 px-10 sm:py-[4px] py-[4px] md:py-[4px] text-white hover:bg-slate-400 rounded-xl"
             >
               GO TO SHOP
             </button>
           </Link>
         </div>
       )}
-    </section>
+    </main>
   );
 };
 

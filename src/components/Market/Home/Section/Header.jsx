@@ -71,7 +71,7 @@ export const Head = () => {
             onChange={(e) => {
               setInputValue(e.target.value);
             }}
-            className="w-full border-2 border-blue-400 rounded-lg px-5 py-[4px] outline-none text-sm"
+            className="w-full border-2 border-blue-400 rounded-lg px-2 sm:px-5 py-[4px] outline-none text-sm"
             placeholder="Enter to search ..."
           />
           <button type="submit">

@@ -6,6 +6,7 @@ import notifyError from "../../utils/notifyError";
 import api from "../../utils/api";
 import Modal from "../../utils/Modal";
 import useAuth from "../../Hooks/useAuth";
+import notifySuccess from "../../utils/notifySuccess";
 
 const email_regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -95,6 +96,8 @@ const Signupform = () => {
       // submit to api
       try {
         const response = await api.post("/register", data);
+        notifySuccess(response.data.status);
+        console.log(response.data.status);
         navigate("/signin");
       } catch (error) {
         console.log(error);

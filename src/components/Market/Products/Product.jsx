@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StarRating from "../Home/Components/Star";
 
+const ImageUrl = "https://api.jenkins.ng/storage/";
 const Product = ({ data }) => {
   console.log(data.image);
   return (
     <Link to={`/shop/product/${data.slug}`}>
       <div className="shadow-xl bg-slate-100 rounded-lg mx-3 my-2 relative w-auto overflow-hidden text-sm hover:cursor-pointer h-[350px]">
-        <img src={data.image} alt="" className="h-4/6 w-full" />
+        <img src={ImageUrl + data.image} alt="" className="h-4/6 w-full" />
 
         <div className="p-2 grid grid-flow-row justify-between place-content-between">
           <div className="pb-2">
@@ -18,7 +19,7 @@ const Product = ({ data }) => {
           </div>
           <p className="text-sm font-[500] text-slate-600">
             <strike>
-              <strike>N</strike>
+              <strike>#</strike>
             </strike>
             <strong>{data.price}</strong>
           </p>

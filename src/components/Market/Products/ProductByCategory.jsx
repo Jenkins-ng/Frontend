@@ -31,7 +31,6 @@ const ProductByCategory = () => {
 
   return (
     <main>
-      {/* <Head /> */}
       <div className="top-[68px] relative overflow-scroll h-[calc(100% - 68px)] Hide">
         <h1 className="text-2xl font-bold text-slate-500 mx-5">
           {parameter.toLocaleUpperCase()}

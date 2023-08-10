@@ -1,16 +1,16 @@
-import React from 'react'
-import Logo from './Logo'
-import { Link } from 'react-router-dom'
-import useAuth from '../../Hooks/useAuth'
+import React from "react";
+import Logo from "./Logo";
+import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
-  const { auth, logout } = useAuth()
+  const { auth, logout } = useAuth();
 
   return (
     <nav className="flex justify-between items-center w-10/12 mx-auto pt-[3%] pb-[2%] sticky">
       <Logo />
       <div>
-        {!Object.keys(auth).length ? (
+        {!auth ? (
           <>
             <Link
               className="py-4 px-10 hover:text-primary duration-300"
@@ -35,7 +35,7 @@ const Navbar = () => {
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

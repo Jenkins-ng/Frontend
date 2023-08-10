@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const FootLinks = () => {
   return (
-    <div className="lg:flex md:grid md:grid-cols-3 md:w-full md:mt-10 block gap-3 justify-between w-1/2 my-5 text-sm md:m-auto">
+    <div className="lg:flex md:grid md:grid-cols-3 md:w-full md:mt-10 block gap-3 justify-between w-1/2 my- text-sm md:m-auto">
       <div className="mb-4  md:mb-0">
         <p className="text-slate-500 font-bold mb-2 text-sm sm:text-lg md:text-xl">
           QUICK LINKS

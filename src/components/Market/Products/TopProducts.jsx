@@ -31,7 +31,7 @@ const TopProducts = () => {
 
   return (
     <div className="w-[87%] sm:w-[90%] m-auto mb-10">
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-10">
         <h1 className="text-slate-400 font-bold text-xl ">TOP PRODUCTS</h1>
         <NavLink
           to="/shop/product"
@@ -40,17 +40,19 @@ const TopProducts = () => {
           SEE ALL
         </NavLink>
       </div>
-      {Data ? (
+      {!Data && (
+        <div className="text-center my-10 m-auto">
+          <Spinner size="xl" />
+        </div>
+      )}
+      {Data && (
         <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
           {Data.map((data) => (
             <Product data={data} key={data.id} />
           ))}
         </div>
-      ) : !isError ? (
-        <div className="text-center my-10 m-auto">
-          <Spinner size="xl" />
-        </div>
-      ) : (
+      )}
+      {isError && (
         <p className="text-center font-bold my-10 text-slate-500 uppercase">
           Network Error. Make sure you are connected to the internet.
         </p>

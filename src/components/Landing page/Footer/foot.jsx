@@ -8,18 +8,18 @@ import Footbg from "./Footbg";
 const Foot = () => {
   return (
     <Footbg>
-      <div className="md:flex block justify-between items-start content-center">
+      <div className="md:flex block justify-between items-start content-center m-auto">
         <Logo />
-        <Navlinks className="grid justify-between gap-2 my-5 grid-cols-2 md:grid md:grid-cols-2 md:justify-end lg:grid-cols-3" />
+        <Navlinks className="grid justify-between gap-2 my-5 grid-cols-2 md:grid md:grid-cols-2 md:justify-end lg:grid-cols-3 m-auto" />
         <div className="xl:flex flex sm:block justify-between">
-          <div className="grid sm:block xl:flex  h-8">
+          <div className="grid gap-1 sm:gap-0 sm:block xl:flex  h-8">
             <input
               type="email"
               placeholder="Jenkins@info.com"
               className="px-[10px] py-[3px] rounded-lg text-sm outline-none"
             />
             <div className="sm:w-full">
-              <button className="px-[20px]  py-[3px] bg-blue-400 text-white rounded-md font-bold text-base sm:w-full">
+              <button className="px-[20px]  py-[3px] bg-blue-400 text-white rounded-md font-bold text-sm sm:text-base sm:w-full">
                 Subscribe
               </button>
             </div>

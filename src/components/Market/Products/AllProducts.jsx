@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Catergories from "../Home/Section/Catergories";
-// import Products from "../Data/Products";
+import notifyError from "../../../utils/notifyError";
 import { apiPrivate as api } from "../../../utils/api";
 import Product from "./Product";
 import { Spinner } from "flowbite-react";
@@ -35,8 +35,8 @@ const AllProducts = () => {
       <div>
         <Catergories />
       </div>
-      <div className="flex flex-wrap  w-[90%] m-auto mb-10">
-        {product ? (
+
+      {/* {product ? (
           <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
             {product.map((data) => (
               <Product data={data} key={data.id} />
@@ -50,8 +50,26 @@ const AllProducts = () => {
           <p className="text-center font-bold my-10 text-slate-500 uppercase">
             Network Error. Make sure you are connected to the internet.
           </p>
-        )}
-      </div>
+        )} */}
+      {!product && (
+        <div className="text-center my-10 mt-20 m-auto">
+          <Spinner size="xl" />
+        </div>
+      )}
+      {product && (
+        <div className="flex flex-wrap  w-[90%] m-auto mb-10">
+          <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
+            {product.map((data) => (
+              <Product data={data} key={data.id} />
+            ))}
+          </div>
+        </div>
+      )}
+      {isError && (
+        <p className="text-center font-bold my-10 text-slate-500 uppercase">
+          Network Error. Make sure you are connected to the internet.
+        </p>
+      )}
     </main>
   );
 };

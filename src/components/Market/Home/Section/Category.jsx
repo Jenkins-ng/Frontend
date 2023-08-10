@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Category = ({ items }) => {
   return (
-    <Link to={`/shop/product/category/${items.title}`} className="mx-3">
+    <Link to={`/shop/product/category/${items.title}`} className="mx-2 md:mx-3">
       <div className="w-32 relative overflow-hidden  object-cover hover:scale-110 hover:delay-100  bg-slate-200 rounded-xl cursor-pointer">
         <img
           src={items.image}
