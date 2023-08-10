@@ -24,7 +24,7 @@ const Signupform = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { auth } = useAuth();
+  const { isAuth } = useAuth();
 
   //  reset formErrors when input changes
   useEffect(() => {
@@ -111,7 +111,7 @@ const Signupform = () => {
   };
 
   // go back to home if user is logged in
-  if (auth) {
+  if (isAuth) {
     return <Navigate to="/" />;
   }
 
