@@ -23,8 +23,9 @@ const AuthProvider = ({ children }) => {
         setLoading(false)
       }
     }
-    getCookie('token') ? getUser : setAuth({})
+    getCookie('token') ? getUser() : setLoading(false)
   }, [])
+
   useEffect(() => {
     Object.keys(auth).length ? setAuth(true) : setAuth(false)
   }, [auth])
