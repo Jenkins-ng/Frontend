@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
     const getUser = async () => {
       try {
         const response = await apiPrivate.post('/me')
-        setIsAuth(true)
         const data = response.data
         setAuth({ ...data })
       } catch (error) {
@@ -27,7 +26,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    Object.keys(auth).length ? setAuth(true) : setAuth(false)
+    Object.keys(auth).length ? setIsAuth(true) : setIsAuth(false)
   }, [auth])
 
   const logout = () => {
