@@ -1,18 +1,18 @@
-import { Divider } from "@mui/material";
-import React from "react";
-import "@coreui/coreui/dist/css/coreui.min.css";
+import { Divider } from '@mui/material'
+import React from 'react'
+import '@coreui/coreui/dist/css/coreui.min.css'
 import {
   CCarousel,
   CCarouselCaption,
   CCarouselItem,
   CImage,
-} from "@coreui/react";
-import CarouselText from "../../../utils/CarouselText";
-import Image from "../../../assets/Team/jybium.jpg";
+} from '@coreui/react'
+import CarouselText from '../../../utils/CarouselText'
+import Image from '../../../assets/Team/jybium.jpg'
 
 export const Images = () => {
-  return <img src={Image} alt="" />;
-};
+  return <img src={Image} alt="" />
+}
 const Reviews = () => {
   return (
     <section>
@@ -68,7 +68,7 @@ const Reviews = () => {
         </CCarousel>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Reviews;
+export default Reviews

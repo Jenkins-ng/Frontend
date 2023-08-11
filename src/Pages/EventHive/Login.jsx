@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import api from '../../utils/api'
 import Preloader from '../../components/eventhive/Preloader'
 import notifyError from '../../utils/notifyError'
-import ScrollToTop from '../../components/eventhive/ScrollToTop'
 
 const email_regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -71,7 +70,7 @@ const Login = () => {
 
   return (
     <div>
-      <ScrollToTop />
+      {' '}
       <main className="px-40 absolute w-2/3 pt-[7%] pb-5 inline-block">
         <div className="text-center">
           <Logo size="text-2xl" />
