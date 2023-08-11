@@ -1,11 +1,8 @@
-import {
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import AuthProvider from './context/AuthContext'
+import ScrollRestore from './components/ScrollRestore'
+
 import Required from './components/Required'
 
 ///////////////////////// GENERAL PAGE //////////////////////
@@ -83,97 +80,106 @@ import AdminRoute from './components/AdminRoute'
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
 const router = createBrowserRouter([
-  ////////////////////////////////////////////// GENERAL ROUTES ///////////////////////////////////////////////////
   {
     path: '/',
-    element: <HomeLayout />,
+    element: <ScrollRestore />,
+    errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Landingpage /> },
-      { path: '/about-us', element: <AboutUs /> },
-      { path: '/faq', element: <Faq /> },
-      { path: '/privacy-policy', element: <Privacy /> },
-    ],
-  },
-
-  { path: '/help', element: <Helpandsupport /> },
-  { path: '/signup', element: <Signup /> },
-  { path: '/signin', element: <Signin /> },
-  { path: '/forget-password', element: <Recoveryrender /> },
-  { path: '/recover', element: <Emailverify /> },
-  { path: '/reset-password', element: <ResetPassword /> },
-  // {path:"/signin/forgot", element:}
-  // { path: '/admin/dashboard', element: <Dashboard /> },
-  // { path: '/admin/events', element: <Events /> },
-  { path: '/tutorial', element: <Tutorial /> },
-
-  //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
-  {
-    path: '/event',
-    element: <EventHomeLayout />,
-    children: [
-      { index: true, element: <EventHome /> },
-      { path: '/event/event/:id', loader: eventLoader, element: <Event /> },
-      { path: '/event/college-events', element: <College /> },
-      { path: '/event/trending-events', element: <CollegeEvents /> },
-    ],
-  },
-  // { path: "/event/signup", element: <Signup /> },
-  { path: '/eventhive/signup', element: <EventSignUp /> },
-  // { path: "/event/signin", element: <Signin /> },
-  { path: '/eventhive/login', element: <EventLogin /> },
-  { path: '/event/all-events', element: <AllEvents /> },
-
-  {
-    path: '/',
-    element: <ProtectedRoute />,
-    children: [
-      { path: '/event/create-event', element: <CreateEvent /> },
-      { path: '/event/register', element: <Register /> },
-      /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
-      {
-        path: '/event/dashboard',
-        element: <EventDashboardLayout />,
-        children: [
-          { index: true, element: <EventDashboard /> },
-          { path: '/event/dashboard/events', element: <Events /> },
-          { path: '/event/dashboard/messages', element: <Messages /> },
-          { path: '/event/dashboard/profile', element: <Profile /> },
-        ],
-      },
-      ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
       {
         path: '/',
-        element: <AdminRoute />,
+        element: <HomeLayout />,
         children: [
-          { path: '/admin/dashboard', element: <Dashboard /> },
-          { path: '/admin/event', element: <Event /> },
-          { path: '/admin/inbox', element: <Inbox /> },
-          { path: '/admin/profile', element: <AdminProfile /> },
+          { index: true, element: <Landingpage /> },
+          { path: '/about-us', element: <AboutUs /> },
+          { path: '/faq', element: <Faq /> },
+          { path: '/privacy-policy', element: <Privacy /> },
+        ],
+      },
+
+      { path: '/help', element: <Helpandsupport /> },
+      { path: '/signup', element: <Signup /> },
+      { path: '/signin', element: <Signin /> },
+      { path: '/forget-password', element: <Recoveryrender /> },
+      { path: '/recover', element: <Emailverify /> },
+      { path: '/reset-password', element: <ResetPassword /> },
+      // {path:"/signin/forgot", element:}
+      // { path: '/admin/dashboard', element: <Dashboard /> },
+      // { path: '/admin/events', element: <Events /> },
+      { path: '/tutorial', element: <Tutorial /> },
+
+      //////////////////////////////////////////////// EVENT ROUTES ////////////////////////////////////////////////////
+      {
+        path: '/event',
+        element: <EventHomeLayout />,
+        children: [
+          { index: true, element: <EventHome /> },
+          { path: '/event/event/:id', loader: eventLoader, element: <Event /> },
+          { path: '/event/college-events', element: <College /> },
+          { path: '/event/trending-events', element: <CollegeEvents /> },
+        ],
+      },
+      // { path: "/event/signup", element: <Signup /> },
+      { path: '/eventhive/signup', element: <EventSignUp /> },
+      // { path: "/event/signin", element: <Signin /> },
+      { path: '/eventhive/login', element: <EventLogin /> },
+      { path: '/event/all-events', element: <AllEvents /> },
+
+      {
+        path: '/',
+        element: <ProtectedRoute />,
+        children: [
+          { path: '/event/create-event', element: <CreateEvent /> },
+          { path: '/event/register', element: <Register /> },
+          /////////////////////////////////////////// ADMIN DASHBOARD //////////////////////////////////////////////
           {
-            path: '/admin/ecommerce',
+            path: '/event/dashboard',
+            element: <EventDashboardLayout />,
             children: [
-              { path: '/admin/ecommerce/overview', element: <Overview /> },
+              { index: true, element: <EventDashboard /> },
+              { path: '/event/dashboard/events', element: <Events /> },
+              { path: '/event/dashboard/messages', element: <Messages /> },
+              { path: '/event/dashboard/profile', element: <Profile /> },
+            ],
+          },
+          ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
+          {
+            path: '/',
+            element: <AdminRoute />,
+            children: [
+              { path: '/admin/dashboard', element: <Dashboard /> },
+              { path: '/admin/event', element: <Event /> },
+              { path: '/admin/inbox', element: <Inbox /> },
+              { path: '/admin/profile', element: <AdminProfile /> },
               {
-                path: '/admin/ecommerce/product',
+                path: '/admin/ecommerce',
                 children: [
-                  { path: '/admin/ecommerce/product', element: <Products /> },
+                  { path: '/admin/ecommerce/overview', element: <Overview /> },
                   {
-                    path: '/admin/ecommerce/product/create',
-                    element: <CreateProduct />,
+                    path: '/admin/ecommerce/product',
+                    children: [
+                      {
+                        path: '/admin/ecommerce/product',
+                        element: <Products />,
+                      },
+                      {
+                        path: '/admin/ecommerce/product/create',
+                        element: <CreateProduct />,
+                      },
+                      {
+                        path: '/admin/ecommerce/product/edit',
+                        element: <EditProduct />,
+                      },
+                    ],
                   },
                   {
-                    path: '/admin/ecommerce/product/edit',
-                    element: <EditProduct />,
-                  },
-                ],
-              },
-              {
-                path: '/admin/ecommerce/order',
-                children: [
-                  { path: '/admin/ecommerce/order/', element: <Order /> },
-                  {
-                    path: '/admin/ecommerce/order-detail',
-                    element: <OrderDetails />,
+                    path: '/admin/ecommerce/order',
+                    children: [
+                      { path: '/admin/ecommerce/order/', element: <Order /> },
+                      {
+                        path: '/admin/ecommerce/order-detail',
+                        element: <OrderDetails />,
+                      },
+                    ],
                   },
                 ],
               },
@@ -181,62 +187,61 @@ const router = createBrowserRouter([
           },
         ],
       },
-    ],
-  },
 
-  //////////////////////// FOR THE E-SHOP ///////////////////////////
-  {
-    path: '/shop',
-    element: <MarketLayout />,
-    children: [
-      { index: true, element: <Market /> },
-
-      /////////////////////////// SEARCH ALL PRODUCT /////////////////////////////////
-      { path: '/shop/product', element: <AllProducts /> },
-
-      ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
-      { path: '/shop/product/:slug', element: <ProductDetails /> },
-
-      //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
+      //////////////////////// FOR THE E-SHOP ///////////////////////////
       {
-        path: '/shop/product/category/:category',
-        element: <ProductByCategory />,
+        path: '/shop',
+        element: <MarketLayout />,
+        children: [
+          { index: true, element: <Market /> },
+
+          /////////////////////////// SEARCH ALL PRODUCT /////////////////////////////////
+          { path: '/shop/product', element: <AllProducts /> },
+
+          ///////////////////////////////// DETAILS FOR A PARTICULAR PRODUCT //////////////////////////////////
+          { path: '/shop/product/:slug', element: <ProductDetails /> },
+
+          //////////////////////////// SEARCH BY CATEGORY //////////////////////////////
+          {
+            path: '/shop/product/category/:category',
+            element: <ProductByCategory />,
+          },
+        ],
+      },
+      {
+        path: '/shop',
+        // element: <ProtectedRoute />,
+        element: <MarketLayout />,
+        children: [
+          //////////////////////////////////////// CART ///////////////////////////////////////
+          { path: '/shop/cart', element: <Cart /> },
+          /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
+          { path: '/shop/checkout', element: <Checkout /> },
+          ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
+          {
+            path: '/shop/checkout',
+            element: <Outpage />,
+          },
+        ],
+      },
+      {
+        path: '/job',
+        element: <JobLayout />,
+        children: [
+          /////////////////////////////////// HOME PAGE ////////////////////////////////////////
+          { path: '/job', element: <HomePage /> },
+          /////////////////////////////////// ALL JOBS ////////////////////////////////////////
+          { path: '/jobs', element: <AllJobs /> },
+          ///////////////////////////////////// DETAILED JOB ////////////////////////////////////
+          { path: '/job/:id', element: <JobDetails /> },
+          ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
+          { path: '/job/:catergory' },
+          /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
+          { path: '/job/apply', element: <JobApply /> },
+        ],
       },
     ],
   },
-  {
-    path: '/shop',
-    // element: <ProtectedRoute />,
-    element: <MarketLayout />,
-    children: [
-      //////////////////////////////////////// CART ///////////////////////////////////////
-      { path: '/shop/cart', element: <Cart /> },
-      /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
-      { path: '/shop/checkout', element: <Checkout /> },
-      ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
-      {
-        path: '/shop/checkout',
-        element: <Outpage />,
-      },
-    ],
-  },
-  {
-    path: '/job',
-    element: <JobLayout />,
-    children: [
-      /////////////////////////////////// HOME PAGE ////////////////////////////////////////
-      { path: '/job', element: <HomePage /> },
-      /////////////////////////////////// ALL JOBS ////////////////////////////////////////
-      { path: '/jobs', element: <AllJobs /> },
-      ///////////////////////////////////// DETAILED JOB ////////////////////////////////////
-      { path: '/job/:id', element: <JobDetails /> },
-      ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
-      { path: '/job/:catergory' },
-      /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
-      { path: '/job/apply', element: <JobApply /> },
-    ],
-  },
-  { path: '*', element: <ErrorPage /> },
 
   // { path: "/shop/orders", element: <Orders /> },
 ])
