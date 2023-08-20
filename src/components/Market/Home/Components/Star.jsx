@@ -5,7 +5,7 @@ const StarRating = ({ rate }) => {
   const [hover, setHover] = useState(0);
 
   return (
-    <div className="star-rating">
+    <div className="star-rating ">
       {[...Array(+rate)].map((star, index) => {
         index += 1;
         return (
@@ -17,7 +17,7 @@ const StarRating = ({ rate }) => {
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
           >
-            <span className="star">&#9733;</span>
+            <span className="star text-yellow-400">&#9733;</span>
           </button>
         );
       })}

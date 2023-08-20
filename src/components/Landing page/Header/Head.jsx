@@ -23,7 +23,7 @@ const Head = () => {
 
         <Navlinks
           className={`${!navbar ? "grid" : "hidden"}
-           absolute right-0 left-0 w-[100vw] pt-10 pb-10 place-items-center h-[80vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0 lg:h-0 lg:justify-end lg:flex"`}
+           absolute right-0 left-0 w-[100vw] pt-10 pb-10 place-items-center h-[80vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0 lg:h-0 lg:justify-end lg:flex xl:gap-5 xl:justify-between"`}
         />
 
         <button onClick={NavbarHandler} className="lg:hidden">

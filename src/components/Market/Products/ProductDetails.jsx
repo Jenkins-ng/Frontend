@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Spinner } from "flowbite-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { apiPrivate as api } from "../../../utils/api";
 import notifySuccess from "../../../utils/notifySuccess";
 import notifyError from "../../../utils/notifyError";
 import { CartContext } from "../Context/Cart";
+import Product from "./Product";
 
 const ImageUrl = "https://api.jenkins.ng/storage/";
 
@@ -12,6 +13,8 @@ const ProductDetails = () => {
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState([]);
+  const [productCategory, setProductCategory] = useState([]);
+  const category = useRef();
   const params = useParams();
   const history = useNavigate();
   const parameter = params.slug;
@@ -23,6 +26,7 @@ const ProductDetails = () => {
         const response = await api.get(`/products/${parameter}`);
         const result = await response.data.data;
         setProduct([result]);
+        category.current = result.category;
         console.log(result);
       } catch (error) {
         // console.log(error.response);
@@ -31,16 +35,33 @@ const ProductDetails = () => {
     fetch();
   }, []);
 
-  console.log(product);
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const response = await api.get(
+          `/products/category/${category.current}`
+        );
+        const result = await response.data.data;
+        setProductCategory([result]);
+        console.log(result);
+      } catch (error) {
+        // console.log(error.response);
+      }
+    }
+    // setTimeout(fetch, 10000);
+    fetch();
+  }, [product]);
+
+  console.log(productCategory);
+  console.log(category);
   // console.log(data);
   return (
-    <section className="top-[68px] relative overflow-scroll h-[calc(100% - 68px)] Hide">
-      {!product && (
-        <div className="text-center my-10 m-auto">
+    <section className=" relative pt-10 overflow-scroll h-[calc(100% - 80px)] Hide">
+      {!product ? (
+        <div className="text-center pt-20 my-20 m-auto">
           <Spinner size="xl" />
         </div>
-      )}
-      {product && (
+      ) : (
         <section className="w-[90%] m-auto mb-10">
           {product.map((items) => (
             <div
@@ -61,9 +82,7 @@ const ProductDetails = () => {
                     <p>{items.category}</p>
                     <p>{items.description}</p>
                     <p className="font-bold text-blue-400">
-                      <span>
-                        <strike>#</strike>{" "}
-                      </span>
+                      <span>#</span>
                       {parseInt(items.price, 10)}
                     </p>
                   </div>
@@ -104,7 +123,7 @@ const ProductDetails = () => {
                   <div className="flex gap-5 text-lg font-regular">
                     <p>Total :</p>
                     <p>
-                      <strike># </strike> {quantity * +items.price}
+                      <span># </span> {quantity * +items.price}
                     </p>
                   </div>
                   <div className="flex md:justify-between gap-8 my-2">
@@ -130,13 +149,22 @@ const ProductDetails = () => {
               </div>
             </div>
           ))}
-          <div>
-            <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3 mt-10">
-              Related Items
-            </h1>
-          </div>
         </section>
       )}
+      <div className="w-[90%] m-auto">
+        <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3 mt-10">
+          Related Items
+        </h1>
+        <div>
+          {productCategory > 0 ? (
+            productCategory.map((product) => <Product data={product} />)
+          ) : (
+            <div className="text-center pt-5 m-auto">
+              <Spinner size="xl" />
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

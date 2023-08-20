@@ -2,21 +2,23 @@ import React, { useState, useContext } from "react";
 import StarRating from "../Home/Components/Star";
 import { CartContext } from "../Context/Cart";
 
+const ImageUrl = "https://api.jenkins.ng/storage/";
+
 const CheckoutProduct = ({ item }) => {
   const [quantity, setQuantity] = useState(item.quantity);
-  const { removeFromCart } = useContext(CartContext);
+  const { removeFromCart, addToCart } = useContext(CartContext);
   console.log(item);
 
   return (
     <div className="block mb-5">
-      <div className="w-[300px] h-[250px]">
-        <img src={item.image} alt="" className="w-[300px]" />
+      <div className="w-[300px] h-[300px]">
+        <img src={ImageUrl + item.image} alt="" className="w-[300px]" />
       </div>
       <div className="">
         <p>{item.title}</p>
-        <p>{item.price}</p>
+        <p># {item.price}</p>
         <div className="rating">
-          <StarRating rate={item.rating} />
+          <StarRating rate={5} />
         </div>
         <div>
           <div className="flex gap-5">
@@ -32,6 +34,7 @@ const CheckoutProduct = ({ item }) => {
                   return;
                 } else {
                   setQuantity(quantity - 1);
+                  addToCart(item, quantity);
                 }
               }}
             >
@@ -50,20 +53,23 @@ const CheckoutProduct = ({ item }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setQuantity(quantity + 1);
+                addToCart(item, quantity);
               }}
             >
               add
             </span>
           </div>
-          <button
-            type="button"
-            className="bg-slate-400 text-sm sm:text-base md:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
-            onClick={() => {
-              removeFromCart(item);
-            }}
-          >
-            Remove From Cart
-          </button>
+          <div className="text-center">
+            <button
+              type="button"
+              className="bg-slate-400 text-sm sm:text-base md:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl"
+              onClick={() => {
+                removeFromCart(item);
+              }}
+            >
+              Remove From Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

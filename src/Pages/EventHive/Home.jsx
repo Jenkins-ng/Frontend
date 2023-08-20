@@ -1,67 +1,71 @@
-import banner from '../../assets/event_images/homebanner.png'
-import makeEvent from '../../assets/event_images/make_event.png'
-import EventCard from '../../components/eventhive/EventCard'
-import { cards, event } from '../../utils/data'
-import brands from '../../utils/brands'
-import { PiCaretDownBold } from 'react-icons/pi'
-import { Link } from 'react-router-dom'
-import { BiSearch } from 'react-icons/bi'
-import CollegeCard from '../../components/eventhive/CollegeCard'
-import RenderEvents from '../../components/eventhive/RenderEvents'
+import banner from "../../assets/event_images/homebanner.png";
+import makeEvent from "../../assets/event_images/make_event.png";
+import EventCard from "../../components/eventhive/EventCard";
+import { cards, event } from "../../utils/data";
+import brands from "../../utils/brands";
+import { PiCaretDownBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import { BiSearch } from "react-icons/bi";
+import CollegeCard from "../../components/eventhive/CollegeCard";
+import RenderEvents from "../../components/eventhive/RenderEvents";
 
 const Home = () => {
   return (
     <>
       <header className="w-11/12 mx-auto relative ">
-        <h1 className="text-white absolute xl:text-[4rem] top-20 left-1/2 -translate-x-1/2 text-center uppercase max-w-xl">
+        <h1 className="text-white absolute xl:text-[4rem] sm:top-20 sm:left-1/2 sm:-translate-x-1/2 text-center uppercase max-w-xl pt-4 sm:pt-0">
           Made for those who do
         </h1>
         <img src={banner} alt="" role="banner" className="w-full" />
         {/* search bar */}
-        <form className="absolute -bottom-14 w-11/12 left-1/2 -translate-x-1/2 bg-navyBlue rounded-[20px] gap-3 py-2 sm:py-3 px-5 sm:px-10 flex items-center justify-between">
+        <form className="sm:absolute sm:-bottom-14 w-11/12 sm:left-1/2 sm:-translate-x-1/2 bg-navyBlue rounded-[20px] gap-3 py-2 sm:py-3 px-5 sm:px-10 sm:flex grid items-center justify-between m-auto">
           <div className="grid gap-[4px] sm:w-60">
             <p className="text-backgroundGrey sm:text-lg">Looking for:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span className="text-sm sm:text-base">Choose event type</span>
-              <PiCaretDownBold size={24} />
+              <span className="text-sm sm:text-base capitalize">
+                event type
+              </span>
+              <PiCaretDownBold size={14} />
             </div>
           </div>
           <div className="grid gap-[4px] sm:w-60">
             <p className="text-backgroundGrey sm:text-lg">Location:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span className="text-sm sm:text-base">Choose location</span>
-              <PiCaretDownBold size={24} />
+              <span className="text-sm sm:text-base capitalize">location</span>
+              <PiCaretDownBold size={14} />
             </div>
           </div>
           <div className="grid gap-[4px] sm:w-60">
             <p className="text-backgroundGrey sm:text-lg">When:</p>
             <div className="flex items-center bg-backgroundGrey text-navyBlue px-3 py-2 justify-between cursor-pointer rounded-md">
-              <span className="text-sm sm:text-base">Choose date and time</span>
-              <PiCaretDownBold size={24} />
+              <span className="text-sm sm:text-base capitalize">
+                date and time
+              </span>
+              <PiCaretDownBold size={14} />
             </div>
           </div>
-          <button className="text-backgroundGrey bg-primary p-3 rounded-md">
+          <button className="text-backgroundGrey bg-primary p-2 sm:p-3 rounded-md w-auto">
             <BiSearch size={20} />
           </button>
         </form>
       </header>
       <main>
         {/* upcoming events */}
-        <section className="w-10/12 m-auto py-36">
+        <section className="w-10/12 m-auto pb-36 pt-10 sm:pt-36">
           <div className="sm:flex sm:items-center sm:justify-between grid gap-5">
             <h2>
               Upcoming <span className="text-primary">Events</span>
             </h2>
-            <div className="flex gap-4">
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
+            <div className="flex sm:gap-4 gap-2">
+              <div className="flex items-center bg-[#efeff1] sm:px-4 px-2 sm:py-2 py-1 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Weekdays</span>
                 <PiCaretDownBold size={20} />
               </div>
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
+              <div className="flex items-center bg-[#efeff1] sm:px-4 px-2 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Event type</span>
                 <PiCaretDownBold size={20} />
               </div>
-              <div className="flex items-center bg-[#efeff1] px-4 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
+              <div className="flex items-center bg-[#efeff1] sm:px-4 px-2 py-2 justify-between cursor-pointer sm:w-36 rounded-md text-sm">
                 <span>Any category</span>
                 <PiCaretDownBold size={20} />
               </div>
@@ -106,7 +110,7 @@ const Home = () => {
           <div className="py-10">
             <div className="grid grid-cols-3 sm:grid-cols-5 items-center gap-3">
               {brands.map((src, i) => {
-                return <img src={src} alt="" key={i} />
+                return <img src={src} alt="" key={i} />;
               })}
             </div>
             {/* <div className="grid grid-cols-2 sm:grid-cols-4 items-center">
@@ -123,7 +127,7 @@ const Home = () => {
           </h2>
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-3 w-full pt-8 pb-10">
             {cards.map((data, i) => {
-              return <CollegeCard key={i} {...data} />
+              return <CollegeCard key={i} {...data} />;
             })}
           </div>
           <Link
@@ -142,13 +146,13 @@ const Home = () => {
           </div>
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-3 w-full py-8">
             {event.slice(2, 5).map((data, i) => {
-              return <EventCard key={i} {...data} />
+              return <EventCard key={i} {...data} />;
             })}
           </div>
         </section>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

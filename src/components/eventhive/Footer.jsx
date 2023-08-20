@@ -58,7 +58,7 @@ const Footer = () => {
       <Logo color="text-white" />
       <form
         onSubmit={handleSubmit}
-        className="pt-5 pb-8 flex justify-center gap-3"
+        className="pt-5 pb-8 sm:flex grid justify-center  sm:gap-3"
       >
         <input
           type="text"
@@ -69,7 +69,7 @@ const Footer = () => {
           }`}
           ref={emailRef}
         />
-        <button className="bg-primary rounded-md text-white py-[4px] px-10">
+        <button className="bg-primary rounded-md text-white py-[4px] sm:px-10 px-5 w-auto">
           Subscribe
         </button>
       </form>

@@ -55,6 +55,16 @@ const CreateProduct = () => {
     setImage(img);
     console.log(Image);
   };
+  // const ProductImage = (e) => {
+  //   const selectedImage = e.target.files[0];
+  //   if (selectedImage) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       setImage(reader.result);
+  //     };
+  //     reader.readAsDataURL(selectedImage);
+  //   }
+  // };
 
   // FUNCTION THAT RETRIEVES CREATED PRODUCT EACH TIME A NEW ONE IS PRODUCED
   useEffect(() => {
@@ -88,7 +98,7 @@ const CreateProduct = () => {
   };
 
   // FUNCTION TO CREATE THE PRODUCT
-  const CreateProduct = async (e) => {
+  const FormProduct = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("category_id", Number(selectedCategory));
@@ -96,7 +106,7 @@ const CreateProduct = () => {
     data.append("title", Title);
     data.append("description", Description);
     data.append("price", Price);
-    // {
+    // const data = {
     //   category_id: Number(selectedCategory),
     //   image: Image.data,
     //   title: Title,
@@ -105,6 +115,7 @@ const CreateProduct = () => {
     // };
     console.log(typeof data.image);
     console.log(typeof Image);
+    console.log(Image.data);
 
     try {
       const response = await api.post("/products", data, {
@@ -114,6 +125,9 @@ const CreateProduct = () => {
       });
       const result = await response.data;
       notifySuccess(result.message);
+      // if (result.status === 201) {
+      //   notifySuccess("Product created Successfully!");
+      // }
       console.log(result);
     } catch (error) {
       console.log(error.response.status);
@@ -123,7 +137,6 @@ const CreateProduct = () => {
       notifyError(error.response.data.message);
     }
   };
-
   return (
     <Wrapper>
       <section className="my-4 grid ml-10">
@@ -171,7 +184,7 @@ const CreateProduct = () => {
           <h1 className="text-blue-400 font-bold text-2xl my-5">
             PRODUCT INFORMATION
           </h1>
-          <form onSubmit={CreateProduct} encType="multipart/form-data">
+          <form onSubmit={FormProduct} encType="multipart/form-data">
             <div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="w-3/6">

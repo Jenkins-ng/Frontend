@@ -56,7 +56,7 @@ export const Head = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="flex fixed z-10 shadow-xl justify-between items-center px-5 md:pl-3 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
+    <div className="flex fixed z-10 shadow-xl justify-between items-center px-3 sm:px-5 md:pl-3 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
       <div className="flex justify-between w-full md:w-4/6 items-center ">
         <NavLink to="/">
           <Logo />
@@ -115,7 +115,7 @@ export const Head = () => {
           </ul>
         </nav>
         <div className="lg:flex lg:justify-evenly lg:gap-0 grid gap-5 grid-flow-col justify-between lg:w-3/12 md:w-2/6 sm:w-3/6 lg:flex-none md:flex-1 relative">
-          <div className="">
+          <div className="" onClick={NavbarHandler}>
             <span
               className="material-symbols-outlined font-regular text-2xl cursor-pointer bg-blue-400 rounded-full px-[6px] py-[2px]"
               onClick={showProfile}
@@ -124,7 +124,7 @@ export const Head = () => {
             </span>
             {profile ? <Modal /> : ""}
           </div>
-          <Link to={"/shop/cart"}>
+          <Link to={"/shop/cart"} onClick={NavbarHandler}>
             <div className="relative">
               <span className="material-symbols-outlined font-regular text-2xl cursor-pointer rounded-full bg-blue-400 px-[6px] py-[2px] ">
                 shopping_cart

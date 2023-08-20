@@ -2,7 +2,7 @@ import React from "react";
 import Navlink from "./Navlink";
 
 const Navlinks = (props) => {
-  const classes = `block  xl:flex md:m-0 + ${props.className}`;
+  const classes = `block xl:flex md:m-0 + ${props.className}`;
 
   return (
     <nav className={classes}>

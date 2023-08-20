@@ -28,8 +28,8 @@ const AllProducts = () => {
   }, []);
 
   return (
-    <main className="relative top-[68px] overflow-scroll h-[calc(100% - 68px)] Hide">
-      <h1 className="m-10 md:mx-20 md:text-2xl text-3xl text-slate-500 font-bold">
+    <main className="relative pt-20 overflow-scroll h-[calc(100% - 80px)] Hide">
+      <h1 className="m-10 md:mx-10 md:text-2xl text-3xl text-slate-500 font-bold">
         SHOP BY CATEGORY
       </h1>
       <div>
@@ -51,12 +51,11 @@ const AllProducts = () => {
             Network Error. Make sure you are connected to the internet.
           </p>
         )} */}
-      {!product && (
-        <div className="text-center my-10 mt-20 m-auto">
+      {!product > 0 ? (
+        <div className="text-center pt-20 my-10 mt-28 m-auto">
           <Spinner size="xl" />
         </div>
-      )}
-      {product && (
+      ) : (
         <div className="flex flex-wrap  w-[90%] m-auto mb-10">
           <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
             {product.map((data) => (

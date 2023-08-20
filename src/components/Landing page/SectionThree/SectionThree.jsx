@@ -18,8 +18,8 @@ const SectionThree = () => {
     <Sign className="h-full bg-blue-100  px-0 py-0 justify-between md:gap-[50px] my-20 w-full">
       <div className="xl:w-[85%] w-[90%] m-auto block lg:flex justify-around gap-10">
         <div className="pb-5 md:py-2 grid place-items-center place-content-center flex-col items-center">
-          <div className="grid gap-4 my-6">
-            <h1 className="text-blue-400 font-bold text-4xl text-center">
+          <div className="grid gap-1 sm:gap-4 my-6">
+            <h1 className="text-blue-400 font-bold text-xl sm:text-2xl md:text-3xl text-center">
               GET IN TOUCH
             </h1>
             <p className="text-blue-400 mb- font-semibold text-center text-lg">

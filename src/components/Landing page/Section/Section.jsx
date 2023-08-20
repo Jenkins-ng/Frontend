@@ -8,7 +8,7 @@ import FifthImage from "../../../assets/images/ticket.jpg";
 const Section = () => {
   return (
     <div>
-      <h2 className="text-center font-bold text-blue-400 text-3xl tracking-widest mt-14">
+      <h2 className="text-center font-bold text-slate-500 text-xl sm:text-2xl md:text-3xl mt-14 mb-3">
         WHAT WE OFFER?
       </h2>
       <div className="md:grid lg:grid-cols-1 gap-9 sm:gap-2 block justify-between w-full md:w-[95%] m-auto overflow-hidden mt-8">

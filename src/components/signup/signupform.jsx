@@ -25,6 +25,8 @@ const Signupform = () => {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { isAuth } = useAuth();
+  const [display, setdisplay] = useState(true);
+  const [icon, setIcon] = useState("visibility");
 
   //  reset formErrors when input changes
   useEffect(() => {
@@ -80,6 +82,16 @@ const Signupform = () => {
     setOpenModal("dismissible");
   };
 
+  const showPassword = (e) => {
+    setdisplay((prevstate) => !display);
+    e.preventDefault();
+    if (display) {
+      setIcon("visibility_off");
+    } else {
+      setIcon("visibility");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     validateInputs();
@@ -118,16 +130,16 @@ const Signupform = () => {
   return (
     <div className="md:w-1/3 w-full">
       <form onSubmit={handleSubmit}>
-        <div className="md:hidden block text-center">
+        <div className="md:hidden block text-center my-3">
           <Logo />
         </div>
-        <h1 className="text-4xl text- text-blue-400 font-bold tracking-wide">
+        <h1 className="sm:text-4xl text-3xl text-blue-400 font-bold tracking-wide uppercase sm:capitalize">
           Create account
         </h1>
         <p className="text-slate-300 font-semibold text-sm mb-5">
           Get started with JENKINS.NG by creating an account
         </p>
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {/* name */}
           <div>
             <label
@@ -141,7 +153,7 @@ const Signupform = () => {
               id="name"
               autoComplete="off"
               onChange={(e) => setName(e.target.value)}
-              className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+              className="sm:px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full mt-[3px]"
               placeholder="Enter your name"
               ref={nameRef}
             />
@@ -160,7 +172,7 @@ const Signupform = () => {
               id="email"
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
-              className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+              className="sm:px-4 text-base py-[4px] border-slate-500 mt-[3px] outline-none border-2 rounded-xl text-slate-500 w-full"
               placeholder="Enter your email"
               ref={emailRef}
             />
@@ -174,14 +186,22 @@ const Signupform = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPswd(e.target.value)}
-              className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-              placeholder="Enter your password"
-              ref={pswdRef}
-            />
+            <div className="relative">
+              <input
+                type={display ? "password" : "text"}
+                id="password"
+                onChange={(e) => setPswd(e.target.value)}
+                className="sm:px-4 text-base py-[4px] border-slate-500 mt-[3px] outline-none border-2 rounded-xl text-slate-500 w-full"
+                placeholder="Enter your password"
+                ref={pswdRef}
+              />{" "}
+              <span
+                className="material-symbols-outlined absolute right-3 bottom-1"
+                onClick={showPassword}
+              >
+                {icon}
+              </span>
+            </div>
             <p className="text-xs text-red-600">{formErrors.pswd}</p>
           </div>
           {/* confirm password */}
@@ -192,14 +212,22 @@ const Signupform = () => {
             >
               Confirm Password
             </label>
-            <input
-              type="password"
-              id="confirm"
-              onChange={(e) => setConfirmPswd(e.target.value)}
-              className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-              placeholder="Enter your password"
-              ref={confirmPswdRef}
-            />
+            <div className="relative">
+              <input
+                type={display ? "password" : "text"}
+                id="confirm"
+                onChange={(e) => setConfirmPswd(e.target.value)}
+                className="sm:px-4 text-base py-[4px] border-slate-500 mt-[3px] outline-none border-2 rounded-xl text-slate-500 w-full"
+                placeholder="Enter your password"
+                ref={confirmPswdRef}
+              />
+              <span
+                className="material-symbols-outlined absolute right-3 bottom-1"
+                onClick={showPassword}
+              >
+                {icon}
+              </span>
+            </div>
             <p className="text-xs text-red-600">{formErrors.confirmPswd}</p>
           </div>
         </div>
@@ -231,7 +259,7 @@ const Signupform = () => {
         >
           CREATE ACCOUNT
         </button>
-        <p className="text-center mt-4">
+        <p className="text-center mt-3">
           Already created an account?{" "}
           <Link to="/signin" className="text-blue-400 font-bold">
             Log in

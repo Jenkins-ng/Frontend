@@ -4,7 +4,7 @@ import Prototype from "../SectionTwo/Prototype";
 const SectionTwo = () => {
   return (
     <div className="w-[90%] m-auto">
-      <h2 className="text-center font-bold text-blue-400 text-3xl tracking-wider mt-14">
+      <h2 className="text-center font-bold text-slate-500 text-xl sm:text-2xl md:text-3xl mt-14">
         WHY CHOOSE US?
       </h2>
       <p className="text-center font-semibold text-blue-400 mb-8 mt-4 text-xl sm:tracking-wider">
@@ -19,7 +19,8 @@ const SectionTwo = () => {
         <Prototype name="Support_agent" title="24/7 Support" />
       </div>
     </div>
-  );o
+  );
+  o;
 };
 
 export default SectionTwo;

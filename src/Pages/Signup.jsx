@@ -5,7 +5,7 @@ import signupimage from "../assets/Mobile login-cuate.svg";
 
 const Signup = () => {
   return (
-    <Sign className="p-10">
+    <Sign className="p-10 h-[100vh]">
       <Signupform />
       <div className="w-1/2 md:block hidden">
         <img src={signupimage} alt="" />

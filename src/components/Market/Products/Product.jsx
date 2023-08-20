@@ -18,10 +18,7 @@ const Product = ({ data }) => {
             <p className="text-slate-400 text-[14px]">{data.description}</p>
           </div>
           <p className="text-sm font-[500] text-slate-600">
-            <strike>
-              <strike>#</strike>
-            </strike>
-            <strong>{data.price}</strong>
+            <strong># {data.price}</strong>
           </p>
           <div className="flex gap-2">
             <StarRating rate={5} />

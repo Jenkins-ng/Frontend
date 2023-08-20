@@ -9,24 +9,49 @@ import {
 } from "@coreui/react";
 import CarouselText from "../../../utils/CarouselText";
 import Image from "../../../assets/Team/jybium.jpg";
+import "./review.css";
 
 export const Images = () => {
-  return <img src={Image} alt="" />;
+  return (
+    <div className="grid justify-between items-center content-center py-20">
+      <div className="w-5/6 m-auto text-slate-500 font-medium">
+        <p className="mb-3">
+          This is the best platform ever. I love how simple everything is and
+          how easy the app is to navigate.
+        </p>
+      </div>
+      <div className="flex items-center sm:gap-5 gap-2 content-end w-5/6 m-auto">
+        <img
+          src={Image}
+          alt=""
+          className="md:w-16 md:h-16 w-14 h-14 rounded-full"
+        />
+        <div>
+          <p className="font-bold text-slate-400 sm:text-lg text-sm uppercase">
+            Mr Aderoboye Adetona
+          </p>
+          <p className="text-blue-400 font-semibold uppercase text-xs">
+            Chairman, NUJ Ondo state.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 const Reviews = () => {
   return (
     <section>
-      <h1 className="text-center font-bold text-blue-400 text-xl sm:text-2xl md:text-3xl tracking-widest mt-14">
+      <h1 className="text-center font-bold text-slate-500 text-xl sm:text-2xl md:text-3xl mt-14 mb-3">
         WHAT PEOPLE ARE SAYING ABOUT US?
       </h1>
-      <div className="h-40 max-h-40 sm:h-60 md:max-h-60 my-10 w-11/12 m-auto object-contain">
-        {/* <CarouselText
+      <div className="h-40 max-h-40 sm:h-60 md:max-h-100 my-10 w-11/12 m-auto object-contain">
+        <CarouselText
           firstCarousel={<Images />}
-          secondCarousel="This is the most beautiful and interesting platform i have ever seen."
-          thirdCarousel="This is the most beautiful and interesting platform i have ever seen."
-        /> */}
+          secondCarousel={<Images />}
+          thirdCarousel={<Images />}
+        />
 
-        <CCarousel
+        {/* <CCarousel
           interval={true}
           indicators
           transition="slide"
@@ -65,7 +90,7 @@ const Reviews = () => {
               </p>
             </CCarouselCaption>
           </CCarouselItem>
-        </CCarousel>
+        </CCarousel> */}
       </div>
     </section>
   );

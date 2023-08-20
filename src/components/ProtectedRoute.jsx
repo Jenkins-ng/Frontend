@@ -1,9 +1,9 @@
-import { Outlet, Navigate } from 'react-router-dom'
-import useAuth from '../Hooks/useAuth'
-import Preloader from './eventhive/Preloader'
+import { Outlet, Navigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import Preloader from "./eventhive/Preloader";
 
 const ProtectedRoute = () => {
-  const { isAuth, loading } = useAuth()
+  const { isAuth, loading } = useAuth();
 
   return (
     <>
@@ -15,7 +15,7 @@ const ProtectedRoute = () => {
         <Navigate to="/signup" />
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;

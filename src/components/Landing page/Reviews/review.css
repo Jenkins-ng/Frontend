@@ -1,0 +1,15 @@
+.review::before {
+  /* content: url(""); */
+  content: "''";
+  color: blue;
+  font-size: 40px;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.review::after {
+  /* content: url(); */
+  content: "''";
+  color: blue;
+  position: absolute;
+}

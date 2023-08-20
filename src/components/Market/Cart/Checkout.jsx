@@ -14,10 +14,10 @@ const Checkout = () => {
   console.log(cartItems);
 
   return (
-    <main className="relative top-[68px] overflow-scroll h-[calc(100% - 68px)] Hide">
+    <main className="relative top-[6px] pt-10 overflow-scroll h-[calc(100% - 80px)] Hide">
       {cartItems?.length > 0 ? (
-        <>
-          <main className="lg:w-8/12 md:6/12 relative sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
+        <main className="relative md:flex grid">
+          <section className="lg:w-8/12 md:6/12 relative sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
             {/* {showModal ? <PopUpModal /> : ""} */}
             <div className="my-5">
               <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
@@ -30,14 +30,14 @@ const Checkout = () => {
               </div>
             </div>
 
-            <div className="text-center w-[90%] m-auto grid grid-flow-col justify-between">
-              <button
+            <div className="text-right w-auto m-auto block">
+              {/* <button
                 type="submit"
                 className="bg-slate-400 px-4 text-xs sm:text-sm md:text-base md:px-8 py-[4px] text-white hover:bg-blue-400 rounded-xl"
                 onClick={updateCart(cartItems)}
               >
                 UPDATE CART
-              </button>
+              </button> */}
               <button
                 type="submit"
                 className="bg-slate-400 text-xs sm:text-sm md:text-base px-4 py-[4px] text-white hover:bg-blue-400 rounded-xl"
@@ -60,54 +60,58 @@ const Checkout = () => {
                 ""
               )}
             </div>
-          </main>
-          <aside className="m-auto lg:w-4/12 md:6/12 md:fixed flex flex-col right-0 px-5">
-            <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold mt-4">
-              CART TOTAL
-            </h2>
-            <div className="border-slate-400 border-[1px] p-5 rounded-xl text-sm">
-              <div className="flex justify-between">
-                <h1 className="sm:text-lg text-base  font-bold">
-                  Number Of Items :
-                </h1>
-                <p>{cartItems.length}</p>
-              </div>
-              <div className="flex justify-between">
-                <h1 className="sm:text-lg text-base font-bold ">Sub Total :</h1>
-                <p className="flex gap-2">
-                  <strike>#</strike>
-                  {getCartTotal()}
-                </p>
-              </div>
-              {/* <div className="flex justify-between">
+          </section>
+          <div className="relative">
+            <aside className=" m-auto lg:w-4/12 md:6/12 md:fixed flex flex-col right-0 px-5">
+              <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold mt-12">
+                CART TOTAL
+              </h2>
+              <div className="border-slate-400 border-[1px] p-3 sm:p-5 rounded-xl text-sm">
+                <div className="flex justify-between">
+                  <h1 className="sm:text-lg text-base  font-bold">
+                    Number Of Items :
+                  </h1>
+                  <p>{cartItems.length}</p>
+                </div>
+                <div className="flex justify-between">
+                  <h1 className="sm:text-lg text-base font-bold ">
+                    Sub Total :
+                  </h1>
+                  <p className="flex gap-2">
+                    <strike>#</strike>
+                    {getCartTotal()}
+                  </p>
+                </div>
+                {/* <div className="flex justify-between">
                 <h1 className="text-lg font-bold">Delivery Fee :</h1>
                 <p>
-                  <strike>N</strike>
+                <strike>N</strike>
                   {3000}
                 </p>
               </div> */}
-              <div className="flex justify-between">
-                <h1 className="sm:text-lg text-base  font-bold">Total :</h1>
-                <p className="flex gap-2">
-                  <strike>#</strike>
-                  {getCartTotal()}
-                </p>
+                <div className="flex justify-between">
+                  <h1 className="sm:text-lg text-base  font-bold">Total :</h1>
+                  <p className="flex gap-2">
+                    <strike>#</strike>
+                    {getCartTotal()}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <Link to="/shop/checkout">
+                    <button
+                      type="submit"
+                      className="bg-slate-400 text-sm sm:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl mt-5"
+                    >
+                      PROCEED TO CHECKOUT
+                    </button>
+                  </Link>
+                </div>
               </div>
-              <div className="text-right">
-                <Link to="/shop/checkout">
-                  <button
-                    type="submit"
-                    className="bg-slate-400 text-sm sm:text-base px-4 py-1 text-white hover:bg-blue-400 rounded-xl mt-5"
-                  >
-                    PROCEED TO CHECKOUT
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </aside>
-        </>
+            </aside>
+          </div>
+        </main>
       ) : (
-        <div className="text-center m-auto my-20 h-full">
+        <div className="relative  pt-16 overflow-scroll h-[calc(100% - 80px)] text-center m-auto my-20 h-full">
           <div className="block m-auto w-full text-center">
             <img src={Cart} alt="" className="w-6/6 block text-center m-auto" />
           </div>
