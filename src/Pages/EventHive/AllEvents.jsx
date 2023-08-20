@@ -1,16 +1,14 @@
-import Navbar from "../../components/eventhive/Navbar";
-import Footer from "../../components/eventhive/Footer";
-import EventCard from "../../components/eventhive/EventCard";
-import { event } from "../../utils/data";
-import banner from "../../assets/event_images/all_event_banner.png";
-import { PiCaretDownBold } from "react-icons/pi";
-import RenderEvents from "../../components/eventhive/RenderEvents";
-import ScrollToTop from "../../components/eventhive/ScrollToTop";
+import Navbar from '../../components/eventhive/Navbar'
+import Footer from '../../components/eventhive/Footer'
+import EventCard from '../../components/eventhive/EventCard'
+import { event } from '../../utils/data'
+import banner from '../../assets/event_images/all_event_banner.png'
+import { PiCaretDownBold } from 'react-icons/pi'
+import RenderEvents from '../../components/eventhive/RenderEvents'
 
 const AllEvents = () => {
   return (
     <>
-      <ScrollToTop />
       <div className="white-bg">
         <header className="w-11/12 ml-auto flex justify-between gap-10 pt-28 items-center overflow-hidden">
           <div>
@@ -73,7 +71,7 @@ const AllEvents = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default AllEvents;
+export default AllEvents

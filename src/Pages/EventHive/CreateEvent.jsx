@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from '../../components/eventhive/Navbar'
-import ScrollToTop from '../../components/eventhive/ScrollToTop'
+import useApiPrivate from '../../Hooks/useApiPrivate'
 
 const CreateEvent = () => {
   const [title, setTitle] = useState('')
@@ -11,7 +11,60 @@ const CreateEvent = () => {
   const [endDate, setEndDate] = useState('')
   const [desc, setDesc] = useState('')
 
+  const apiPrivate = useApiPrivate()
+
+  useEffect(() => {
+    console.log(startDate)
+  }, [startDate])
+
   const submitRef = useRef(null)
+
+  const uploadEvent = async () => {
+    try {
+      const response = await apiPrivate.post(
+        '/events',
+        JSON.stringify({
+          event: {
+            name: {
+              html: '<p>Some text</p>',
+            },
+            description: {
+              html: '<p>Some text</p>',
+            },
+            start: {
+              timezone: 'UTC',
+              utc: '2018-05-12T02:00:00Z',
+            },
+            end: {
+              timezone: 'UTC',
+              utc: '2018-05-12T02:00:00Z',
+            },
+            currency: 'USD',
+            online_event: false,
+            organizer_id: '',
+            listed: false,
+            shareable: false,
+            invite_only: false,
+            show_remaining: true,
+            password: '12345',
+            capacity: 100,
+            is_reserved_seating: true,
+            is_series: true,
+            show_pick_a_seat: true,
+            show_seatmap_thumbnail: true,
+            show_colors_in_seatmap_thumbnail: true,
+            locale: 'de_AT',
+          },
+        })
+      )
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  uploadEvent()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,7 +72,6 @@ const CreateEvent = () => {
 
   return (
     <>
-      <ScrollToTop />
       <Navbar />
       <main className="w-7/12 max-w-3xl mx-auto py-10">
         <form onSubmit={handleSubmit}>

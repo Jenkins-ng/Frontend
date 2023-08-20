@@ -1,11 +1,12 @@
-import { Divider } from "@mui/material";
-import React from "react";
-import "@coreui/coreui/dist/css/coreui.min.css";
+import { Divider } from '@mui/material'
+import React from 'react'
+import '@coreui/coreui/dist/css/coreui.min.css'
 import {
   CCarousel,
   CCarouselCaption,
   CCarouselItem,
   CImage,
+<<<<<<< HEAD
 } from "@coreui/react";
 import CarouselText from "../../../utils/CarouselText";
 import Image from "../../../assets/Team/jybium.jpg";
@@ -38,6 +39,15 @@ export const Images = () => {
     </div>
   );
 };
+=======
+} from '@coreui/react'
+import CarouselText from '../../../utils/CarouselText'
+import Image from '../../../assets/Team/jybium.jpg'
+
+export const Images = () => {
+  return <img src={Image} alt="" />
+}
+>>>>>>> 3baf41f90921901822b6980931a1ecff3376baf2
 const Reviews = () => {
   return (
     <section>
@@ -93,7 +103,7 @@ const Reviews = () => {
         </CCarousel> */}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Reviews;
+export default Reviews

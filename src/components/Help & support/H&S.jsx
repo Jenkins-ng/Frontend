@@ -2,12 +2,10 @@ import React from "react";
 import SectionThree from "../Landing page/SectionThree/SectionThree";
 import Head from "../Landing page/Header/Head";
 import Foot from "../Landing page/Footer/foot";
-import ScrollToTop from "../eventhive/ScrollToTop";
 
 const HelpSupport = () => {
   return (
     <main>
-      <ScrollToTop />
       <Head />
       <div className="absolute top-[100px] left-0 w-full">
         <div className="text-slate-400 text-xl text-center top-[100px]">
