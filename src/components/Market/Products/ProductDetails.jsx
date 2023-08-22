@@ -32,6 +32,7 @@ const ProductDetails = () => {
         // console.log(error.response);
       }
     }
+    // setTimeout(fetch, 1000000);
     fetch();
   }, []);
 
@@ -58,8 +59,8 @@ const ProductDetails = () => {
   return (
     <section className=" relative pt-10 overflow-scroll h-[calc(100% - 80px)] Hide">
       {!product ? (
-        <div className="text-center pt-20 my-20 m-auto">
-          <Spinner size="xl" />
+        <div className="text-center relative pt-10 overflow-scroll h-[calc(100% - 80px)] Hide pt-20 my-20 m-auto">
+          <Spinner size="2xl" />
         </div>
       ) : (
         <section className="w-[90%] m-auto mb-10">
@@ -151,7 +152,7 @@ const ProductDetails = () => {
           ))}
         </section>
       )}
-      <div className="w-[90%] m-auto">
+      <div className="w-[90%] pt-10 m-auto">
         <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3 mt-10">
           Related Items
         </h1>

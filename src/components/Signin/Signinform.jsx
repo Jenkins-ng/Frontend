@@ -6,6 +6,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../eventhive/Preloader";
 import notifyError from "../../utils/notifyError";
+import notifySuccess from "../../utils/notifySuccess";
 import api from "../../utils/api";
 import { setCookie } from "../../utils/cookie";
 import useAuth from "../../Hooks/useAuth";
@@ -37,13 +38,13 @@ const Signinform = () => {
       const { token } = response.data.authorisation;
       setCookie("token", token, 1);
       setAuth({ ...user, token });
-      console.log(user);
-      console.log(typeof user.is_admin);
+
       if (user.is_admin) {
         history("/admin/dashboard");
       } else {
         history("/event/all-events");
       }
+      notifySuccess("Login Successfully!");
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message);
     } finally {

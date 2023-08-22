@@ -58,7 +58,7 @@ const Wrapper = (props) => {
               </Link>
             </li>
             <div>
-              <li onClick={RevealProduct} className="cursor-pointer">
+              <li onClick={RevealProduct} className="cursor-pointer gap-5">
                 <span className="material-symbols-outlined">inventory</span>
                 <p>Products</p>
               </li>

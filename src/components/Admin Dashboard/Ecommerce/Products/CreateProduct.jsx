@@ -11,6 +11,12 @@ const CreateProduct = () => {
   // THE SELECTED IMAGE
   const [SentImage, setSentImage] = useState(null);
 
+  // THE SELECTED CATEGORY TO BE CAHNGED
+  const [changedCategory, setChangedCategory] = useState("");
+
+  // THE NEW CATEGORY NAME
+  const [NewCategory, setNewCategory] = useState("");
+
   // THIS IS THE CATEGORY TO BE CREATED
   const [category, setcategory] = useState("");
 
@@ -34,19 +40,6 @@ const CreateProduct = () => {
     console.log(selectedCategory);
   };
 
-  // FUNCTION FOR THE CHOSEN PRODUCT IMAGE
-  // const ProductImage = (event) => {
-  //   const target = event.target;
-  //   if (target && target.files) {
-  //     const file = target.files[0];
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = (e) => {
-  //       const fileContents = e.target?.result;
-  //       setImage(fileContents);
-  //     };
-  //   }
-  // };
   const ProductImage = (e) => {
     const img = {
       preview: URL.createObjectURL(e.target.files[0]),
@@ -55,16 +48,6 @@ const CreateProduct = () => {
     setImage(img);
     console.log(Image);
   };
-  // const ProductImage = (e) => {
-  //   const selectedImage = e.target.files[0];
-  //   if (selectedImage) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       setImage(reader.result);
-  //     };
-  //     reader.readAsDataURL(selectedImage);
-  //   }
-  // };
 
   // FUNCTION THAT RETRIEVES CREATED PRODUCT EACH TIME A NEW ONE IS PRODUCED
   useEffect(() => {
@@ -102,20 +85,10 @@ const CreateProduct = () => {
     e.preventDefault();
     const data = new FormData();
     data.append("category_id", Number(selectedCategory));
-    data.append("image", Image.data);
+    data.append("image", Image.data); // what could be wrong here?
     data.append("title", Title);
     data.append("description", Description);
     data.append("price", Price);
-    // const data = {
-    //   category_id: Number(selectedCategory),
-    //   image: Image.data,
-    //   title: Title,
-    //   description: Description,
-    //   price: Price,
-    // };
-    console.log(typeof data.image);
-    console.log(typeof Image);
-    console.log(Image.data);
 
     try {
       const response = await api.post("/products", data, {
@@ -125,9 +98,31 @@ const CreateProduct = () => {
       });
       const result = await response.data;
       notifySuccess(result.message);
-      // if (result.status === 201) {
-      //   notifySuccess("Product created Successfully!");
-      // }
+      notifySuccess("Product created Successfully!");
+
+      console.log(result);
+    } catch (error) {
+      console.log(error.response.status);
+      if (error.response.status === 401) {
+        navigate("/signin");
+      }
+      notifyError(error.response.data.message);
+    }
+  };
+
+  // FUNCTION TO CHANGE CATEGORY NAME
+  const ChangeCategory = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.patch(
+        `/category/${changedCategory}`,
+        NewCategory
+      );
+      const result = await response.data;
+      console.log(changedCategory);
+      notifySuccess("Category Edited Successfully!");
+      setChangedCategory("");
+      setNewCategory("");
       console.log(result);
     } catch (error) {
       console.log(error.response.status);
@@ -144,10 +139,12 @@ const CreateProduct = () => {
 
         {/* TO CREATE A CATEGORY */}
 
-        <section>
-          <h1 className="text-slate-400 font-bold text-xl">CREATE CATEGORY</h1>
-          <div className="my-3">
-            <form onSubmit={CreateCategory}>
+        <section className="flex justify-between">
+          <div>
+            <h1 className="text-slate-400 font-bold text-xl">
+              CREATE CATEGORY
+            </h1>
+            <form onSubmit={CreateCategory} className="my-3">
               <div className="w-3/6">
                 <label
                   htmlFor="category"
@@ -162,7 +159,7 @@ const CreateProduct = () => {
                     onChange={(e) => {
                       setcategory(e.target.value);
                     }}
-                    className="px-4 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                    className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
                   />
                 </label>
               </div>
@@ -175,6 +172,64 @@ const CreateProduct = () => {
                 </button>
               </div>
             </form>
+          </div>
+          <div>
+            <h1 className="text-slate-400 font-bold text-xl">EDIT CATEGORY</h1>
+            <div className="flex justify-between items-start">
+              <label
+                htmlFor="category"
+                className="text-slate-400 font-bold grid gap-2 my-3"
+              >
+                CATEGORY :
+                <div>
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setChangedCategory(e.target.value);
+                      console.log(changedCategory);
+                    }}
+                    className="px-4 text-base py-[3px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
+                  >
+                    {thecategory.map((cat) => (
+                      <option value={cat.id} key={cat.id}>
+                        {cat.category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </label>
+
+              <form onSubmit={ChangeCategory} className="my-3">
+                <div className="w-4/6">
+                  <label
+                    htmlFor="category"
+                    className="text-slate-400 font-bold grid gap-2"
+                  >
+                    NEW CATEGORY:
+                    <input
+                      type="text"
+                      name="category"
+                      id="category"
+                      value={NewCategory}
+                      onChange={(e) => {
+                        setNewCategory(e.target.value);
+                      }}
+                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                    />
+                  </label>
+                </div>
+                <div className="text-right w-full">
+                  <button
+                    type="submit"
+                    className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
+                  >
+                    EDIT CATEGORY
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </section>
 
@@ -201,27 +256,11 @@ const CreateProduct = () => {
                       }}
                       name="title"
                       id="title"
-                      className="px-4 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
                     />
                   </label>
                 </div>
-                <div className="w-3/6">
-                  <label
-                    htmlFor="description"
-                    className="text-slate-400 font-bold grid gap-2"
-                  >
-                    DESCRIPTION:
-                    <input
-                      type="text"
-                      name="description"
-                      id="descripton"
-                      onChange={(e) => {
-                        setDescription(e.target.value);
-                      }}
-                      className="px-4 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-                    />
-                  </label>
-                </div>
+
                 <div className="w-3/6">
                   <label
                     htmlFor="category"
@@ -257,7 +296,7 @@ const CreateProduct = () => {
                       onChange={(e) => {
                         setPrice(e.target.value);
                       }}
-                      className="px-4 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
                     />
                   </label>
                 </div>
@@ -277,7 +316,7 @@ const CreateProduct = () => {
                     id="image"
                     onChange={ProductImage}
                     accept="image/*"
-                    className="px-4 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full bg-slate-400"
+                    className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full bg-slate-400"
                   />
                 </label>
               </div>
@@ -294,6 +333,33 @@ const CreateProduct = () => {
                 <p className="text-red-600 text-lg">No Image Selected</p>
               )}
             </section>
+            <div className="w-5/6">
+              <label
+                htmlFor="description"
+                className="text-slate-400 font-bold grid gap-2"
+              >
+                DESCRIPTION:
+                {/* <input
+                      type="text"
+                      name="description"
+                      id="descripton"
+                      onChange={(e) => {
+                        setDescription(e.target.value);
+                      }}
+                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                    /> */}
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  value={Description}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                ></textarea>
+              </label>
+            </div>
             <div className="text-right w-5/6">
               <button
                 type="submit"
