@@ -1,15 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../Context/Cart";
+import { useNavigate } from "react-router-dom";
+import { apiPrivate as api } from "../../../utils/api";
+import notifyError from "../../../utils/notifyError";
+import notifySuccess from "../../../utils/notifySuccess";
 
 const Checkout = () => {
-  const { getCartTotal } = useContext(CartContext);
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [state, setState] = useState("");
+  const navigate = useNavigate();
+
+  const Submit = async (e) => {
+    e.preventDefault();
+    const data = { phone, address, state };
+
+    try {
+      const response = await api.post("/checkout", data, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+      const result = response.data;
+      console.log(data);
+      notifySuccess(response.data.message);
+      if (response.data.message === "cart is empty") navigate("/shop/products");
+    } catch (error) {
+      notifyError(error.response?.data?.message);
+      console.log(error);
+    }
+  };
+
+  const GoBack = (e) => {
+    e.preventDefault();
+    navigate("/shop/cart");
+  };
+
+  // const { getCartTotal } = useContext(CartContext);
   return (
-    <section className="my-20 w-5/6 m-auto Hide">
-      <h2 className="font-bold text-blue-400 mb-4 text-2xl w-5/6 ">
+    <section className="my-20 w-5/6 md:w-[90%] m-auto relative pt-24 overflow-scroll h-[calc(100% - 80px)] Hide Hide grid gap-5">
+      <h2 className="font-bold text-blue-400 mb- text-2xl w-5/6 ">
         BILLING DETAILS
       </h2>
-      <form>
-        <div className="grid grid-flow-row md:grid-cols-3 my-10 w-5/6 md:w-full m-auto">
+      <form onSubmit={Submit}>
+        <div className="grid grid-flow-row justify-between md:grid-cols-3 my-10 w-5/6 md:w-full m-auto">
           {/* <div>
             <label htmlFor="phoneNumber">
               Email Address
@@ -25,6 +57,8 @@ const Checkout = () => {
               <input
                 type="tel"
                 name="phoneNumber"
+                value={phone}
+                onChange={(e) => setPhone(Number(e.target.value))}
                 id="PhoneNumber"
                 className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-auto font-normal"
               />
@@ -40,6 +74,8 @@ const Checkout = () => {
                 type="address"
                 name="address"
                 id="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-auto"
               />
             </label>
@@ -54,13 +90,15 @@ const Checkout = () => {
                 type="text"
                 name="state"
                 id="state"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
                 className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-auto"
               />
             </label>
           </div>
         </div>
-        <p className="my-5 font-bold">Total amount: #{getCartTotal()}</p>
-        <div className="flex justify-between">
+        {/* <p className="my-5 font-bold">Total amount: #{getCartTotal()}</p> */}
+        <div className="flex justify-between mt-5">
           <button
             type="submit"
             className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"
@@ -68,7 +106,8 @@ const Checkout = () => {
             Place Order
           </button>
           <button
-            type="submit"
+            type="button"
+            onClick={GoBack}
             className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"
           >
             Cancel

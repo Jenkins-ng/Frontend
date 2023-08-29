@@ -23,7 +23,10 @@ export const TableSample = ({ item }) => {
       </Table.Cell>
       <Table.Cell>{item.price}</Table.Cell>
       <Table.Cell>
-        <Link className="font-medium text-blue-400 hover:underline dark:text-cyan-500">
+        <Link
+          to={`/admin/ecommerce/product/edit/${item.id}`}
+          className="font-medium text-blue-400 hover:underline dark:text-cyan-500"
+        >
           <p>Edit</p>
         </Link>
       </Table.Cell>
@@ -39,23 +42,31 @@ export const TableSample = ({ item }) => {
 const Products = () => {
   const [product, setProduct] = useState([]);
 
-  useEffect(() => {
-    async function fetch() {
-      try {
-        const response = await api.get("/products");
-        const result = await response.data.data;
-        setProduct(result);
-        console.log(result);
-      } catch (error) {
-        console.log(error.response);
-        if (error.message === "Network Error") {
-          notifyError(error.message);
-          setIsError(true);
-        }
+  async function fetch() {
+    try {
+      const response = await api.get("/products");
+      const result = await response.data.data;
+      setProduct(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error.response);
+      if (error.message === "Network Error") {
+        notifyError(error.message);
+        setIsError(true);
       }
     }
+  }
+  useEffect(() => {
     fetch();
   }, []);
+
+  // const Fetch = async () =>{
+  //   try {
+  //     const response = await api.delete("/")
+  //   } catch (error) {
+
+  //   }
+  // }
 
   return (
     <Wrapper>

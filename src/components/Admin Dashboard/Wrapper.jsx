@@ -78,7 +78,7 @@ const Wrapper = (props) => {
                     <p>Create Product</p>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to="/admin/ecommerce/product/edit"
                     className="flex items-center gap-5"
@@ -86,7 +86,7 @@ const Wrapper = (props) => {
                     <span className="material-symbols-outlined">edit</span>
                     <p>Edit Product</p>
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     to="/admin/ecommerce/product"

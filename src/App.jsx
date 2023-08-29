@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AuthProvider from "./context/AuthContext";
 import ScrollRestore from "./components/ScrollRestore";
@@ -50,7 +52,7 @@ import ProductByCategory from "./components/Market/Products/ProductByCategory";
 import Cart from "./components/Market/Cart/Cart";
 import Checkout from "./components/Market/Checkout Page/Checkout";
 import AllProducts from "./components/Market/Products/AllProducts";
-import Outpage from "./components/Market/Checkout/Checkout";
+// import Outpage from "./components/Market/Checkout/Checkout";
 import MarketLayout from "./components/Market/Layout";
 
 //////////////////////////////////////// ADMIN DASHBOARD ////////////////////////////////////////////
@@ -125,7 +127,7 @@ const router = createBrowserRouter([
       { path: "/event/all-events", element: <AllEvents /> },
 
       {
-        path: "/",
+        path: "/event",
         element: <ProtectedRoute />,
         children: [
           { path: "/event/create-event", element: <CreateEvent /> },
@@ -141,45 +143,46 @@ const router = createBrowserRouter([
               { path: "/event/dashboard/profile", element: <Profile /> },
             ],
           },
-          ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
+        ],
+      },
+      ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
+      {
+        path: "/admin",
+        element: <AdminRoute />,
+        element: <ProtectedRoute />,
+        children: [
+          { path: "/admin/dashboard", element: <Dashboard /> },
+          { path: "/admin/event", element: <Event /> },
+          { path: "/admin/inbox", element: <Inbox /> },
+          { path: "/admin/profile", element: <AdminProfile /> },
           {
-            path: "/admin",
-            element: <AdminRoute />,
+            path: "/admin/ecommerce",
             children: [
-              { path: "/admin/dashboard", element: <Dashboard /> },
-              { path: "/admin/event", element: <Event /> },
-              { path: "/admin/inbox", element: <Inbox /> },
-              { path: "/admin/profile", element: <AdminProfile /> },
+              { path: "/admin/ecommerce/overview", element: <Overview /> },
               {
-                path: "/admin/ecommerce",
+                path: "/admin/ecommerce/product",
                 children: [
-                  { path: "/admin/ecommerce/overview", element: <Overview /> },
                   {
                     path: "/admin/ecommerce/product",
-                    children: [
-                      {
-                        path: "/admin/ecommerce/product",
-                        element: <Products />,
-                      },
-                      {
-                        path: "/admin/ecommerce/product/create",
-                        element: <CreateProduct />,
-                      },
-                      {
-                        path: "/admin/ecommerce/product/edit",
-                        element: <EditProduct />,
-                      },
-                    ],
+                    element: <Products />,
                   },
                   {
-                    path: "/admin/ecommerce/order",
-                    children: [
-                      { path: "/admin/ecommerce/order/", element: <Order /> },
-                      {
-                        path: "/admin/ecommerce/order-detail",
-                        element: <OrderDetails />,
-                      },
-                    ],
+                    path: "/admin/ecommerce/product/create",
+                    element: <CreateProduct />,
+                  },
+                  {
+                    path: "/admin/ecommerce/product/edit/:id",
+                    element: <EditProduct />,
+                  },
+                ],
+              },
+              {
+                path: "/admin/ecommerce/order",
+                children: [
+                  { path: "/admin/ecommerce/order/", element: <Order /> },
+                  {
+                    path: "/admin/ecommerce/order-detail",
+                    element: <OrderDetails />,
                   },
                 ],
               },
@@ -210,7 +213,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/shop",
-        // element: <ProtectedRoute />,
+        element: <ProtectedRoute />,
         element: <MarketLayout />,
         children: [
           //////////////////////////////////////// CART ///////////////////////////////////////
@@ -220,7 +223,7 @@ const router = createBrowserRouter([
           ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
           {
             path: "/shop/checkout",
-            element: <Outpage />,
+            element: <Checkout />,
           },
         ],
       },
@@ -247,10 +250,15 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { staleTime: 60 * 1000 } },
+  });
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 };
 

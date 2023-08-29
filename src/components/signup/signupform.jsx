@@ -109,6 +109,9 @@ const Signupform = () => {
       try {
         const response = await api.post("/register", data);
         notifySuccess(response.data.status);
+        notifySuccess(
+          "Kindly Verify Your Mail. A Link Has Been Sent To Your Mail."
+        );
         console.log(response.data.status);
         navigate("/signin");
       } catch (error) {

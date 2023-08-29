@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 // import Products from "../Data/Products";
 import { apiPrivate as api } from "../../../utils/api";
 // import Foot from "../Home/Footer/Foot";
@@ -8,7 +9,9 @@ import Product from "./Product";
 
 const ProductByCategory = () => {
   const query = useParams();
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
   const parameter = query.category;
   console.log(parameter);
   // const data = Products.filter((product) => product.category === parameter);
@@ -19,7 +22,8 @@ const ProductByCategory = () => {
       try {
         const response = await api.get(`/products/category/${parameter}`);
         const result = await response.data.data;
-        setCategory([result]);
+        setCategory(result);
+        setIsLoading(false);
         console.log(category);
         console.log(result);
       } catch (error) {
@@ -39,8 +43,17 @@ const ProductByCategory = () => {
           {/* {category.map((data) => (
           <Product data={data} key={data.id} />
         ))} */}
-          {category === "" ? (
-            category.map((data) => <Product data={data} key={data.id} />)
+          {isLoading && (
+            <div className="text-center my-10 m-auto">
+              <Spinner size="xl" />
+            </div>
+          )}
+          {category ? (
+            <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between">
+              {category.map((data) => (
+                <Product data={data} key={data.id} />
+              ))}
+            </div>
           ) : (
             <p className="uppercase text-xl text-slate-500 font-bold text-center my-10">
               No Product Under this category

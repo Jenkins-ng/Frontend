@@ -25,17 +25,17 @@ const Event = () => {
       <div className="white-bg">
         {/* banner */}
         <div
-          className="w-11/12 z-10 mx-auto pl-14 pt-36 pb-14 relative  before:absolute before:top-0 before:left-0 before:bg-[url(/src/assets/event_images/event_banner.png)] before:rounded-lg before:bg-no-repeat before:bg-cover before:h-full before:w-full before:-z-20 after:absolute after:top-0 after:left-0 after:bg-[url(/src/assets/event_images/overlay.png)] after:rounded-lg after:w-full after:h-full after:-z-10"
+          className="w-11/12 z-10 m-auto sm:pl-14 pt-24 sm:pt-36 pb-14 relative  before:absolute before:top-0 before:left-0 before:bg-[url(/src/assets/event_images/event_banner.png)] before:rounded-lg before:bg-no-repeat before:bg-cover before:h-full before:w-full before:-z-20 after:absolute after:top-0 after:left-0 after:bg-[url(/src/assets/event_images/overlay.png)] after:rounded-lg after:w-full after:h-full after:-z-10"
           role="banner"
         >
           <Link
             to="/event"
-            className="bg-primary text-white rounded-md py-3 px-4 mx-auto absolute top-10 left-14 flex items-center"
+            className="bg-primary text-white rounded-md py-[6px] sm:py-3 px-3 sm:px-4 mx-auto absolute top-10 left-1 sm:left-14 flex items-center"
           >
-            <PiCaretLeftBold className="mr-2" size={20} />
+            <PiCaretLeftBold className="mr-2" size={18} />
             Back
           </Link>
-          <div className="w-11/12 grid sm:flex sm:justify-between">
+          <div className="w-11/12 mx-auto grid sm:flex sm:justify-between">
             <div className="text-white w-full sm:max-w-[50%]">
               <h1 className="text-6xl">Dream world wide in jakatra</h1>
               <h2 className="mt-10 mb-5">IIIT Sonepat</h2>

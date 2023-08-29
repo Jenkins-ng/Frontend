@@ -15,13 +15,13 @@ const Navbar = () => {
         ) : !isAuth ? (
           <>
             <Link
-              className="py-4 px-10 hover:text-primary duration-300"
+              className="sm:py-4 py-2 px-4 sm:px-10 hover:text-primary duration-300"
               to="/signin"
             >
               Login
             </Link>
             <Link
-              className="bg-primary rounded-md text-white py-2 px-5 hover:bg-white hover:text-primary"
+              className="bg-primary rounded-md text-white py-1 sm:py-2 px-3 sm:px-5 hover:bg-white hover:text-primary"
               to="/signup"
             >
               Signup

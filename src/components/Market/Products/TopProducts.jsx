@@ -8,7 +8,7 @@ import { apiPrivate as api } from "../../../utils/api";
 import { NavLink } from "react-router-dom";
 
 const TopProducts = () => {
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState();
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -40,12 +40,12 @@ const TopProducts = () => {
           SEE ALL
         </NavLink>
       </div>
-      {Data === "" ? (
+      {!Data ? (
         <div className="text-center my-10 m-auto">
           <Spinner size="xl" />
         </div>
       ) : (
-        <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
+        <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between">
           {Data.map((data) => (
             <Product data={data} key={data.id} />
           ))}

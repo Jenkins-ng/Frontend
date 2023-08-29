@@ -1,23 +1,50 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { Spinner } from "flowbite-react";
-import { useParams, useNavigate } from "react-router-dom";
 import { apiPrivate as api } from "../../../utils/api";
+import { useParams, useNavigate } from "react-router-dom";
 import notifySuccess from "../../../utils/notifySuccess";
 import notifyError from "../../../utils/notifyError";
 import { CartContext } from "../Context/Cart";
 import Product from "./Product";
+import { useMutation } from "@tanstack/react-query";
 
 const ImageUrl = "https://api.jenkins.ng/storage/";
 
 const ProductDetails = () => {
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState([]);
-  const [productCategory, setProductCategory] = useState([]);
+  const [product, setProduct] = useState();
+  const [item, setItem] = useState();
+  const [productCategory, setProductCategory] = useState();
   const category = useRef();
   const params = useParams();
   const history = useNavigate();
   const parameter = params.slug;
+
+  const Fetch = async (item) => {
+    const data = {
+      product_id: item.id,
+      quantity: quantity,
+    };
+    console.log(data);
+    try {
+      const response = await api.post("/cart/add", data);
+      const result = await response.data;
+      notifySuccess(result.message);
+      history("/shop/cart");
+      console.log(result);
+    } catch (error) {
+      notifyError(error.response.data.message);
+      if (error.response.status === 401) {
+        history("/signin");
+      }
+    }
+  };
+
+  // const { isLoading, mutate } = useMutation(
+  //   { mutationFn: Fetch },
+  //   { onSuccess: notifySuccess("Item Added Successfully!") }
+  // );
   // console.log(parameter);
 
   useEffect(() => {
@@ -43,7 +70,7 @@ const ProductDetails = () => {
           `/products/category/${category.current}`
         );
         const result = await response.data.data;
-        setProductCategory([result]);
+        setProductCategory(result);
         console.log(result);
       } catch (error) {
         // console.log(error.response);
@@ -56,18 +83,25 @@ const ProductDetails = () => {
   console.log(productCategory);
   console.log(category);
   // console.log(data);
+  // if (isLoading)
+  //   return (
+  //     <div>
+  //       <Spinner size={30} />
+  //     </div>
+  //   );
+
   return (
     <section className=" relative pt-10 overflow-scroll h-[calc(100% - 80px)] Hide">
       {!product ? (
         <div className="text-center relative pt-10 overflow-scroll h-[calc(100% - 80px)] Hide pt-20 my-20 m-auto">
-          <Spinner size="2xl" />
+          <Spinner size="xl" />
         </div>
       ) : (
         <section className="w-[90%] m-auto mb-10">
           {product.map((items) => (
             <div
               key={items.id}
-              className="md:flex justify-between items-center mt-20 rounded-lg gap-5"
+              className="md:flex justify-around items-center mt-20 rounded-lg gap-"
             >
               <div>
                 <div>
@@ -138,9 +172,10 @@ const ProductDetails = () => {
                       type="submit"
                       className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"
                       onClick={() => {
-                        addToCart(items, quantity);
-                        notifySuccess("Items added successfully!");
-                        history("/shop/product");
+                        // addToCart(items, quantity);
+                        // notifySuccess("Items added successfully!");
+                        // setItem(items);
+                        Fetch(items);
                       }}
                     >
                       Add To Cart
@@ -156,11 +191,13 @@ const ProductDetails = () => {
         <h1 className="text-xl md:text-2xl text-blue-400 font-bold my-3 mt-10">
           Related Items
         </h1>
-        <div>
-          {productCategory > 0 ? (
-            productCategory.map((product) => <Product data={product} />)
+        <div className="my-4 w-full m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between">
+          {productCategory ? (
+            productCategory.map((product) => (
+              <Product data={product} key={product.id} />
+            ))
           ) : (
-            <div className="text-center pt-5 m-auto">
+            <div className="text-center pt-5 w-1/2 m-auto">
               <Spinner size="xl" />
             </div>
           )}

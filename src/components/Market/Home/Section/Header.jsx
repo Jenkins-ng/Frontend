@@ -1,13 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Logo from "../../../Landing page/Header/Logo";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
 import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
 import { CartContext } from "../../Context/Cart";
 import useAuth from "../../../../Hooks/useAuth";
+import notifyError from "../../../../utils/notifyError";
+import { apiPrivate as api } from "../../../../utils/api";
+import notifySuccess from "../../../../utils/notifySuccess";
 
 export const Modal = () => {
-  const { auth, logout } = useAuth();
+  const Logout = async () => {
+    try {
+      const response = await api.get("/logout");
+      const result = response.data;
+      notifySuccess(result.message);
+    } catch (error) {
+      console.log(error);
+      notifyError(error.response.data.message);
+      if (error.response.status === 401) {
+        navigate("/signin");
+      }
+      // console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-full relative">
       <div className="absolute bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg">
@@ -25,7 +42,7 @@ export const Modal = () => {
             className="py-[4px] text-blue-400 hover:text-slate-500 font-medium"
             // onClick={logout}
           > */}
-          <button type="submit" onClick={logout}>
+          <button type="submit" onClick={Logout}>
             Logout
           </button>
           {/* </li> */}
@@ -36,24 +53,46 @@ export const Modal = () => {
 };
 
 export const Head = () => {
+  const navigate = useNavigate();
+  const { auth } = useAuth();
   const [profile, setProfile] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const [icon, seticon] = useState("Menu");
-  const [navbar, setNavbar] = useState(true);
+  const [navbar, setNavbar] = useState(false);
+  const [data, setData] = useState();
+
   const NavbarHandler = () => {
     setNavbar((prevstate) => !navbar);
-    if (navbar) {
+    if (!navbar) {
       seticon("close");
     } else seticon("menu");
     // seticon((prevstate) => !"Home" || "close");
   };
 
+  useEffect(() => {
+    const Fetch = async () => {
+      try {
+        const response = await api.get("/cart");
+        const result = response.data;
+        setData(result.cartItems);
+      } catch (error) {
+        console.log(error);
+        notifyError(error.response.data.message);
+        if (error.response.status === 401) {
+          navigate("/signin");
+        }
+        // console.log(error);
+      }
+    };
+    if (auth) Fetch();
+  }, []);
+
   const showProfile = () => {
     setProfile((prevstate) => !profile);
   };
 
-  const { cartItems } = useContext(CartContext);
+  // const { cartItems } = useContext(CartContext);
 
   return (
     <div className="flex fixed z-10 shadow-xl justify-between items-center px-3 sm:px-5 md:pl-3 py-[11px] sm:py-4 lg:py-3 w-full bg-white">
@@ -83,8 +122,8 @@ export const Head = () => {
       </div>
       <div
         className={`${
-          !navbar ? "grid" : "hidden"
-        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[68px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
+          navbar ? "grid" : "hidden"
+        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
       >
         <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide ">
           <ul className="text-blue-400 lg:flex block sm:grid gap-10  lg:gap-0 justify-between w-full">
@@ -130,7 +169,7 @@ export const Head = () => {
                 shopping_cart
               </span>
               <p className="absolute bg-red-600 px-[6px] py-[2px] rounded-full top-0 right-0 text-xs text-white">
-                {cartItems?.length}
+                {data ? data.length : 0}
               </p>
             </div>
           </Link>

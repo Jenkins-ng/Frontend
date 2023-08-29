@@ -15,7 +15,7 @@ const SectionThree = () => {
   };
 
   return (
-    <Sign className="h-full bg-blue-100  px-0 py-0 justify-between md:gap-[50px] my-20 w-full">
+    <Sign className=" bg-blue-100  px-0 py-0 justify-between md:gap-[50px] my-20 w-full">
       <div className="xl:w-[85%] w-[90%] m-auto block lg:flex justify-around gap-10">
         <div className="pb-5 md:py-2 grid place-items-center place-content-center flex-col items-center">
           <div className="grid gap-1 sm:gap-4 my-6">

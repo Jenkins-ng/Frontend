@@ -10,8 +10,8 @@ const Logo = ({ size, color }) => {
         color ? color : "text-black"
       }`}
     >
-      <div className="flex items-center gap-2">
-        <img src={Jenkin} alt="" className="block w-[100px]" />{" "}
+      <div className="flex items-center gap-1 sm:gap-2">
+        <img src={Jenkin} alt="" className="block w-[50px] sm:w-[100px]" />{" "}
         <PurpleText text="Events" />
       </div>
     </Link>

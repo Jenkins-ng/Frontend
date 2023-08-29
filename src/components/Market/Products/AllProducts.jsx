@@ -6,7 +6,7 @@ import Product from "./Product";
 import { Spinner } from "flowbite-react";
 
 const AllProducts = () => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState();
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -51,13 +51,13 @@ const AllProducts = () => {
             Network Error. Make sure you are connected to the internet.
           </p>
         )} */}
-      {!product > 0 ? (
+      {!product ? (
         <div className="text-center pt-20 my-10 mt-28 m-auto">
           <Spinner size="xl" />
         </div>
       ) : (
         <div className="flex flex-wrap  w-[90%] m-auto mb-10">
-          <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-between">
+          <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between">
             {product.map((data) => (
               <Product data={data} key={data.id} />
             ))}

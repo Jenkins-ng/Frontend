@@ -1,3 +1,5 @@
+import { apiPrivate as api } from "../../../utils/api";
+
 const data = [
   {
     id: 1,
@@ -80,3 +82,10 @@ const data = [
 ];
 
 export default data;
+
+export const Categories = async () => {
+  const response = await api.get("/category");
+  const result = await response.data;
+
+  return result;
+};

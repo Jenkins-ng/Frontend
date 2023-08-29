@@ -73,7 +73,7 @@ const Footer = () => {
           Subscribe
         </button>
       </form>
-      <div className="flex justify-center gap-5 text-slate-500">
+      <div className=" grid sm:flex justify-center gap-5 text-slate-500">
         {links.map(({ text, url }, i) => {
           return (
             <Link key={i} to={url}>

@@ -1,22 +1,55 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../Context/Cart";
+import { apiPrivate as api } from "../../../utils/api";
 import CheckoutProduct from "./CheckoutProduct";
 import Cart from "../../../assets/cart.png";
 import { Link } from "react-router-dom";
 import PopUpModal from "../../../utils/PopupModal";
+import { useQuery } from "@tanstack/react-query";
+import { Spinner } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+import notifyError from "../../../utils/notifyError";
 
 const Checkout = () => {
-  const { cartItems, clearCart, getCartTotal, updateCart } =
-    useContext(CartContext);
+  // const { cartItems, clearCart, getCartTotal, updateCart } =
+  //   useContext(CartContext);
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
   const [openModal, setOpenModal] = useState();
   const [showModal, setShowModal] = useState(false);
 
-  console.log(cartItems);
+  const Fetch = async () => {
+    try {
+      const response = await api.get("/cart");
+      const result = response.data;
+      setData(result.cartItems);
+    } catch (error) {
+      console.log(error);
+      notifyError(error.response?.data?.message);
+      if (error.response.status === 401) {
+        navigate("/signin");
+      }
+      // console.log(error);
+    }
+  };
+  useEffect(() => {
+    Fetch();
+  }, []);
+
+  // const { data, isLoading, error } = useQuery({
+  //   queryKey: ["cart"],
+  //   queryFn: Fetch,
+  // });
+
+  // console.log(data);
+
+  // if (isLoading) return <Spinner size="xl" />;
+  // if (error) return <p>Error Loading Cart Content.</p>;
 
   return (
     <main className="relative top-[6px] pt-10 overflow-scroll h-[calc(100% - 80px)] Hide">
-      {cartItems?.length > 0 ? (
-        <main className="relative md:flex grid">
+      {data.length !== 0 ? (
+        <main className="relative md:flex grid min-h-screen">
           <section className="lg:w-8/12 md:6/12 relative sm:w-10/12 sm:m-auto md:m-0 w-full px-5 pl-5">
             {/* {showModal ? <PopUpModal /> : ""} */}
             <div className="my-5">
@@ -24,8 +57,12 @@ const Checkout = () => {
                 YOUR CART
               </h2>
               <div className="md:flex m-auto flex-wrap justify-between">
-                {cartItems.map((item) => (
-                  <CheckoutProduct item={item} key={item.id} />
+                {data.map((item) => (
+                  <CheckoutProduct
+                    item={item}
+                    key={item.product.id}
+                    onAdd={Fetch}
+                  />
                 ))}
               </div>
             </div>
@@ -38,7 +75,7 @@ const Checkout = () => {
               >
                 UPDATE CART
               </button> */}
-              <button
+              {/* <button
                 type="submit"
                 className="bg-slate-400 text-xs sm:text-sm md:text-base px-4 py-[4px] text-white hover:bg-blue-400 rounded-xl"
                 onClick={() => {
@@ -47,10 +84,10 @@ const Checkout = () => {
                 }}
               >
                 CLEAR CART
-              </button>
+              </button> */}
             </div>
             <div>
-              {showModal ? (
+              {/* {showModal ? (
                 <PopUpModal
                   openModal={openModal}
                   setOpenModal={setOpenModal}
@@ -58,11 +95,11 @@ const Checkout = () => {
                 />
               ) : (
                 ""
-              )}
+              )} */}
             </div>
           </section>
-          <div className="relative">
-            <aside className=" m-auto lg:w-4/12 md:6/12 md:fixed flex flex-col right-0 px-5">
+          <div className="relative lg:w-4/12 inline-block">
+            <aside className=" m-auto lg:w-4/12 md:6/12 md:fixed flex flex-col right-0 px-5 ">
               <h2 className="text-blue-400 md:text-2xl text-lg sm:text-xl mb-4 font-bold mt-12">
                 CART TOTAL
               </h2>
@@ -71,7 +108,7 @@ const Checkout = () => {
                   <h1 className="sm:text-lg text-base  font-bold">
                     Number Of Items :
                   </h1>
-                  <p>{cartItems.length}</p>
+                  <p>{data.length}</p>
                 </div>
                 <div className="flex justify-between">
                   <h1 className="sm:text-lg text-base font-bold ">
@@ -79,21 +116,25 @@ const Checkout = () => {
                   </h1>
                   <p className="flex gap-2">
                     <strike>#</strike>
-                    {getCartTotal()}
+                    {data
+                      .map((item) => item.product.price * item.quantity)
+                      .reduce((accu, value, i) => accu + value, 0)}
                   </p>
                 </div>
-                {/* <div className="flex justify-between">
-                <h1 className="text-lg font-bold">Delivery Fee :</h1>
-                <p>
-                <strike>N</strike>
-                  {3000}
-                </p>
-              </div> */}
+                <div className="flex justify-between">
+                  <h1 className="text-lg font-bold">Delivery Fee :</h1>
+                  <p className="flex gap-2">
+                    <strike>#</strike>
+                    {3000}
+                  </p>
+                </div>
                 <div className="flex justify-between">
                   <h1 className="sm:text-lg text-base  font-bold">Total :</h1>
                   <p className="flex gap-2">
                     <strike>#</strike>
-                    {getCartTotal()}
+                    {data
+                      .map((item) => item.product.price * item.quantity)
+                      .reduce((accu, value, i) => accu + value, 0) + 3000}
                   </p>
                 </div>
                 <div className="text-right">
@@ -111,7 +152,7 @@ const Checkout = () => {
           </div>
         </main>
       ) : (
-        <div className="relative  pt-16 overflow-scroll h-[calc(100% - 80px)] text-center m-auto my-20 h-full">
+        <div className="relative  pt-16 overflow-scroll h-[calc(100% - 80px)] text-center m-auto my-20 h-full Hide">
           <div className="block m-auto w-full text-center">
             <img src={Cart} alt="" className="w-6/6 block text-center m-auto" />
           </div>
