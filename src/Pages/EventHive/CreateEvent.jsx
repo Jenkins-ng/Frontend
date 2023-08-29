@@ -18,7 +18,7 @@ const CreateEvent = () => {
   }, [startDate])
 
   const submitRef = useRef(null)
-
+  // testing apiEndpoint
   const uploadEvent = async () => {
     try {
       const response = await apiPrivate.post(
@@ -27,33 +27,21 @@ const CreateEvent = () => {
           event: {
             name: {
               html: '<p>Some text</p>',
+              text: 'hello',
             },
             description: {
               html: '<p>Some text</p>',
+              text: 'hello',
             },
             start: {
               timezone: 'UTC',
-              utc: '2018-05-12T02:00:00Z',
+              utc: '2023-08-12T02:00:00Z',
             },
             end: {
               timezone: 'UTC',
-              utc: '2018-05-12T02:00:00Z',
+              utc: '2023-09-12T02:00:00Z',
             },
             currency: 'USD',
-            online_event: false,
-            organizer_id: '',
-            listed: false,
-            shareable: false,
-            invite_only: false,
-            show_remaining: true,
-            password: '12345',
-            capacity: 100,
-            is_reserved_seating: true,
-            is_series: true,
-            show_pick_a_seat: true,
-            show_seatmap_thumbnail: true,
-            show_colors_in_seatmap_thumbnail: true,
-            locale: 'de_AT',
           },
         })
       )

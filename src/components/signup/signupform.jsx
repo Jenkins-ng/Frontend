@@ -104,7 +104,6 @@ const Signupform = () => {
         password: pswd,
         password_confirm: confirmPswd,
       };
-      console.log(data);
       // submit to api
       try {
         const response = await api.post("/register", data);
@@ -115,7 +114,6 @@ const Signupform = () => {
         console.log(response.data.status);
         navigate("/signin");
       } catch (error) {
-        console.log(error);
         notifyError(
           error.response ? error.response.data.message : error.message
         );
