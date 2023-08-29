@@ -1,130 +1,127 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import Logo from "../Landing page/Header/Logo";
-import Preloader from "../eventhive/Preloader";
-import notifyError from "../../utils/notifyError";
-import api from "../../utils/api";
-import Modal from "../../utils/Modal";
-import useAuth from "../../Hooks/useAuth";
-import notifySuccess from "../../utils/notifySuccess";
+import React, { useState, useRef, useEffect } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import Logo from '../Landing page/Header/Logo'
+import Preloader from '../eventhive/Preloader'
+import notifyError from '../../utils/notifyError'
+import api from '../../utils/api'
+import Modal from '../../utils/Modal'
+import useAuth from '../../Hooks/useAuth'
+import notifySuccess from '../../utils/notifySuccess'
 
-const email_regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
+const email_regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
 
 const Signupform = () => {
   //////////////////////////////// Terms and condition modal //////////////////////////////
-  const [openModal, setOpenModal] = useState();
-  const [showTerms, setShowTerms] = useState(false);
+  const [openModal, setOpenModal] = useState()
+  const [showTerms, setShowTerms] = useState(false)
 
   /////////////////////////////// Other States ///////////////////////////////////
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pswd, setPswd] = useState("");
-  const [confirmPswd, setConfirmPswd] = useState("");
-  const [formErrors, setFormErrors] = useState({});
-  const [isChecked, setIsChecked] = useState(false);
-  const [show, setShow] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { isAuth } = useAuth();
-  const [display, setdisplay] = useState(true);
-  const [icon, setIcon] = useState("visibility");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [pswd, setPswd] = useState('')
+  const [confirmPswd, setConfirmPswd] = useState('')
+  const [formErrors, setFormErrors] = useState({})
+  const [isChecked, setIsChecked] = useState(false)
+  const [show, setShow] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const { isAuth } = useAuth()
+  const [display, setdisplay] = useState(true)
+  const [icon, setIcon] = useState('visibility')
 
   //  reset formErrors when input changes
   useEffect(() => {
-    setFormErrors({});
-  }, [name, email, pswd, confirmPswd]);
+    setFormErrors({})
+  }, [name, email, pswd, confirmPswd])
 
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const pswdRef = useRef(null);
-  const confirmPswdRef = useRef(null);
+  const nameRef = useRef(null)
+  const emailRef = useRef(null)
+  const pswdRef = useRef(null)
+  const confirmPswdRef = useRef(null)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const validateInputs = () => {
-    const err = {};
+    const err = {}
 
     if (confirmPswd !== pswd) {
-      confirmPswdRef.current.focus();
-      err.confirmPswd = "password does not match";
+      confirmPswdRef.current.focus()
+      err.confirmPswd = 'password does not match'
     }
     if (pswd.length < 8) {
-      pswdRef.current.focus();
-      err.pswd = "password should atleast 8 characters";
+      pswdRef.current.focus()
+      err.pswd = 'password should atleast 8 characters'
     }
     if (!pswd) {
-      pswdRef.current.focus();
-      err.pswd = "password is required";
+      pswdRef.current.focus()
+      err.pswd = 'password is required'
     }
     if (!email_regex.test(email)) {
-      emailRef.current.focus();
-      err.email = "email is invalid";
+      emailRef.current.focus()
+      err.email = 'email is invalid'
     }
     if (!email) {
-      emailRef.current.focus();
-      err.email = "email is required";
+      emailRef.current.focus()
+      err.email = 'email is required'
     }
     if (name.length < 4) {
-      nameRef.current.focus();
-      err.name = "name should atleast four letters";
+      nameRef.current.focus()
+      err.name = 'name should atleast four letters'
     }
     if (!name) {
-      nameRef.current.focus();
-      err.name = "name is required";
+      nameRef.current.focus()
+      err.name = 'name is required'
     }
-    setFormErrors(err);
-    return err;
-  };
+    setFormErrors(err)
+    return err
+  }
 
   const SetTerms = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setShowTerms((prev) => !showTerms);
-    setOpenModal("dismissible");
-  };
+    setShowTerms((prev) => !showTerms)
+    setOpenModal('dismissible')
+  }
 
   const showPassword = (e) => {
-    setdisplay((prevstate) => !display);
-    e.preventDefault();
+    setdisplay((prevstate) => !display)
+    e.preventDefault()
     if (display) {
-      setIcon("visibility_off");
+      setIcon('visibility_off')
     } else {
-      setIcon("visibility");
+      setIcon('visibility')
     }
-  };
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    validateInputs();
-    const result = validateInputs();
+    e.preventDefault()
+    validateInputs()
+    const result = validateInputs()
     if (!Object.keys(result).length) {
-      setIsLoading(true);
+      setIsLoading(true)
       const data = {
         name,
         email,
         password: pswd,
         password_confirm: confirmPswd,
-      };
-      console.log(data);
+      }
       // submit to api
       try {
-        const response = await api.post("/register", data);
-        notifySuccess(response.data.status);
-        console.log(response.data.status);
-        navigate("/signin");
+        const response = await api.post('/register', data)
+        notifySuccess(response.data.status)
+        navigate('/signin')
       } catch (error) {
-        console.log(error);
         notifyError(
           error.response ? error.response.data.message : error.message
-        );
+        )
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
-  };
+  }
 
   // go back to home if user is logged in
   if (isAuth) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />
   }
 
   return (
@@ -188,13 +185,13 @@ const Signupform = () => {
             </label>
             <div className="relative">
               <input
-                type={display ? "password" : "text"}
+                type={display ? 'password' : 'text'}
                 id="password"
                 onChange={(e) => setPswd(e.target.value)}
                 className="sm:px-4 text-base py-[4px] border-slate-500 mt-[3px] outline-none border-2 rounded-xl text-slate-500 w-full"
                 placeholder="Enter your password"
                 ref={pswdRef}
-              />{" "}
+              />{' '}
               <span
                 className="material-symbols-outlined absolute right-3 bottom-1"
                 onClick={showPassword}
@@ -214,7 +211,7 @@ const Signupform = () => {
             </label>
             <div className="relative">
               <input
-                type={display ? "password" : "text"}
+                type={display ? 'password' : 'text'}
                 id="confirm"
                 onChange={(e) => setConfirmPswd(e.target.value)}
                 className="sm:px-4 text-base py-[4px] border-slate-500 mt-[3px] outline-none border-2 rounded-xl text-slate-500 w-full"
@@ -237,7 +234,7 @@ const Signupform = () => {
             onChange={(e) => setIsChecked(e.target.checked)}
           />
           <p>
-            I've read and I accept the{" "}
+            I've read and I accept the{' '}
             <Link
               href=""
               className="text-blue-400 font-bold"
@@ -248,7 +245,7 @@ const Signupform = () => {
             {showTerms ? (
               <Modal openModal={openModal} setOpenModal={setOpenModal} />
             ) : (
-              ""
+              ''
             )}
           </p>
         </div>
@@ -260,7 +257,7 @@ const Signupform = () => {
           CREATE ACCOUNT
         </button>
         <p className="text-center mt-3">
-          Already created an account?{" "}
+          Already created an account?{' '}
           <Link to="/signin" className="text-blue-400 font-bold">
             Log in
           </Link>
@@ -268,7 +265,7 @@ const Signupform = () => {
       </form>
       {isLoading && <Preloader />}
     </div>
-  );
-};
+  )
+}
 
-export default Signupform;
+export default Signupform
