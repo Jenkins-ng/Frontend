@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../Context/Cart";
+import { AuthContext } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { apiPrivate as api } from "../../../utils/api";
 import notifyError from "../../../utils/notifyError";
 import notifySuccess from "../../../utils/notifySuccess";
 
 const Checkout = () => {
+  const { auth } = useContext(AuthContext);
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [state, setState] = useState("");
@@ -14,10 +16,19 @@ const Checkout = () => {
   const Submit = async (e) => {
     e.preventDefault();
     const data = { phone, address, state };
-
+    console.log(auth);
+    if (!auth) {
+      navigate("/signin");
+      return;
+    }
     try {
       const response = await api.post("/checkout", data, {
-        headers: { "Access-Control-Allow-Origin": "*" },
+        mode: "no-cors",
+        beforeRedirect: "follow",
+        headers: {
+          "Access-Control-Allow-Origin": "www.localhost:5173",
+          "Access-control-Allow-Headers": "*",
+        },
       });
       const result = response.data;
       console.log(data);
@@ -27,6 +38,21 @@ const Checkout = () => {
       notifyError(error.response?.data?.message);
       console.log(error);
     }
+
+    // try {
+    //   const response = await fetch("https://api.jenkins.ng/api/v1/checkout", {
+    //     method: "POST",
+    //     body: JSON.stringify(data),
+    //     redirect: "follow",
+    //     headers: {
+    //       Authorization: `Bearer ${auth.token} `,
+    //     },
+    //   });
+    //   const result = await response.json();
+    //   console.log(result);
+    // } catch (error) {
+    //   // console.log(error);
+    // }
   };
 
   const GoBack = (e) => {

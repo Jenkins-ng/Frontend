@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
 
 const JobDetails = () => {
-  return (
-    <div>JobDetails</div>
-  )
-}
+  const { id } = useParams();
 
-export default JobDetails
+  return <main></main>;
+};
+
+export default JobDetails;

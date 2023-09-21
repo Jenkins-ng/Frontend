@@ -78,14 +78,16 @@ export const Head = () => {
         setData(result.cartItems);
       } catch (error) {
         console.log(error);
-        notifyError(error.response.data.message);
+        notifyError(error.message);
         if (error.response.status === 401) {
           navigate("/signin");
         }
         // console.log(error);
       }
     };
-    if (auth) Fetch();
+    if (auth) {
+      Fetch();
+    }
   }, []);
 
   const showProfile = () => {

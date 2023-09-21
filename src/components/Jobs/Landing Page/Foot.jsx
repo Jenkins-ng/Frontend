@@ -13,7 +13,7 @@ export const Footlink = () => {
         </p>
         <ul className="flex flex-col gap-[3px] whitespace-nowrap text-sm sm:text-lg md:text-base">
           <li className="text-blue-400  hover:text-gray-500">
-            <NavLink to="/shop">HOME</NavLink>
+            <NavLink to="/job">HOME</NavLink>
           </li>
           <li className="text-blue-400  hover:text-gray-500">
             <NavLink to="/jobs">JOBS</NavLink>

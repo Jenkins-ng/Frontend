@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Categories = (props) => {
   return (
-    <Link>
+    <Link to={`/job/${props.id}`}>
       <div>
         <span className="material-symbols-outlined">{}</span>
         <p className="">{}</p>
@@ -22,7 +22,7 @@ const Category = () => {
         <h1 className="uppercase">explore by category</h1>
         <p>
           <Link to="/jobs">
-            <span className="flex gap-10">
+            <span className="flex gap-3">
               SEE ALL JOBS{" "}
               <span className="material-symbols-outlined">arrow_forward</span>
             </span>
