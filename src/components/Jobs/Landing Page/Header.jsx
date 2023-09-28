@@ -19,14 +19,14 @@ export const Head = () => {
   };
 
   return (
-    <header className="grid grid-flow-col justify-between items-center content-center px-3 sm:px-5 py-[4px] sm:py-2">
+    <header className="grid grid-flow-col justify-between items-center content-center px-3 sm:px-9 py-[4px] sm:py-2 shadow-md">
       <div className="flex sm:gap-20 gap-4 items-center">
         <Link to="/">
           <Logo />
         </Link>
         <ul>
           <li className="text-slate-500 font-bold text-lg sm:text-xl tracking-tighter sm:tracking-wide ">
-            <Link to="/job/jobs">FIND JOBS</Link>
+            <Link to="/jobs">FIND JOBS</Link>
           </li>
         </ul>
       </div>

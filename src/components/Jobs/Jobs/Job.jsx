@@ -31,11 +31,11 @@ export const Jobs = ({ job }) => {
 
 const Job = () => {
   return (
-    <section>
+    <section className="mt-5">
       <div className="flex justify-between">
-        <h1 className="uppercase">Featured Jobs</h1>
+        <h1 className="uppercase font-black text-blue-400">Featured Jobs</h1>
         <p>
-          <Link to="/job/jobs">
+          <Link to="/jobs">
             <span className="flex gap-3">
               SEE ALL JOBS{" "}
               <span className="material-symbols-outlined">arrow_forward</span>

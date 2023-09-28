@@ -78,6 +78,7 @@ import AllJobs from "./Pages/Jobs/AllJobs";
 import { loader as eventLoader } from "./Pages/EventHive/Event";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
+import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -148,13 +149,29 @@ const router = createBrowserRouter([
       ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
       {
         path: "/admin",
-        element: <AdminRoute />,
-        element: <ProtectedRoute />,
+        // element: <AdminRoute />,
+        // element: <ProtectedRoute />,
         children: [
           { path: "/admin/dashboard", element: <Dashboard /> },
           { path: "/admin/event", element: <Event /> },
           { path: "/admin/inbox", element: <Inbox /> },
           { path: "/admin/profile", element: <AdminProfile /> },
+          {
+            path: "/admin/job",
+            children: [
+              // JOB STATISTICS OVERVIEW
+              { path: "/admin/job" },
+
+              // TO MAKE JOB POSTS
+              { path: "/admin/job/create", element: <CreateJob /> },
+
+              // TO SEE ALL APPLICATIONS
+              { path: "/admin/job/applications", element: <CreateEvent /> },
+
+              // TO SEE DETAILED JOB APPLICATIONS
+              { path: "/admin/job/applications/id", element: <CreateEvent /> },
+            ],
+          },
           {
             path: "/admin/ecommerce",
             children: [
@@ -228,19 +245,23 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/job",
+        path: "/",
         element: <JobLayout />,
         children: [
           /////////////////////////////////// HOME PAGE ////////////////////////////////////////
           { path: "/job", element: <HomePage /> },
+
           /////////////////////////////////// ALL JOBS ////////////////////////////////////////
           { path: "/jobs", element: <AllJobs /> },
+
           ///////////////////////////////////// DETAILED JOB ////////////////////////////////////
           { path: "/job/:id", element: <JobDetails /> },
+
           ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
           { path: "/job/:catergory" },
+
           /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
-          { path: "/job/apply", element: <JobApply /> },
+          { path: "/job/apply/:id", element: <JobApply /> },
         ],
       },
     ],

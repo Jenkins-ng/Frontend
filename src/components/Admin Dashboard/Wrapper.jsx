@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Logo from "../Landing page/Header/Logo";
 import "./wrapper.css";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
+import Job from "../Jobs/Jobs/Job";
 
 const Wrapper = (props) => {
   const [show, setShow] = useState(false);
   const [showProduct, setShowProduct] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
+  const [showJob, setJob] = useState(false);
 
   useEffect(() => {
     document.title = "ADMIN PAGE | DASHBOARD";
@@ -21,6 +23,9 @@ const Wrapper = (props) => {
   };
   const RevealOrder = () => {
     setShowOrder((prev) => !showOrder);
+  };
+  const RevealJob = () => {
+    setJob((prev) => !showJob);
   };
 
   return (
@@ -125,6 +130,36 @@ const Wrapper = (props) => {
                 </li>
               </ul>
             </div>
+          </ul>
+          <li
+            onClick={RevealJob}
+            className="flex items-center gap-5 cursor-pointer"
+          >
+            <span className="material-symbols-outlined">storefront</span>
+            <p>Jobs</p>
+          </li>
+          <ul className={`${showJob ? "block" : "hidden"}`}>
+            <li>
+              <Link to="/admin/job" className="flex items-center gap-5">
+                <span className="material-symbols-outlined">overview</span>
+                <p>Overview</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/job/create" className="flex items-center gap-5">
+                <span className="material-symbols-outlined">add</span>
+                <p>Post Jobs</p>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/admin/job/application"
+                className="flex items-center gap-5"
+              >
+                <span className="material-symbols-outlined">add</span>
+                <p>Applications</p>
+              </Link>
+            </li>
           </ul>
           <li>
             <Link to="/admin/inbox" className="flex items-center gap-5">

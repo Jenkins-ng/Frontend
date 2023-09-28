@@ -85,10 +85,12 @@ export const Head = () => {
         // console.log(error);
       }
     };
-    if (auth) {
+    if (auth !== null) {
       Fetch();
     }
   }, []);
+
+  console.log(auth);
 
   const showProfile = () => {
     setProfile((prevstate) => !profile);

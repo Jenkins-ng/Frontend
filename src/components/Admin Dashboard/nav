@@ -1,0 +1,50 @@
+<ul className={`${show ? "block" : "hidden"} ml-5`}>
+            <li>
+              <Link
+                to="/admin/ecommerce/overview"
+                className="flex items-center gap-5"
+              >
+                <span className="material-symbols-outlined">overview</span>
+                <p>Overview</p>
+              </Link>
+            </li>
+            <div>
+              <li onClick={RevealProduct} className="cursor-pointer gap-5">
+                <span className="material-symbols-outlined">inventory</span>
+                <p>Products</p>
+              </li>
+              <ul
+                className={`${
+                  showProduct ? "block" : "hidden"
+                } ml-5 cursor-pointer`}
+              >
+                <li>
+                  <Link
+                    to="/admin/ecommerce/product/create"
+                    className="flex items-center gap-5"
+                  >
+                    <span className="material-symbols-outlined">
+                      add_circle
+                    </span>
+                    <p>Create Product</p>
+                  </Link>
+                </li>
+                {/* <li>
+                  <Link
+                    to="/admin/ecommerce/product/edit"
+                    className="flex items-center gap-5"
+                  >
+                    <span className="material-symbols-outlined">edit</span>
+                    <p>Edit Product</p>
+                  </Link>
+                </li> */}
+                <li>
+                  <Link
+                    to="/admin/ecommerce/product"
+                    className="flex items-center gap-5"
+                  >
+                    <span className="material-symbols-outlined">list</span>
+                    <p>Product List</p>
+                  </Link>
+                </li>
+              </ul>
