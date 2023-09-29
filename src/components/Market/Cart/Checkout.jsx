@@ -36,6 +36,10 @@ const Checkout = () => {
     Fetch();
   }, []);
 
+  useEffect(() => {
+    document.title = "Your Cart - Shop";
+  }, []);
+
   // const { data, isLoading, error } = useQuery({
   //   queryKey: ["cart"],
   //   queryFn: Fetch,

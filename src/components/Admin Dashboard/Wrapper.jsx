@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../Landing page/Header/Logo";
 import "./wrapper.css";
+import { GrMenu } from "react-icons/gr";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import Job from "../Jobs/Jobs/Job";
 
@@ -9,6 +10,7 @@ const Wrapper = (props) => {
   const [showProduct, setShowProduct] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
   const [showJob, setJob] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     document.title = "ADMIN PAGE | DASHBOARD";
@@ -28,9 +30,20 @@ const Wrapper = (props) => {
     setJob((prev) => !showJob);
   };
 
+  const showMenu = () => {
+    setMenu((prev) => !menu);
+  };
+
   return (
-    <div className="flex h-[100vh]">
-      <nav className="w-[20%] bg-neutral-400 flex flex-col items-center justify-evenly">
+    <main className="flex h-[100vh]">
+      <span className="block sm:hidden" onClick={showMenu}>
+        <GrMenu />
+      </span>
+      <nav
+        className={`${
+          menu ? "block" : "none"
+        }"w-[20%] bg-neutral-400 flex flex-col items-center justify-evenly"`}
+      >
         <Logo />
         <ul className="text-blue-400">
           <li>
@@ -178,7 +191,7 @@ const Wrapper = (props) => {
       <main className="w-[80%] px-4 overflow-auto wrapper">
         {props.children}
       </main>
-    </div>
+    </main>
   );
 };
 

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Ctawrapper from "../../components/Landing page/CTA/Ctawrapper";
 import CTAtextcomponent from "../../components/Landing page/CTA/CTAtextcomponent";
 import Job from "../../components/Jobs/Jobs/Job";
 import { Link } from "react-router-dom";
 
 const AllJobs = () => {
+  useEffect(() => {
+    document.title = "All Jobs";
+  });
   return (
     <div>
       <nav>

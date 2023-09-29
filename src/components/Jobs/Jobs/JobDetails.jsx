@@ -9,17 +9,17 @@ const imageurl = "https://api.jenkins.ng/storage/";
 
 const JobDetails = () => {
   const [Data, setData] = useState([]);
+  const [Loading, setLoading] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
-    document.title = "Job Details";
     const Fetch = async () => {
       try {
+        setLoading(true);
         const result = await api.get(`/jobs/${id}`);
         const response = await result.data;
         setData(response.data);
-        console.log(response);
-        console.log(Data);
+        setLoading(false);
         notifySuccess("Success");
       } catch (error) {
         notifyError(error.response.message);
@@ -28,45 +28,56 @@ const JobDetails = () => {
     Fetch();
   }, [id]);
 
+  useEffect(() => {
+    document.title = `${Data.title} | Job Details }`;
+  }, [Data]);
+
   return (
     <main className="w-[90%] mx-auto py-10">
-      <section>
-        {/* DETAILS HEADER */}
-        <div className="flex items-center justify-between">
-          <div className="flex gap-5">
-            <img
-              src={imageurl + Data.logo}
-              alt="company-logo"
-              className="w-28 h-28 object-cover rounded-full"
-            />
+      {Loading ? (
+        <div className="text-center mx-auto">
+          {" "}
+          <Spinner size={25} />
+        </div>
+      ) : (
+        <section>
+          {/* DETAILS HEADER */}
+          <div className="flex items-center justify-between">
+            <div className="flex gap-5">
+              <img
+                src={imageurl + Data.logo}
+                alt="company-logo"
+                className="w-28 h-28 object-cover rounded-full"
+              />
+              <div>
+                <p>{Data.title}</p>
+                <p>
+                  at {Data.company} <span>{Data.location}</span>
+                </p>
+                <p># {Data.salary}</p>
+                <p>Category: {Data.category}</p>
+              </div>
+            </div>
             <div>
-              <p>{Data.title}</p>
-              <p>
-                at {Data.company} <span>{Data.location}</span>
-              </p>
-              <p># {Data.salary}</p>
-              <p>Category: {Data.category}</p>
+              <Loginbutton
+                title="Apply Now"
+                className="bg-blue-400"
+                to={`/job/apply/${Data.id}`}
+              />
             </div>
           </div>
+          {/* DETAILS DESCRIPTION */}
           <div>
-            <Loginbutton
-              title="Apply Now"
-              className="bg-blue-400"
-              to={`/job/apply/${Data.id}`}
-            />
+            <p>Job Description</p>
+            <p>{Data.description}</p>
           </div>
-        </div>
-        {/* DETAILS DESCRIPTION */}
-        <div>
-          <p>Job Description</p>
-          <p>{Data.description}</p>
-        </div>
-        {/* DETAILS REQUIREMENTS */}
-        <div>
-          <p>Requirements</p>
-          <p></p>
-        </div>
-      </section>
+          {/* DETAILS REQUIREMENTS */}
+          <div>
+            <p>Requirements</p>
+            <p></p>
+          </div>
+        </section>
+      )}
     </main>
   );
 };
