@@ -79,6 +79,7 @@ import { loader as eventLoader } from "./Pages/EventHive/Event";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
+import React from "react";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -149,8 +150,7 @@ const router = createBrowserRouter([
       ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
       {
         path: "/admin",
-        // element: <AdminRoute />,
-        // element: <ProtectedRoute />,
+        element: [<AdminRoute />, <ProtectedRoute />],
         children: [
           { path: "/admin/dashboard", element: <Dashboard /> },
           { path: "/admin/event", element: <Event /> },
@@ -230,23 +230,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/shop",
-        element: <ProtectedRoute />,
-        element: <MarketLayout />,
+        element: [<MarketLayout />],
         children: [
+          { index: true, element: <ProtectedRoute /> },
           //////////////////////////////////////// CART ///////////////////////////////////////
-          { path: "/shop/cart", element: <Cart /> },
+          { path: "/shop/cart", element: [<ProtectedRoute />, <Cart />] },
           /////////////////////////////////////////// CHECKOUT PAGE ///////////////////////////////////
-          { path: "/shop/checkout", element: <Checkout /> },
-          ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
           {
             path: "/shop/checkout",
-            element: <Checkout />,
+            element: [<ProtectedRoute />, <Checkout />],
           },
+          // ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
+          // {
+          //   path: "/shop/checkout",
+          //   element: <Checkout />,
+          // },
         ],
       },
       {
         path: "/",
         element: <JobLayout />,
+
         children: [
           /////////////////////////////////// HOME PAGE ////////////////////////////////////////
           { path: "/job", element: <HomePage /> },
@@ -259,9 +263,26 @@ const router = createBrowserRouter([
 
           ////////////////////////////////////// JOB BY CATEGORY ////////////////////////////////
           { path: "/job/:catergory" },
-
-          /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
-          { path: "/job/apply/:id", element: <JobApply /> },
+          // {
+          //   path: "/job/apply/:id",
+          //   element: <ProtectedRoute />,
+          //   children: [{ index: true, element: <JobApply /> }],
+          // },
+        ],
+      },
+      {
+        path: "/job",
+        element: [<JobLayout />],
+        children: [
+          {
+            path: "/job/apply",
+            element: [<ProtectedRoute />],
+          },
+          {
+            /////////////////////////////////////// APPLY TO JOB /////////////////////////////////
+            path: "/job/apply/:id",
+            element: [<ProtectedRoute />, <JobApply />],
+          },
         ],
       },
     ],

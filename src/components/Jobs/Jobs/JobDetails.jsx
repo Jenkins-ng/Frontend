@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Loginbutton from "../../Buttons/Loginbutton";
-import { apiprivate as api } from "../../../utils/api";
+import { apiPrivate as api } from "../../../utils/api";
 import notifyError from "../../../utils/notifyError";
 import notifySuccess from "../../../utils/notifySuccess";
 import { useParams } from "react-router-dom";
 
+const imageurl = "https://api.jenkins.ng/storage/";
+
 const JobDetails = () => {
-  const [Data, setData] = useState({});
+  const [Data, setData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -14,12 +16,16 @@ const JobDetails = () => {
     const Fetch = async () => {
       try {
         const result = await api.get(`/jobs/${id}`);
-        const response = await result.data.data;
-        notifySuccess(response);
+        const response = await result.data;
+        setData(response.data);
+        console.log(response);
+        console.log(Data);
+        notifySuccess("Success");
       } catch (error) {
-        notifyError(error.response);
+        notifyError(error.response.message);
       }
     };
+    Fetch();
   }, [id]);
 
   return (
@@ -28,20 +34,32 @@ const JobDetails = () => {
         {/* DETAILS HEADER */}
         <div className="flex items-center justify-between">
           <div className="flex gap-5">
-            <img src="" alt="" />
+            <img
+              src={imageurl + Data.logo}
+              alt="company-logo"
+              className="w-28 h-28 object-cover rounded-full"
+            />
             <div>
-              <p>Senior UX Designer</p>
-              <p>at Facebook</p>
+              <p>{Data.title}</p>
+              <p>
+                at {Data.company} <span>{Data.location}</span>
+              </p>
+              <p># {Data.salary}</p>
+              <p>Category: {Data.category}</p>
             </div>
           </div>
           <div>
-            <Loginbutton title="Apply Now" className="bg-blue-400" />
+            <Loginbutton
+              title="Apply Now"
+              className="bg-blue-400"
+              to={`/job/apply/${Data.id}`}
+            />
           </div>
         </div>
         {/* DETAILS DESCRIPTION */}
         <div>
           <p>Job Description</p>
-          <p></p>
+          <p>{Data.description}</p>
         </div>
         {/* DETAILS REQUIREMENTS */}
         <div>

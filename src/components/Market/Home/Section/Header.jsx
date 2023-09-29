@@ -85,7 +85,7 @@ export const Head = () => {
         // console.log(error);
       }
     };
-    if (auth !== null) {
+    if (Object.keys(auth).length !== 0) {
       Fetch();
     }
   }, []);
