@@ -150,7 +150,7 @@ const router = createBrowserRouter([
       ////////////////////////////// E-SHOP DASHBOARD //////////////////////////////////
       {
         path: "/admin",
-        element: [<AdminRoute />, <ProtectedRoute />],
+        // element: [<AdminRoute />, <ProtectedRoute />],
         children: [
           { path: "/admin/dashboard", element: <Dashboard /> },
           { path: "/admin/event", element: <Event /> },

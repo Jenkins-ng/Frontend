@@ -26,6 +26,12 @@ const CreateProduct = () => {
   // CATEGORY SELECTED FROM THE DROPDOWN
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  // TO CONTROL FORM FOR SHOWING PRODUCT
+  const [product, setProduct] = useState(false);
+
+  const showProduct = () => {
+    setProduct((prev) => !product);
+  };
   // STATE FOR ALL THE PRODUCT FIELDS
   const [Description, setDescription] = useState("");
   const [Price, setPrice] = useState("");
@@ -101,6 +107,7 @@ const CreateProduct = () => {
       notifySuccess("Product created Successfully!");
 
       console.log(result);
+      showProduct();
     } catch (error) {
       console.log(error.response.status);
       if (error.response.status === 401) {
@@ -139,237 +146,246 @@ const CreateProduct = () => {
 
         {/* TO CREATE A CATEGORY */}
 
-        <section className="flex justify-between">
-          <div>
-            <h1 className="text-slate-400 font-bold text-xl">
-              CREATE CATEGORY
-            </h1>
-            <form onSubmit={CreateCategory} className="my-3">
-              <div className="w-3/6">
-                <label
-                  htmlFor="category"
-                  className="text-slate-400 font-bold grid gap-2"
-                >
-                  CATEGORY:
-                  <input
-                    type="text"
-                    name="category"
-                    id="category"
-                    value={category}
-                    onChange={(e) => {
-                      setcategory(e.target.value);
-                    }}
-                    className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-                  />
-                </label>
-              </div>
-              <div className="text-right w-3/6">
-                <button
-                  type="submit"
-                  className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
-                >
-                  CREATE CATEGORY
-                </button>
-              </div>
-            </form>
-          </div>
-          <div>
-            <h1 className="text-slate-400 font-bold text-xl">EDIT CATEGORY</h1>
-            <div className="flex justify-between items-start">
-              <label
-                htmlFor="category"
-                className="text-slate-400 font-bold grid gap-2 my-3"
-              >
-                CATEGORY :
-                <div>
-                  <select
-                    name=""
-                    id=""
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setChangedCategory(e.target.value);
-                      console.log(changedCategory);
-                    }}
-                    className="px-4 text-base py-[3px] border-slate-500 outline-none border-2 rounded-xl text-slate-500"
-                  >
-                    {thecategory.map((cat) => (
-                      <option value={cat.id} key={cat.id}>
-                        {cat.category}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </label>
-
-              <form onSubmit={ChangeCategory} className="my-3">
-                <div className="w-4/6">
+        {!product ? (
+          <section className="lg:flex grid">
+            <div className="w-2/6 ">
+              <h1 className="text-slate-400 font-bold text-xl">
+                CREATE CATEGORY
+              </h1>
+              <form onSubmit={CreateCategory} className="my-3">
+                <div className="sm:w-3/6 w-6/6">
                   <label
                     htmlFor="category"
                     className="text-slate-400 font-bold grid gap-2"
                   >
-                    NEW CATEGORY:
+                    CATEGORY:
                     <input
                       type="text"
                       name="category"
                       id="category"
-                      value={NewCategory}
+                      value={category}
                       onChange={(e) => {
-                        setNewCategory(e.target.value);
+                        setcategory(e.target.value);
                       }}
                       className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
                     />
                   </label>
                 </div>
-                <div className="text-right w-full">
+                <div className="sm:text-right sm:w-3/6 w-5/6">
                   <button
                     type="submit"
                     className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
                   >
-                    EDIT CATEGORY
+                    CREATE CATEGORY
                   </button>
                 </div>
               </form>
             </div>
-          </div>
-        </section>
+            <div className="w-full ">
+              <h1 className="text-slate-400 font-bold text-xl">
+                EDIT CATEGORY
+              </h1>
+              <div className="sm:flex justify-between items-start w-full">
+                <label
+                  htmlFor="category"
+                  className="text-slate-400 font-bold grid gap-2 my-3 w-full"
+                >
+                  CHOOSE CATEGORY :
+                  <div className="w-full">
+                    <select
+                      name=""
+                      id=""
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setChangedCategory(e.target.value);
+                        console.log(changedCategory);
+                      }}
+                      className="px-4 text-base py-[3px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 sm:w-5/6 w-full"
+                    >
+                      {thecategory.map((cat) => (
+                        <option value={cat.id} key={cat.id}>
+                          {cat.category}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
 
+                <form onSubmit={ChangeCategory} className="my-3 w-full">
+                  <div className="sm:w-6/6 w-full">
+                    <label
+                      htmlFor="category"
+                      className="text-slate-400 font-bold grid gap-2"
+                    >
+                      NEW CATEGORY:
+                      <input
+                        type="text"
+                        name="category"
+                        id="category"
+                        value={NewCategory}
+                        onChange={(e) => {
+                          setNewCategory(e.target.value);
+                        }}
+                        className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      />
+                    </label>
+                  </div>
+                  <div className="sm:text-right w-full">
+                    <button
+                      type="submit"
+                      className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
+                    >
+                      EDIT CATEGORY
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        ) : (
+          ""
+        )}
+        <div className="w-5/6 text-right" onClick={showProduct}>
+          <button
+            type="submit"
+            className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
+          >
+            POST PRODUCT
+          </button>
+        </div>
         {/* CREATE THE FULL PRODUCT FULL */}
 
-        <section className="my-10">
-          <h1 className="text-blue-400 font-bold text-2xl my-5">
-            PRODUCT INFORMATION
-          </h1>
-          <form onSubmit={FormProduct} encType="multipart/form-data">
-            <div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="w-3/6">
+        {product ? (
+          <section className="my-10">
+            <h1 className="text-blue-400 font-bold text-2xl my-5">
+              PRODUCT INFORMATION
+            </h1>
+            <form onSubmit={FormProduct} encType="multipart/form-data">
+              <div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <div className="sm:w-5/6 xl:3/6 w-full">
+                    <label
+                      htmlFor="title"
+                      className="text-slate-400 font-bold grid gap-2"
+                    >
+                      TITLE:
+                      <input
+                        type="text"
+                        value={Title}
+                        onChange={(e) => {
+                          setTitle(e.target.value);
+                        }}
+                        name="title"
+                        id="title"
+                        className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="sm:w-5/6 xl:3/6 w-full">
+                    <label
+                      htmlFor="category"
+                      className="text-slate-400 font-bold grid gap-2"
+                    >
+                      CATEGORY :
+                      <div>
+                        <select
+                          name=""
+                          id=""
+                          onChange={setCategory}
+                          className="px-4 text-base py-[3px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                        >
+                          {thecategory.map((cat) => (
+                            <option value={cat.id} key={cat.id}>
+                              {cat.category}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </label>
+                  </div>
+                  <div className="sm:w-5/6 xl:3/6 w-full">
+                    <label
+                      htmlFor="price"
+                      className="text-slate-400 font-bold grid gap-2"
+                    >
+                      PRICE:
+                      <input
+                        type="text"
+                        name="price"
+                        id="price"
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
+                        className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <section className="sm:w-5/6 xl:3/6 w-full">
+                <div className="w-3/6 mb-10">
                   <label
-                    htmlFor="title"
+                    htmlFor="image"
                     className="text-slate-400 font-bold grid gap-2"
                   >
-                    TITLE:
+                    PRODUCT IMAGE:
                     <input
-                      type="text"
-                      value={Title}
-                      onChange={(e) => {
-                        setTitle(e.target.value);
-                      }}
-                      name="title"
-                      id="title"
-                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                      type="file"
+                      name="image"
+                      multiple
+                      id="image"
+                      onChange={ProductImage}
+                      accept="image/*"
+                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full bg-slate-400"
                     />
                   </label>
                 </div>
 
-                <div className="w-3/6">
-                  <label
-                    htmlFor="category"
-                    className="text-slate-400 font-bold grid gap-2"
-                  >
-                    CATEGORY :
-                    <div>
-                      <select
-                        name=""
-                        id=""
-                        onChange={setCategory}
-                        className="px-4 text-base py-[3px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-                      >
-                        {thecategory.map((cat) => (
-                          <option value={cat.id} key={cat.id}>
-                            {cat.category}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </label>
-                </div>
-                <div className="w-3/6">
-                  <label
-                    htmlFor="price"
-                    className="text-slate-400 font-bold grid gap-2"
-                  >
-                    PRICE:
-                    <input
-                      type="text"
-                      name="price"
-                      id="price"
-                      onChange={(e) => {
-                        setPrice(e.target.value);
-                      }}
-                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
+                {Image ? (
+                  <div className="block max-h overflow-hidden object-contain w-6/6">
+                    <img
+                      src={Image.preview}
+                      alt="Product image"
+                      className="object-contain block"
                     />
-                  </label>
-                </div>
-              </div>
-            </div>
-            <section className="w-3/6">
-              <div className="w-3/6 mb-10">
+                  </div>
+                ) : (
+                  <p className="text-red-600 text-lg">No Image Selected</p>
+                )}
+              </section>
+              <div className="sm:w-5/6 w-full">
                 <label
-                  htmlFor="image"
+                  htmlFor="description"
                   className="text-slate-400 font-bold grid gap-2"
                 >
-                  PRODUCT IMAGE:
-                  <input
-                    type="file"
-                    name="image"
-                    multiple
-                    id="image"
-                    onChange={ProductImage}
-                    accept="image/*"
-                    className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full bg-slate-400"
-                  />
+                  DESCRIPTION:
+                  <textarea
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                    value={Description}
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                    className="rounded"
+                  ></textarea>
                 </label>
               </div>
-
-              {Image ? (
-                <div className="block max-h overflow-hidden object-contain w-6/6">
-                  <img
-                    src={Image.preview}
-                    alt="Product image"
-                    className="object-contain block"
-                  />
-                </div>
-              ) : (
-                <p className="text-red-600 text-lg">No Image Selected</p>
-              )}
-            </section>
-            <div className="w-5/6">
-              <label
-                htmlFor="description"
-                className="text-slate-400 font-bold grid gap-2"
-              >
-                DESCRIPTION:
-                {/* <input
-                      type="text"
-                      name="description"
-                      id="descripton"
-                      onChange={(e) => {
-                        setDescription(e.target.value);
-                      }}
-                      className="px-2 text-base py-[2px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full"
-                    /> */}
-                <textarea
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                  value={Description}
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
-                ></textarea>
-              </label>
-            </div>
-            <div className="text-right w-5/6">
-              <button
-                type="submit"
-                className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
-              >
-                CREATE PRODUCT
-              </button>
-            </div>
-          </form>
-        </section>
+              <div className="text-right w-5/6">
+                <button
+                  type="submit"
+                  className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
+                >
+                  CREATE PRODUCT
+                </button>
+              </div>
+            </form>
+          </section>
+        ) : (
+          ""
+        )}
       </section>
     </Wrapper>
   );

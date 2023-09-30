@@ -12,7 +12,7 @@ import notifySuccess from "../../../../utils/notifySuccess";
 export const Modal = () => {
   const Logout = async () => {
     try {
-      const response = await api.get("/logout");
+      const response = await api.post("/logout");
       const result = response.data;
       notifySuccess(result.message);
     } catch (error) {
@@ -38,14 +38,10 @@ export const Modal = () => {
               0
             </div>
           </li>
-          {/* <li
+          <li
             className="py-[4px] text-blue-400 hover:text-slate-500 font-medium"
-            // onClick={logout}
-          > */}
-          <button type="submit" onClick={Logout}>
-            Logout
-          </button>
-          {/* </li> */}
+            onClick={Logout}
+          ></li>
         </ul>
       </div>
     </div>

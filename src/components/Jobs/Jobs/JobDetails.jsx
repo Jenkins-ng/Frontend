@@ -43,7 +43,7 @@ const JobDetails = () => {
         <section>
           {/* DETAILS HEADER */}
           <div className="flex items-center justify-between">
-            <div className="flex gap-5">
+            <div className="sm:flex grid gap-5">
               <img
                 src={imageurl + Data.logo}
                 alt="company-logo"

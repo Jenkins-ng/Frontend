@@ -18,16 +18,20 @@ const Wrapper = (props) => {
 
   const Reveal = () => {
     setShow((prev) => !show);
+    // showMenu();
   };
 
   const RevealProduct = () => {
     setShowProduct((prev) => !showProduct);
+    // showMenu();
   };
   const RevealOrder = () => {
     setShowOrder((prev) => !showOrder);
+    // showMenu();
   };
   const RevealJob = () => {
     setJob((prev) => !showJob);
+    // showMenu();
   };
 
   const showMenu = () => {
@@ -36,23 +40,30 @@ const Wrapper = (props) => {
 
   return (
     <main className="flex h-[100vh]">
-      <span className="block sm:hidden" onClick={showMenu}>
-        <GrMenu />
-      </span>
+      <div
+        className="flex sm:hidden my-10 mx-3 gap-3 cursor-pointer h-max"
+        onClick={showMenu}
+      >
+        <p>
+          <GrMenu size={20} />
+        </p>
+      </div>
       <nav
         className={`${
-          menu ? "block" : "none"
-        }"w-[20%] bg-neutral-400 flex flex-col items-center justify-evenly"`}
+          menu ? "grid w-[70%]" : "hidden"
+        } sm:w-[33%]  xl:w-[20%] bg-neutral-400 flex flex-col items-center justify-evenly sm:grid `}
       >
-        <Logo />
+        <div className="text-center m-auto">
+          <Logo />
+        </div>
         <ul className="text-blue-400">
-          <li>
+          <li onClick={showMenu}>
             <Link to="/admin/dashboard" className="flex items-center gap-5 ">
               <span className="material-symbols-outlined flex">dashboard</span>{" "}
               <p>Dashboard</p>
             </Link>
           </li>
-          <li>
+          <li onClick={showMenu}>
             <Link to="/admin/event" className="flex items-center gap-5">
               <span className="material-symbols-outlined">event</span>
               <p>Events</p>
@@ -66,7 +77,7 @@ const Wrapper = (props) => {
             <p>E-Commerce</p>
           </li>
           <ul className={`${show ? "block" : "hidden"} ml-5`}>
-            <li>
+            <li onClick={showMenu}>
               <Link
                 to="/admin/ecommerce/overview"
                 className="flex items-center gap-5"
@@ -85,7 +96,7 @@ const Wrapper = (props) => {
                   showProduct ? "block" : "hidden"
                 } ml-5 cursor-pointer`}
               >
-                <li>
+                <li onClick={showMenu}>
                   <Link
                     to="/admin/ecommerce/product/create"
                     className="flex items-center gap-5"
@@ -105,7 +116,7 @@ const Wrapper = (props) => {
                     <p>Edit Product</p>
                   </Link>
                 </li> */}
-                <li>
+                <li onClick={showMenu}>
                   <Link
                     to="/admin/ecommerce/product"
                     className="flex items-center gap-5"
@@ -123,7 +134,7 @@ const Wrapper = (props) => {
               </li>
 
               <ul className={`${showOrder ? "block" : "hidden"} ml-5`}>
-                <li>
+                <li onClick={showMenu}>
                   <Link
                     to="/admin/ecommerce/order"
                     className="flex items-center gap-5"
@@ -132,7 +143,7 @@ const Wrapper = (props) => {
                     <p>Order List</p>
                   </Link>
                 </li>
-                <li>
+                <li onClick={showMenu}>
                   <Link
                     to="/admin/ecommerce/order-detail"
                     className="flex items-center gap-5"
@@ -152,19 +163,19 @@ const Wrapper = (props) => {
             <p>Jobs</p>
           </li>
           <ul className={`${showJob ? "block" : "hidden"}`}>
-            <li>
+            <li onClick={showMenu}>
               <Link to="/admin/job" className="flex items-center gap-5">
                 <span className="material-symbols-outlined">overview</span>
                 <p>Overview</p>
               </Link>
             </li>
-            <li>
+            <li onClick={showMenu}>
               <Link to="/admin/job/create" className="flex items-center gap-5">
                 <span className="material-symbols-outlined">add</span>
                 <p>Post Jobs</p>
               </Link>
             </li>
-            <li>
+            <li onClick={showMenu}>
               <Link
                 to="/admin/job/application"
                 className="flex items-center gap-5"
@@ -174,13 +185,13 @@ const Wrapper = (props) => {
               </Link>
             </li>
           </ul>
-          <li>
+          <li onClick={showMenu}>
             <Link to="/admin/inbox" className="flex items-center gap-5">
               <span className="material-symbols-outlined">mail</span>
               <p>Messages</p>
             </Link>
           </li>
-          <li>
+          <li onClick={showMenu}>
             <Link to="/admin/profile" className="flex items-center gap-5">
               <span className="material-symbols-outlined">person</span>
               <p>Profile</p>
@@ -188,7 +199,11 @@ const Wrapper = (props) => {
           </li>
         </ul>
       </nav>
-      <main className="w-[80%] px-4 overflow-auto wrapper">
+      <main
+        className={`${
+          !menu ? "grid" : "hidden"
+        } "sm:w-[80%] w-full px-4 overflow-auto wrapper sm:grid"`}
+      >
         {props.children}
       </main>
     </main>

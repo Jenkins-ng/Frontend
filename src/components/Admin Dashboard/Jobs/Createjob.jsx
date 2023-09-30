@@ -150,13 +150,13 @@ const CreateJob = () => {
 
         {/* TO CREATE A CATEGORY */}
 
-        <section className="flex justify-between">
+        <section className="sm:flex justify-between">
           <div>
             <h1 className="text-slate-400 font-bold text-xl">
               CREATE CATEGORY
             </h1>
             <form onSubmit={CreateCategory} className="my-3">
-              <div className="w-3/6">
+              <div className="sm:w-4/6">
                 <label
                   htmlFor="category"
                   className="text-slate-400 font-bold grid gap-2"
@@ -174,7 +174,7 @@ const CreateJob = () => {
                   />
                 </label>
               </div>
-              <div className="text-right w-3/6">
+              <div className="text-right sm:w-4/6">
                 <button
                   type="submit"
                   className="bg-blue-400 rounded-xl px-8 py-1 text-sm mt-5 text-white"
@@ -185,8 +185,10 @@ const CreateJob = () => {
             </form>
           </div>
           <div>
-            <h1 className="text-slate-400 font-bold text-xl">EDIT CATEGORY</h1>
-            <div className="flex justify-between items-start">
+            <h1 className="text-slate-400 font-bold text-xl mt-4 sm:mt-0">
+              EDIT CATEGORY
+            </h1>
+            <div className="sm:flex justify-between items-start">
               <label
                 htmlFor="category"
                 className="text-slate-400 font-bold grid gap-2 my-3"
@@ -213,7 +215,7 @@ const CreateJob = () => {
               </label>
 
               <form onSubmit={ChangeCategory} className="my-3">
-                <div className="w-4/6">
+                <div className="sm:w-4/6">
                   <label
                     htmlFor="category"
                     className="text-slate-400 font-bold grid gap-2"
@@ -252,8 +254,8 @@ const CreateJob = () => {
           </h1>
           <form onSubmit={FormProduct} encType="multipart/form-data">
             <div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="w-3/6">
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="sm:w-4/6 w-full ">
                   <label
                     htmlFor="title"
                     className="text-slate-400 font-bold grid gap-2"
@@ -272,7 +274,7 @@ const CreateJob = () => {
                   </label>
                 </div>
 
-                <div className="w-3/6">
+                <div className="sm:w-4/6 w-full">
                   <label
                     htmlFor="category"
                     className="text-slate-400 font-bold grid gap-2"
@@ -294,7 +296,7 @@ const CreateJob = () => {
                     </div>
                   </label>
                 </div>
-                <div className="w-3/6">
+                <div className="sm:w-4/6 w-full">
                   <label
                     htmlFor="companyName"
                     className="text-slate-400 font-bold grid gap-2"
@@ -311,7 +313,7 @@ const CreateJob = () => {
                     />
                   </label>
                 </div>
-                <div className="w-3/6">
+                <div className="sm:w-4/6 w-full">
                   <label
                     htmlFor="location"
                     className="text-slate-400 font-bold grid gap-2"
@@ -330,8 +332,8 @@ const CreateJob = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <section className="w-3/6">
+            <div className="grid sm:grid-cols-2 gap-3">
+              <section className="sm:w-4/6 w-full">
                 <div className="w-3/6 mb-10">
                   <label
                     htmlFor="image"
@@ -362,7 +364,7 @@ const CreateJob = () => {
                   <p className="text-red-600 text-lg">No Image Selected</p>
                 )}
               </section>
-              <div className="w-3/6 mt-3">
+              <div className="sm:w-4/6 w-full mt-3">
                 <label
                   htmlFor="salary"
                   className="text-slate-400 font-bold grid gap-2"
@@ -380,7 +382,7 @@ const CreateJob = () => {
                 </label>
               </div>
             </div>
-            <div className="w-5/6">
+            <div className="w-6/6 mt-3">
               <label
                 htmlFor="description"
                 className="text-slate-400 font-bold grid gap-2"
