@@ -80,6 +80,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
 import React from "react";
+import JobApplications from "./components/Admin Dashboard/Jobs/JobApplications";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -166,10 +167,10 @@ const router = createBrowserRouter([
               { path: "/admin/job/create", element: <CreateJob /> },
 
               // TO SEE ALL APPLICATIONS
-              { path: "/admin/job/applications", element: <CreateEvent /> },
+              { path: "/admin/job/application", element: <JobApplications /> },
 
               // TO SEE DETAILED JOB APPLICATIONS
-              { path: "/admin/job/applications/id", element: <CreateEvent /> },
+              { path: "/admin/job/applications/:id", element: <CreateEvent /> },
             ],
           },
           {

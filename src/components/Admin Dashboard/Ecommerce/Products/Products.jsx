@@ -5,6 +5,7 @@ import { Table } from "flowbite-react";
 
 import { apiPrivate as api } from "../../../../utils/api";
 import Wrapper from "../../Wrapper";
+import notifyError from "../../../../utils/notifyError";
 const imageurl = "https://api.jenkins.ng/storage/";
 
 export const TableSample = ({ item }) => {
@@ -52,7 +53,7 @@ const Products = () => {
       console.log(error.response);
       if (error.message === "Network Error") {
         notifyError(error.message);
-        setIsError(true);
+        // setIsError(true);
       }
     }
   }
