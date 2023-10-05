@@ -13,10 +13,19 @@ import Signupbutton from "../Buttons/Signupbutton";
 const Signinform = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
+  const [redirect, setRedirect] = useState();
   const [icon, setIcon] = useState("visibility");
   const { isAuth, setAuth } = useAuth();
 
   // /////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    const returnTo = sessionStorage.getItem("returnTo");
+    setRedirect(returnTo);
+    if (returnTo) {
+      sessionStorage.removeItem("returnTo");
+    }
+  });
 
   const history = useNavigate();
 
@@ -44,9 +53,10 @@ const Signinform = () => {
         };
       });
       if (user.is_admin) {
-        history("/admin/dashboard");
+        // history(`${redirect}`);
+        window.location.href = redirect;
       } else {
-        history("/shop");
+        window.location.href = redirect;
       }
       notifySuccess("Login Successfully!");
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { CartContext } from "../Context/Cart";
-import { AuthContext } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+
 import { apiPrivate as api } from "../../../utils/api";
 import notifyError from "../../../utils/notifyError";
 import notifySuccess from "../../../utils/notifySuccess";
@@ -13,46 +13,28 @@ const Checkout = () => {
   const [state, setState] = useState("");
   const navigate = useNavigate();
 
+  const history = useNavigate();
+
   const Submit = async (e) => {
     e.preventDefault();
     const data = { phone, address, state };
-    console.log(auth);
+    // console.log(auth);
     if (!auth) {
       navigate("/signin");
       return;
     }
     try {
-      const response = await api.post("/checkout", data, {
-        mode: "no-cors",
-        beforeRedirect: "follow",
-        headers: {
-          "Access-Control-Allow-Origin": "www.localhost:5173",
-          "Access-control-Allow-Headers": "*",
-        },
-      });
-      const result = response.data;
-      console.log(data);
+      const response = await api.post("/checkout", data);
+      const result = await response.data;
+      // history(`/${result[0].url}`);
+      window.location.href = `${result[0].url}`;
       notifySuccess(response.data.message);
+
       if (response.data.message === "cart is empty") navigate("/shop/products");
     } catch (error) {
       notifyError(error.response?.data?.message);
       console.log(error);
     }
-
-    // try {
-    //   const response = await fetch("https://api.jenkins.ng/api/v1/checkout", {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //     redirect: "follow",
-    //     headers: {
-    //       Authorization: `Bearer ${auth.token} `,
-    //     },
-    //   });
-    //   const result = await response.json();
-    //   console.log(result);
-    // } catch (error) {
-    //   // console.log(error);
-    // }
   };
 
   const GoBack = (e) => {
@@ -67,17 +49,17 @@ const Checkout = () => {
         BILLING DETAILS
       </h2>
       <form onSubmit={Submit}>
-        <div className="grid grid-flow-row justify-between md:grid-cols-3 my-10 w-5/6 md:w-full m-auto">
+        <div className="grid grid-flow-row justify-between md:grid lg:grid-cols-3 my-10 w-5/6 md:w-full m-auto">
           {/* <div>
             <label htmlFor="phoneNumber">
               Email Address
               <input type="tel" name="" id="" />
             </label>
           </div> */}
-          <div className="">
+          <div className="w-full">
             <label
               htmlFor="phoneNumber"
-              className="md:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
             >
               Phone Number:
               <input
@@ -86,14 +68,14 @@ const Checkout = () => {
                 value={phone}
                 onChange={(e) => setPhone(Number(e.target.value))}
                 id="PhoneNumber"
-                className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-auto font-normal"
+                className="px-4 text-base py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-500 w-full font-normal "
               />
             </label>
           </div>
           <div>
             <label
               htmlFor="address"
-              className="md:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
             >
               Address:
               <input
@@ -109,7 +91,7 @@ const Checkout = () => {
           <div>
             <label
               htmlFor="state"
-              className="md:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
             >
               State:
               <input

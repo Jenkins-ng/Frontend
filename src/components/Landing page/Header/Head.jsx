@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import Navlinks from "./Navlinks";
 import { Link } from "react-router-dom";
@@ -13,6 +13,10 @@ const Head = () => {
     } else seticon("menu");
     // seticon((prevstate) => !"Home" || "close");
   };
+
+  useEffect(() => {
+    document.title = "JENKINS.NG | YOUR NO 1 ONE STOP SHOP FOR ALL YOUR NEED.";
+  });
 
   return (
     <div>

@@ -10,11 +10,13 @@ import { apiPrivate as api } from "../../../../utils/api";
 import notifySuccess from "../../../../utils/notifySuccess";
 
 export const Modal = () => {
+  const Navigate = useNavigate();
   const Logout = async () => {
     try {
       const response = await api.post("/logout");
       const result = response.data;
       notifySuccess(result.message);
+      Navigate("/");
     } catch (error) {
       console.log(error);
       notifyError(error.response.data.message);
@@ -27,7 +29,7 @@ export const Modal = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div className="absolute bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg">
+      <div className="absolute right-0 bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg">
         <ul>
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/profile"}>Manage Account</Link>
@@ -41,7 +43,9 @@ export const Modal = () => {
           <li
             className="py-[4px] text-blue-400 hover:text-slate-500 font-medium"
             onClick={Logout}
-          ></li>
+          >
+            Logout
+          </li>
         </ul>
       </div>
     </div>
@@ -81,9 +85,9 @@ export const Head = () => {
         // console.log(error);
       }
     };
-    if (Object.keys(auth).length !== 0) {
-      Fetch();
-    }
+    if (Object.keys(auth).length === 0) {
+      return;
+    } else Fetch();
   }, []);
 
   console.log(auth);

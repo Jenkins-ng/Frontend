@@ -101,7 +101,7 @@ const ProductDetails = () => {
           {product.map((items) => (
             <div
               key={items.id}
-              className="md:flex justify-around items-center mt-20 rounded-lg gap-"
+              className="md:flex justify-around items-center mt-20 rounded-lg sm:gap-6"
             >
               <div>
                 <div>

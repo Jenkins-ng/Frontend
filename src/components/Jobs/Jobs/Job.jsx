@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { job } from "../Data/job";
-import { useEffect } from "react";
 import notifyError from "../../../utils/notifyError";
 import notifySuccess from "../../../utils/notifySuccess";
 import { Spinner } from "flowbite-react";

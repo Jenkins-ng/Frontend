@@ -32,7 +32,7 @@ const ErrorPage = () => {
           Back to Homepage
         </Link>
         <p className="text-lg">Follow us on</p>
-        <div className="flex justify-center gap-5 pt-5">
+        <div className="flex justify-center sm:gap-5 gap-3 pt-5">
           <a
             className="w-12 h-12 bg-[#ece7f974] rounded-[20px] text-3xl grid place-content-center text-primary"
             href="#"
