@@ -22,10 +22,9 @@ const Signinform = () => {
   useEffect(() => {
     const returnTo = sessionStorage.getItem("returnTo");
     setRedirect(returnTo);
-    if (returnTo) {
-      sessionStorage.removeItem("returnTo");
-    }
-  });
+   
+    
+  }, [redirect]);
 
   const history = useNavigate();
 

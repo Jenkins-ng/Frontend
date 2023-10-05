@@ -13,7 +13,15 @@ const ProtectedRoute = () => {
   }, [history]);
 
   return (
-    <>{loading ? <Preloader /> : isAuth ? <Outlet /> : navigate("/signup")}</>
+    <>
+      {loading ? (
+        <Preloader />
+      ) : isAuth ? (
+        <Outlet />
+      ) : (
+        <Navigate to="/signup" />
+      )}
+    </>
   );
 };
 
