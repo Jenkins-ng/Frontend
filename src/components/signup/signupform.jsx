@@ -124,9 +124,9 @@ const Signupform = () => {
   };
 
   // go back to home if user is logged in
-  if (isAuth) {
-    return <Navigate to="/" />;
-  }
+  // if (isAuth) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="md:w-1/3 w-full">

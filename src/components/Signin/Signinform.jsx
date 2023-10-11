@@ -55,7 +55,7 @@ const Signinform = () => {
         };
       });
       if (user.is_admin) {
-        // history(`${redirect}`);
+        history(`${redirect}`);
         if (redirect) window.location.href = redirect;
         else history("/");
       } else {

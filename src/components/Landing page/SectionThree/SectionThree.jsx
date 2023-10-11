@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sign from "../../UI/sign";
 import emailjs from "@emailjs/browser";
+import { Spinner } from "flowbite-react";
 import success from "../../../assets/images/Success.gif";
 import Loginbutton from "../../Buttons/Loginbutton";
 import { useForm } from "react-hook-form";
@@ -32,10 +33,14 @@ const SectionThree = () => {
     };
 
     console.log(data);
+    if (!data) {
+      return;
+    }
     setLoading(true);
     const sent = await emailjs.send(serviceId, templateId, templateParams);
-    const result = await sent;
-    if (result.text === "ok") {
+
+    // console.log(sent.text);
+    if (sent.text === "OK") {
       notifySuccess("Message Sent!");
       setLoading(false);
       reset();
@@ -63,44 +68,44 @@ const SectionThree = () => {
               className="grid gap-2 w-full"
             >
               <div className="sm:flex grid gap-2 sm:gap-5">
-                <div className="">
+                <div className="w-full">
                   <label
                     htmlFor="firstName"
                     className="text-bold grid text-base font-bold text-slate-500"
                   >
                     First Name
-                    <input
-                      type="text"
-                      name="firstName"
-                      id="firstName"
-                      className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl w-full"
-                      {...register("firstName", {
-                        required: true,
-                      })}
-                    />
                   </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl w-full text-slate-600"
+                    {...register("firstName", {
+                      required: true,
+                    })}
+                  />
                   {errors.firstName && errors.firstName.type === "required" && (
                     <p className="text-sm text-red-600 font-bold">
                       First Name is required
                     </p>
                   )}
                 </div>
-                <div className="">
+                <div className="w-full">
                   <label
                     htmlFor="lastName"
                     className="text-bold grid text-base font-bold text-slate-500 w-full"
                   >
                     Last Name
-                    <input
-                      type="text"
-                      name="lastName"
-                      id="lastName"
-                      className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
-                      {...register("lastName", {
-                        required: true,
-                      })}
-                    />
                   </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-600"
+                    {...register("lastName", {
+                      required: true,
+                    })}
+                  />
                   {errors.lastName && errors.lastName.type === "required" && (
                     <p className="text-sm text-red-600 font-bold">
                       Last Name is required
@@ -109,22 +114,22 @@ const SectionThree = () => {
                 </div>
               </div>
               <div className="sm:flex grid sm:gap-5 gap-2">
-                <div className="grid">
+                <div className="grid w-full">
                   <label
                     htmlFor="email"
                     className="text-bold grid text-base font-bold text-slate-500 w-full"
                   >
                     Email Address
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
-                      {...register("email", {
-                        required: true,
-                      })}
-                    />
                   </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-600"
+                    {...register("email", {
+                      required: true,
+                    })}
+                  />
                   {errors.email && errors.email.type === "required" && (
                     <p className="text-sm text-red-600 font-bold">
                       Email is required
@@ -137,16 +142,16 @@ const SectionThree = () => {
                     className="text-bold grid text-base font-bold text-slate-500 w-full"
                   >
                     Phone Number
-                    <input
-                      type="tel"
-                      name="phoneNumber"
-                      id="phoneNumber"
-                      className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl"
-                      {...register("phoneNumber", {
-                        required: true,
-                      })}
-                    />
                   </label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    className="px-4 py-[4px] border-slate-500 outline-none border-2 rounded-xl text-slate-600"
+                    {...register("phoneNumber", {
+                      required: true,
+                    })}
+                  />
                   {errors.phoneNumber &&
                     errors.phoneNumber.type === "required" && (
                       <p className="text-sm text-red-600 font-bold">
@@ -171,7 +176,7 @@ const SectionThree = () => {
               </div>
               {/* <Loginbutton title="send" className="bg-blue-400 w-full mt-0" /> */}
               <button
-                className="px-8 py-2 text-slate-200 font-bold text-center rounded-lg mt-6 text-sm sm:text-base bg-blue-400 w-full gap-1"
+                className="px-8 py-2 text-slate-200 font-bold text-center rounded-lg mt-6 text-sm sm:text-base bg-blue-400 w-full gap-2 flex mx-auto justify-center"
                 type="submit"
               >
                 {loading ? <Spinner size="sm" /> : ""}
