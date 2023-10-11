@@ -123,7 +123,7 @@ const Checkout = () => {
           </button>
         </div>
       </form>
-      <section>
+      {/* <section>
         <h1>CART TOTALL</h1>
         <div>
           <div>
@@ -136,7 +136,7 @@ const Checkout = () => {
             <h1>TOTAL:</h1>
           </div>
         </div>
-      </section>
+      </section> */}
     </section>
   );
 };

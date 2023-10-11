@@ -58,7 +58,11 @@ const JobApply = () => {
       notifyError(message[0]);
       if (error.response.status === 422) {
         setTimeout(next, 5000);
+
         // navigate("/jobs");
+      }
+      if (error.response.status === 401) {
+        navigate("/signin");
       }
     }
   };
