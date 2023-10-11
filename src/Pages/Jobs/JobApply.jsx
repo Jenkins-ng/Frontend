@@ -21,6 +21,10 @@ const JobApply = () => {
     formState: { errors },
   } = useForm();
 
+  const next = () => {
+    navigate("/jobs");
+  };
+
   const Submit = async (data) => {
     const Data = new FormData();
     Data.append("job_listing_id", id);
@@ -44,7 +48,8 @@ const JobApply = () => {
       if (response.status === 201) {
         notifySuccess("Job submitted successfully");
         reset();
-        navigate("/jobs");
+        setTimeout(next, 5000);
+        // navigate("/jobs");
       }
     } catch (error) {
       console.log(error?.response?.data?.message);
@@ -52,7 +57,8 @@ const JobApply = () => {
       const message = errors.split(".");
       notifyError(message[0]);
       if (error.response.status === 422) {
-        navigate("/jobs");
+        setTimeout(next, 5000);
+        // navigate("/jobs");
       }
     }
   };
