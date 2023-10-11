@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Preloader from "../eventhive/Preloader";
 import notifyError from "../../utils/notifyError";
 import notifySuccess from "../../utils/notifySuccess";
@@ -11,23 +11,25 @@ import { setCookie } from "../../utils/cookie";
 import Signupbutton from "../Buttons/Signupbutton";
 
 const Signinform = () => {
+  const { isAuth, setAuth } = useAuth();
+  console.log(setAuth);
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
   const [redirect, setRedirect] = useState();
   const [icon, setIcon] = useState("visibility");
-  const { isAuth, setAuth } = useAuth();
 
   // /////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    const returnTo = sessionStorage.getItem("returnTo");
+    const returnTo = localStorage.getItem("returnTo");
     setRedirect(returnTo);
-    if (returnTo) {
-      sessionStorage.removeItem("returnTo");
-    }
-  });
+  }, [redirect]);
+
+  console.log(redirect);
 
   const history = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -54,13 +56,17 @@ const Signinform = () => {
       });
       if (user.is_admin) {
         // history(`${redirect}`);
-        window.location.href = redirect;
+        if (redirect) window.location.href = redirect;
+        else history("/");
       } else {
-        window.location.href = redirect;
+        if (redirect) window.location.href = redirect;
+        else history("/");
       }
+      // history(from, { replace: true });
       notifySuccess("Login Successfully!");
     } catch (error) {
       notifyError(error.response ? error.response.data.message : error.message);
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -79,11 +85,11 @@ const Signinform = () => {
   };
 
   // navigate to home if user exists
-  useEffect(() => {
-    if (isAuth) {
-      history("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     history("/");
+  //   }
+  // }, []);
 
   return (
     <>

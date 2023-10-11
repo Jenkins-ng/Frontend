@@ -19,6 +19,8 @@ const Recoverpassword = () => {
   };
   console.log(input);
 
+  const Submit = () => {};
+
   return (
     <Emailverification>
       <h1 className="text-blue-400 text-2xl mb-3 font-bold tracking-wide">
@@ -28,20 +30,22 @@ const Recoverpassword = () => {
         please enter the email you used to create your account to recover
         password.
       </p>
-      <div className="pt-10">
-        <p className="text-sm text-slate-700 font-bold">Email: </p>
-        <Inputfield
-          placeholder="Enter email"
-          className="ring-blue-500  mb-4"
-          input={input}
-          setInput={setInput}
-        />
-      </div>
-      <div className="mt-11">
-        <Link to="/recover">
-          <Emailverifybutton title="GET PASSWORD" onclick={setShow} />
-        </Link>
-      </div>
+      <form>
+        <div className="pt-10">
+          <p className="text-sm text-slate-700 font-bold">Email: </p>
+          <Inputfield
+            placeholder="Enter email"
+            className="ring-blue-500  mb-4"
+            input={input}
+            setInput={setInput}
+          />
+        </div>
+        <div className="mt-11">
+          <Link to="/recover">
+            <Emailverifybutton title="GET PASSWORD" onclick={setShow} />
+          </Link>
+        </div>
+      </form>
       <div>
         {showModal ? (
           <Error

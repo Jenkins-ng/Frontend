@@ -57,7 +57,7 @@ const AboutUs = () => {
       </Ctawrapper>
       <section className="text-slate-500 my-10 w-5/6 m-auto" id="more">
         <p className="md:text-3xl text-xl sm:text-2xl font-bold tracking-widest mb-5 mt-4">
-          WELCOME TO OUR TRIDIMENSIONAL STRUCTURE WEBSITE! <br />{" "}
+          WELCOME TO JENKINS.NG <br />{" "}
         </p>
         <p>
           We are proud to offer you a range of innovative and convenient

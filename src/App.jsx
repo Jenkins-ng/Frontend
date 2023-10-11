@@ -81,6 +81,7 @@ import AdminRoute from "./components/AdminRoute";
 import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
 import React from "react";
 import JobApplications from "./components/Admin Dashboard/Jobs/JobApplications";
+import Payment from "./Pages/Payment";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -290,6 +291,7 @@ const router = createBrowserRouter([
   },
 
   // { path: "/shop/orders", element: <Orders /> },
+  { path: "/pay-verify", element: [<Payment />, <ProtectedRoute />] },
 ]);
 
 const App = () => {

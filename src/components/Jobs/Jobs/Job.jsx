@@ -15,7 +15,7 @@ export const Jobs = ({ job }) => {
         <img
           src={imageurl + job.logo}
           alt=""
-          className="w-28 h-28 mb-2 object-cover rounded-full"
+          className="sm:w-28 sm:h-28 w-20 h-20 mb-2 object-cover rounded-full"
         />
 
         <p className="">{job.title}</p>

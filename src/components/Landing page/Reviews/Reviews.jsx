@@ -8,7 +8,7 @@ import {
   CImage,
 } from "@coreui/react";
 import CarouselText from "../../../utils/CarouselText";
-import Image from "../../../assets/Team/jybium.jpg";
+import Image from "../../../assets/Team/miracle.jpg";
 import "./review.css";
 
 export const Images = () => {
@@ -28,10 +28,10 @@ export const Images = () => {
         />
         <div>
           <p className="font-bold text-slate-400 sm:text-lg text-sm uppercase">
-            Mr Aderoboye Adetona
+            Mr Charles Agbo
           </p>
           <p className="text-blue-400 font-semibold uppercase text-xs">
-            Chairman, NUJ Ondo state.
+            Chairman.
           </p>
         </div>
       </div>

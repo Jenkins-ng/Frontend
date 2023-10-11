@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CartContext } from "../Context/Cart";
+import React, { useEffect, useState } from "react";
 import { apiPrivate as api } from "../../../utils/api";
 import CheckoutProduct from "./CheckoutProduct";
 import Cart from "../../../assets/cart.png";
 import { Link } from "react-router-dom";
-import PopUpModal from "../../../utils/PopupModal";
-import { useQuery } from "@tanstack/react-query";
-import { Spinner } from "flowbite-react";
+// import PopUpModal from "../../../utils/PopupModal";
+// import { useQuery } from "@tanstack/react-query";
+// import { Spinner } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import notifyError from "../../../utils/notifyError";
 
 const Checkout = () => {
-  // const { cartItems, clearCart, getCartTotal, updateCart } =
-  //   useContext(CartContext);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [openModal, setOpenModal] = useState();

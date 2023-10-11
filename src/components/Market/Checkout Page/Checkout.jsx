@@ -29,6 +29,7 @@ const Checkout = () => {
       // history(`/${result[0].url}`);
       window.location.href = `${result[0].url}`;
       notifySuccess(response.data.message);
+      console.log(result);
 
       if (response.data.message === "cart is empty") navigate("/shop/products");
     } catch (error) {
@@ -49,7 +50,7 @@ const Checkout = () => {
         BILLING DETAILS
       </h2>
       <form onSubmit={Submit}>
-        <div className="grid grid-flow-row justify-between md:grid lg:grid-cols-3 my-10 w-5/6 md:w-full m-auto">
+        <div className="grid grid-flow-row justify-between md:grid lg:grid-cols-3 my-10 w-5/6 md:w-full m-auto gap-3">
           {/* <div>
             <label htmlFor="phoneNumber">
               Email Address
@@ -59,7 +60,7 @@ const Checkout = () => {
           <div className="w-full">
             <label
               htmlFor="phoneNumber"
-              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-2 items-center font-regular text-base text-slate-500"
             >
               Phone Number:
               <input
@@ -75,7 +76,7 @@ const Checkout = () => {
           <div>
             <label
               htmlFor="address"
-              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-2 items-center font-regular text-base text-slate-500"
             >
               Address:
               <input
@@ -91,7 +92,7 @@ const Checkout = () => {
           <div>
             <label
               htmlFor="state"
-              className="lg:flex grid md:gap-5 gap-3 items-center font-regular text-base text-slate-500"
+              className="lg:flex grid md:gap-5 gap-2 items-center font-regular text-base text-slate-500"
             >
               State:
               <input

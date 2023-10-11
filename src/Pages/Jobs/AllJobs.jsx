@@ -8,6 +8,7 @@ const AllJobs = () => {
   useEffect(() => {
     document.title = "All Jobs";
   });
+
   return (
     <div>
       <nav>

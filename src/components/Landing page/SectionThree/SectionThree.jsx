@@ -1,17 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Sign from "../../UI/sign";
+import emailjs from "@emailjs/browser";
+import success from "../../../assets/images/Success.gif";
 import Loginbutton from "../../Buttons/Loginbutton";
 import { useForm } from "react-hook-form";
 import Contact from "../../../assets/contact us.gif";
+import notifyError from "../../../utils/notifyError";
+import notifySuccess from "../../../utils/notifySuccess";
+
+const serviceId = "service_x87p4mr";
+const templateId = "template_d4ih9ev";
+const publicKey = "YHBX-56WgiGoJi_P3";
 
 const SectionThree = () => {
+  const [loading, setLoading] = useState(false);
+
+  emailjs.init(publicKey);
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
+    const templateParams = {
+      name: data.firstName + " " + data.lastName,
+      email: data.email,
+      message: data.message,
+      phoneNumber: data.phoneNumber,
+    };
+
     console.log(data);
+    setLoading(true);
+    const sent = await emailjs.send(serviceId, templateId, templateParams);
+    const result = await sent;
+    if (result.text === "ok") {
+      notifySuccess("Message Sent!");
+      setLoading(false);
+      reset();
+    } else {
+      notifyError("Message Failed!");
+      setLoading(false);
+    }
   };
 
   return (
@@ -138,7 +169,14 @@ const SectionThree = () => {
                   </p>
                 )}
               </div>
-              <Loginbutton title="send" className="bg-blue-400 w-full mt-0" />
+              {/* <Loginbutton title="send" className="bg-blue-400 w-full mt-0" /> */}
+              <button
+                className="px-8 py-2 text-slate-200 font-bold text-center rounded-lg mt-6 text-sm sm:text-base bg-blue-400 w-full gap-1"
+                type="submit"
+              >
+                {loading ? <Spinner size="sm" /> : ""}
+                Send
+              </button>
             </form>
           </div>
         </div>

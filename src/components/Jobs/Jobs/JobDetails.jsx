@@ -4,6 +4,7 @@ import { apiPrivate as api } from "../../../utils/api";
 import notifyError from "../../../utils/notifyError";
 import notifySuccess from "../../../utils/notifySuccess";
 import { useParams } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 const imageurl = "https://api.jenkins.ng/storage/";
 
@@ -37,19 +38,19 @@ const JobDetails = () => {
       {Loading ? (
         <div className="text-center mx-auto">
           {" "}
-          <Spinner size={25} />
+          <Spinner size="lg" />
         </div>
       ) : (
         <section>
           {/* DETAILS HEADER */}
-          <div className="flex items-center justify-between">
+          <div className="sm:flex items-center justify-between">
             <div className="sm:flex grid gap-5">
               <img
                 src={imageurl + Data.logo}
                 alt="company-logo"
-                className="w-28 h-28 object-cover rounded-full"
+                className="sm:w-28 sm:h-28 w-20 h-20 object-cover rounded-full"
               />
-              <div>
+              <div className="grid gap-1">
                 <p>{Data.title}</p>
                 <p>
                   at {Data.company} <span>{Data.location}</span>
@@ -66,15 +67,17 @@ const JobDetails = () => {
               />
             </div>
           </div>
-          {/* DETAILS DESCRIPTION */}
-          <div>
-            <p>Job Description</p>
-            <p>{Data.description}</p>
-          </div>
-          {/* DETAILS REQUIREMENTS */}
-          <div>
-            <p>Requirements</p>
-            <p></p>
+          <div className="grid gap-3 sm:gap-4 mt-3">
+            {/* DETAILS DESCRIPTION */}
+            <div>
+              <p>Job Description</p>
+              <p>{Data.description}</p>
+            </div>
+            {/* DETAILS REQUIREMENTS */}
+            <div>
+              <p>Requirements</p>
+              <p></p>
+            </div>
           </div>
         </section>
       )}

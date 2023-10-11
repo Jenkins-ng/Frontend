@@ -82,6 +82,10 @@ export const Head = () => {
         if (error.response.status === 401) {
           navigate("/signin");
         }
+        if (error.response.status === 500) {
+          notifyError("Cart is Empty");
+          navigate("/shop/product");
+        }
         // console.log(error);
       }
     };
@@ -197,7 +201,7 @@ const Header = () => {
           tagword=" Enjoy the comfort of clicking away your needs."
           title="START BUYING"
         >
-          <Link to="/signup">START BUYING</Link>
+          <Link to="/shop/product">START BUYING</Link>
         </CTAtextcomponent>
       </Ctawrapper>
     </div>

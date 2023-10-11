@@ -19,6 +19,7 @@ const Section = () => {
           text="Jobs near me"
           to="/job"
         />
+
         <Prototype
           src={FourthImage}
           Id="MARKET"

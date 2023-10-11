@@ -161,7 +161,7 @@ const ProductDetails = () => {
                       <span># </span> {quantity * +items.price}
                     </p>
                   </div>
-                  <div className="flex md:justify-between gap-8 my-2">
+                  <div className="flex justify-between gap-8 my-2">
                     <button
                       type="submit"
                       className="px-4 py-[4px] bg-slate-400 rounded-xl hover:bg-blue-400 text-white"

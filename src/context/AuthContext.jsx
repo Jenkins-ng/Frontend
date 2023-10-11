@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
         const response = apiPrivate.post("/me");
         const data = response.data;
         setAuth({ ...data });
+        setIsAuth(true);
       } catch (error) {
         if (error.status === 401) deleteCookie("token");
       } finally {
@@ -26,7 +27,18 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    Object.keys(auth).length ? setIsAuth(true) : setIsAuth(false);
+    Object.keys(auth).length === 0 ? setIsAuth(false) : setIsAuth(true);
+  }, [auth]);
+
+  useEffect(() => {
+    localStorage.setItem("auth", JSON.stringify(auth));
+  }, [auth]);
+
+  useEffect(() => {
+    const Auth = localStorage.getItem("auth");
+    if (Object.keys(Auth).length !== 0) {
+      setIsAuth(true);
+    }
   }, [auth]);
 
   const logout = () => {
