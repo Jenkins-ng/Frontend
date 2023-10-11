@@ -3,20 +3,19 @@ import Logo from "../../../Landing page/Header/Logo";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import CTAtextcomponent from "../../../Landing page/CTA/CTAtextcomponent";
 import Ctawrapper from "../../../Landing page/CTA/Ctawrapper";
-import { CartContext } from "../../Context/Cart";
 import useAuth from "../../../../Hooks/useAuth";
 import notifyError from "../../../../utils/notifyError";
 import { apiPrivate as api } from "../../../../utils/api";
 import notifySuccess from "../../../../utils/notifySuccess";
 
 export const Modal = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const Logout = async () => {
     try {
       const response = await api.post("/logout");
       const result = response.data;
       notifySuccess(result.message);
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
       notifyError(error.response.data.message);
@@ -29,13 +28,13 @@ export const Modal = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div className="absolute right-0 bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg">
+      <div className="sm:absolute sm:right-0 left-0 bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg w-full">
         <ul>
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/profile"}>Manage Account</Link>
           </li>
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium relative">
-            <Link to={"/orders"}>My Orders</Link>
+            <Link to={"/shop/orders"}>My Orders</Link>
             <div className="absolute  bg-red-600 px-[8px] py-[0.5px] rounded-full top-0 right-0 text-[9px] text-white">
               0
             </div>

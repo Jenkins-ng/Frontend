@@ -46,6 +46,7 @@ import Profile from "./Pages/EventHive/Dashboard/Profile";
 /////////////////////////////////////////// E-SHOP //////////////////////////////////////////////////
 
 import Market from "./components/Market/Market";
+import Payment from "./Pages/Payment";
 import TopProducts from "./components/Market/Products/TopProducts";
 import ProductDetails from "./components/Market/Products/ProductDetails";
 import ProductByCategory from "./components/Market/Products/ProductByCategory";
@@ -66,6 +67,8 @@ import Overview from "./components/Admin Dashboard/Ecommerce/Overview";
 import AdminProfile from "./components/Admin Dashboard/Profile/Profile";
 import Inbox from "./components/Admin Dashboard/Message";
 import Layedout from "./components/Admin Dashboard/Ecommerce/Layout";
+import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
+import AdminRoute from "./components/AdminRoute";
 
 ///////////////////////////////////////// JOBS /////////////////////////////////////////////////
 import JobLayout from "./components/Jobs/Layout";
@@ -77,11 +80,9 @@ import AllJobs from "./Pages/Jobs/AllJobs";
 
 import { loader as eventLoader } from "./Pages/EventHive/Event";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminRoute from "./components/AdminRoute";
-import CreateJob from "./components/Admin Dashboard/Jobs/Createjob";
 import React from "react";
 import JobApplications from "./components/Admin Dashboard/Jobs/JobApplications";
-import Payment from "./Pages/Payment";
+import MyOrders from "./components/Market/Orders/MyOrders";
 
 ///////////////////////////////////////////  ROUTES //////////////////////////////////////////////////
 
@@ -242,6 +243,8 @@ const router = createBrowserRouter([
             path: "/shop/checkout",
             element: [<ProtectedRoute />, <Checkout />],
           },
+          { path: "/shop/orders", element: [<MyOrders />, <ProtectedRoute />] },
+
           // ///////////////////////////// CHECKOUT PAGE ////////////////////////////////////
           // {
           //   path: "/shop/checkout",
@@ -290,7 +293,6 @@ const router = createBrowserRouter([
     ],
   },
 
-  // { path: "/shop/orders", element: <Orders /> },
   { path: "/pay-verify", element: [<Payment />, <ProtectedRoute />] },
 ]);
 

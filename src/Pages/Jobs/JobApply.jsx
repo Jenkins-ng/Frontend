@@ -69,8 +69,8 @@ const JobApply = () => {
 
   return (
     <main>
-      <section className="my-5 grid gap-4 w-[90%] mx-auto">
-        <h1 className="text-blue-400 font-black text-lg">
+      <section className="py-5 grid gap-4 w-[90%] mx-auto">
+        <h1 className="text-blue-400 font-black text-lg pt-5">
           APPLY FOR THIS JOB TODAY!
         </h1>
         <form onSubmit={handleSubmit(Submit)} encType="mutlipart/form-data">

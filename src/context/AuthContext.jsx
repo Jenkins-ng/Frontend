@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
   }, [auth]);
 
   useEffect(() => {
-    const Auth = localStorage.getItem("auth");
+    const auth = localStorage.getItem("auth");
     if (Object.keys(auth).length !== 0) {
       setIsAuth(true);
     }

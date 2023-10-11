@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "../Landing page/Header/Logo";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -11,11 +11,11 @@ import { setCookie } from "../../utils/cookie";
 import Signupbutton from "../Buttons/Signupbutton";
 
 const Signinform = () => {
-  const { isAuth, setAuth } = useAuth();
-  console.log(setAuth);
+  const { isAuth, setAuth, setIsAuth } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(true);
-  const [redirect, setRedirect] = useState();
+  const [redirect, setRedirect] = useState("");
+  const redirectRef = useRef("");
   const [icon, setIcon] = useState("visibility");
 
   // /////////////////////////////////////////////////////////////////
@@ -23,9 +23,10 @@ const Signinform = () => {
   useEffect(() => {
     const returnTo = localStorage.getItem("returnTo");
     setRedirect(returnTo);
+    redirectRef.current = returnTo;
   }, [redirect]);
 
-  console.log(redirect);
+  console.log(redirect, redirectRef);
 
   const history = useNavigate();
   const location = useLocation();
@@ -54,12 +55,13 @@ const Signinform = () => {
           token,
         };
       });
+
       if (user.is_admin) {
-        history(`${redirect}`);
-        if (redirect) window.location.href = redirect;
+        // history(`${redirect}`);
+        if (redirect) window.location.href = redirectRef.current;
         else history("/");
       } else {
-        if (redirect) window.location.href = redirect;
+        if (redirect) window.location.href = redirectRef.current;
         else history("/");
       }
       // history(from, { replace: true });

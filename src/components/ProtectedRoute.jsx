@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
   const history = window.location.pathname;
 
   useEffect(() => {
-    sessionStorage.setItem("returnTo", history);
+    localStorage.setItem("returnTo", history);
   }, [history]);
 
   return (
