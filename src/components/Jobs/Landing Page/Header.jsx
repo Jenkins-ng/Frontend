@@ -3,11 +3,13 @@ import Ctawrapper from "../../Landing page/CTA/Ctawrapper";
 import CTAtextcomponent from "../../Landing page/CTA/CTAtextcomponent";
 import Logo from "../../Landing page/Header/Logo";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
+
 import Signupbutton from "../../Buttons/Signupbutton";
 import { AuthContext } from "../../../context/AuthContext";
 
 export const Head = () => {
-  const { auth, logout } = useContext(AuthContext);
+  const { isAuth, auth, logout } = useAuth();
   const [icon, seticon] = useState("Menu");
   const [navbar, setNavbar] = useState(true);
   const NavbarHandler = () => {
@@ -19,7 +21,7 @@ export const Head = () => {
   };
 
   return (
-    <header className="grid grid-flow-col justify-between items-center content-center px-3 sm:px-9 py-[4px] sm:py-2 shadow-md fixed Hide bg-white z-10 w-full">
+    <header className="grid grid-flow-col justify-between items-center content-center px-3 sm:px-9 py-[4px] sm:py-4 shadow-md fixed Hide bg-white z-10 w-full">
       <div className="flex sm:gap-20 gap-4 items-center">
         <Link to="/">
           <Logo />
@@ -32,9 +34,9 @@ export const Head = () => {
       </div>
       <div
         className={`${!navbar ? "grid" : "hidden"}
-           absolute right-0 left-0 w-[50vh] pt-10 pb-10 z-10 place-items-center h-[60vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0 lg:h-0 lg:justify-end lg:flex"`}
+           absolute right-0 left-0 w-[50vh] sm:grid pt-10 pb-10 z-10 place-items-center place-content-center  h-[60vh] bg-slate-200 top-[45px] sm:relative sm:top-0 sm:pt-0 sm:pb-0 sm:h-0 lg:justify-end lg:flex"`}
       >
-        {!auth ? (
+        {!isAuth ? (
           <div className="sm:flex grid gap-2 sm:gap-5">
             <>
               <Link to="signup">
@@ -56,9 +58,9 @@ export const Head = () => {
             </>
           </div>
         ) : (
-          <div>
-            <p>
-              Welcome, <span>{auth.user}</span>
+          <div className="grid sm:flex gap-2">
+            <p className="flex gap-2">
+              Welcome, <span>{auth.name}</span>
             </p>
             <button
               type="submit"
@@ -70,7 +72,7 @@ export const Head = () => {
           </div>
         )}
       </div>
-      <button onClick={NavbarHandler} className="lg:hidden">
+      <button onClick={NavbarHandler} className="sm:hidden">
         <span className="material-symbols-outlined text-blue-400 text-3xl">
           {icon}
         </span>
