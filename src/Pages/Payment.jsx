@@ -5,6 +5,7 @@ import notifyError from "../utils/notifyError";
 import Success from "../assets/images/Success.gif";
 import Failure from "../assets/images/Failure.gif";
 import { Spinner } from "flowbite-react";
+const token = getCookie("token");
 import { getCookie } from "../utils/cookie";
 
 import { useSearchParams } from "react-router-dom";

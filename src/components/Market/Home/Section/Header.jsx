@@ -9,7 +9,40 @@ import { apiPrivate as api } from "../../../../utils/api";
 import notifySuccess from "../../../../utils/notifySuccess";
 
 export const Modal = () => {
+  const { auth, order } = useAuth();
+  const [Data, setData] = useState();
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const Fetch = async () => {
+  //     try {
+  //       const response = await api.get("/orders", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       const result = await response.data;
+  //       notifySuccess(result.message);
+  //       setData(result.data);
+  //       setLoading(false);
+  //       console.log(Data, result.data);
+  //     } catch (error) {
+  //       notifyError(error.response.message);
+  //       console.log(error);
+  //       if (error.response.status === 401) {
+  //         navigate("/signin");
+  //       }
+  //       if (error.response.status === 401) {
+  //         navigate("/signin");
+  //       }
+  //     }
+  //   };
+
+  //   // console.log(Data);
+  //   if (Object.keys(auth) === 0) return;
+  //   else Fetch();
+  // }, []);
+
   const Logout = async () => {
     try {
       const response = await api.post("/logout");
@@ -28,15 +61,15 @@ export const Modal = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div className="sm:absolute sm:right-0 left-0 bg-slate-100 p-5 text-sm whitespace-nowrap rounded-lg w-full">
-        <ul>
+      <div className="absolute sm:right-0 left-0  bg-slate-100 px-5 py-4 text-sm whitespace-nowrap rounded-lg">
+        <ul className="grid gap-1">
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/profile"}>Manage Account</Link>
           </li>
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium relative">
             <Link to={"/shop/orders"}>My Orders</Link>
             <div className="absolute  bg-red-600 px-[8px] py-[0.5px] rounded-full top-0 right-0 text-[9px] text-white">
-              0
+              {order ? order.length : 0}
             </div>
           </li>
           <li
@@ -59,7 +92,7 @@ export const Head = () => {
 
   const [icon, seticon] = useState("Menu");
   const [navbar, setNavbar] = useState(false);
-  const [data, setData] = useState();
+  const [data, setdata] = useState();
 
   const NavbarHandler = () => {
     setNavbar((prevstate) => !navbar);
@@ -74,7 +107,7 @@ export const Head = () => {
       try {
         const response = await api.get("/cart");
         const result = response.data;
-        setData(result.cartItems);
+        setdata(result.cartItems);
       } catch (error) {
         console.log(error);
         notifyError(error.message);
@@ -92,8 +125,6 @@ export const Head = () => {
       return;
     } else Fetch();
   }, []);
-
-  console.log(auth);
 
   const showProfile = () => {
     setProfile((prevstate) => !profile);
@@ -130,10 +161,10 @@ export const Head = () => {
       <div
         className={`${
           navbar ? "grid" : "hidden"
-        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all delay-100"`}
+        } lg:flex  sm:bg-slate-200 fixed justify-between items-center lg:w-4/6 lg:h-0 right-0 left-0 w-[50vw] pt-10 pb-10 place-items-center h-[100vh] bg-slate-200 top-[60px] lg:relative lg:top-0 lg:pt-0 lg:pb-0  lg:justify-end transition-all  delay-100`}
       >
-        <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide ">
-          <ul className="text-blue-400 lg:flex block sm:grid gap-10  lg:gap-0 justify-between w-full">
+        <nav className="lg:flex justify-between lg:w-5/6 sm:w-full w-full px-4 tracking-wide">
+          <ul className="text-blue-400 lg:flex grid sm:grid gap-2 sm:gap-10  lg:gap-0 justify-between w-full">
             <li
               className="text-blue-400 font-bold hover:text-gray-500"
               onClick={NavbarHandler}
@@ -141,7 +172,7 @@ export const Head = () => {
               <NavLink to={"/shop"}>HOME</NavLink>
             </li>
             <li
-              className="text-blue-400 font-bold hover:text-gray-500"
+              className="text-blue-400 font-bold hover:text-gray-500 "
               onClick={NavbarHandler}
             >
               <NavLink to={"/shop/product"}>PRODUCTS</NavLink>

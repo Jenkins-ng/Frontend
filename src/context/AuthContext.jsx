@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const apiPrivate = useApiPrivate();
   const [loading, setLoading] = useState(true);
+  const [order, setorder] = useState();
   const [auth, setAuth] = useState({});
   const [isAuth, setIsAuth] = useState(false);
 
@@ -48,7 +49,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, isAuth, loading, logout }}>
+    <AuthContext.Provider
+      value={{ auth, setAuth, isAuth, loading, logout, order, setorder }}
+    >
       {children}
     </AuthContext.Provider>
   );
