@@ -61,7 +61,7 @@ export const Modal = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div className="absolute sm:right-0 left-0  bg-slate-100 px-5 py-4 text-sm whitespace-nowrap rounded-lg">
+      <div className="absolute sm:right-0 top-2 shadow-xl bg-slate-100 px-5 py-4 text-sm whitespace-nowrap rounded-lg">
         <ul className="grid gap-1">
           <li className="py-[4px] text-blue-400 hover:text-slate-500 font-medium">
             <Link to={"/profile"}>Manage Account</Link>
